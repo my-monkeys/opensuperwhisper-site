@@ -1,0 +1,542 @@
+{
+ "models": [
+  {
+   "id": "whisper-tiny",
+   "label": "Whisper tiny",
+   "engine": "whisper",
+   "wmodel": "ggml-tiny.bin",
+   "device": "on-device",
+   "langs": null
+  },
+  {
+   "id": "whisper-base",
+   "label": "Whisper base",
+   "engine": "whisper",
+   "wmodel": "ggml-base.bin",
+   "device": "on-device",
+   "langs": null
+  },
+  {
+   "id": "whisper-small",
+   "label": "Whisper small",
+   "engine": "whisper",
+   "wmodel": "ggml-small.bin",
+   "device": "on-device",
+   "langs": null
+  },
+  {
+   "id": "whisper-medium",
+   "label": "Whisper medium",
+   "engine": "whisper",
+   "wmodel": "ggml-medium.bin",
+   "device": "on-device",
+   "langs": null
+  },
+  {
+   "id": "whisper-large-v3",
+   "label": "Whisper large-v3",
+   "engine": "whisper",
+   "wmodel": "ggml-large-v3.bin",
+   "device": "on-device",
+   "langs": null
+  },
+  {
+   "id": "whisper-turbo",
+   "label": "Whisper large-v3-turbo",
+   "engine": "whisper",
+   "wmodel": "ggml-large-v3-turbo.bin",
+   "device": "on-device",
+   "langs": null
+  },
+  {
+   "id": "parakeet-v3",
+   "label": "Parakeet v3",
+   "engine": "fluidaudio",
+   "fa": "v3",
+   "device": "on-device",
+   "langs": [
+    "en",
+    "fr",
+    "de",
+    "es",
+    "it",
+    "pt",
+    "ru"
+   ]
+  },
+  {
+   "id": "sensevoice",
+   "label": "SenseVoice",
+   "engine": "sensevoice",
+   "device": "on-device",
+   "langs": [
+    "zh",
+    "ja",
+    "ko",
+    "en"
+   ]
+  },
+  {
+   "id": "groq-turbo",
+   "label": "Groq large-v3-turbo",
+   "engine": "groq",
+   "groq": "whisper-large-v3-turbo",
+   "device": "cloud",
+   "langs": null
+  },
+  {
+   "id": "groq-large-v3",
+   "label": "Groq large-v3",
+   "engine": "groq",
+   "groq": "whisper-large-v3",
+   "device": "cloud",
+   "langs": null
+  }
+ ],
+ "langs": [
+  "en",
+  "fr",
+  "de",
+  "es",
+  "vi",
+  "zh",
+  "ja"
+ ],
+ "cells": {
+  "whisper-tiny::en": {
+   "err": 0.1575,
+   "metric": "wer",
+   "rtf": 0.0363,
+   "xrealtime": 27.5,
+   "n": 3
+  },
+  "whisper-tiny::fr": {
+   "err": 0.4856,
+   "metric": "wer",
+   "rtf": 0.0637,
+   "xrealtime": 15.7,
+   "n": 3
+  },
+  "whisper-tiny::de": {
+   "err": 0.2934,
+   "metric": "wer",
+   "rtf": 0.029,
+   "xrealtime": 34.5,
+   "n": 3
+  },
+  "whisper-tiny::es": {
+   "err": 0.1458,
+   "metric": "wer",
+   "rtf": 0.0322,
+   "xrealtime": 31.0,
+   "n": 3
+  },
+  "whisper-tiny::vi": {
+   "err": 0.5769,
+   "metric": "wer",
+   "rtf": 0.038,
+   "xrealtime": 26.3,
+   "n": 3
+  },
+  "whisper-tiny::zh": {
+   "err": 0.5342,
+   "metric": "cer",
+   "rtf": 0.0277,
+   "xrealtime": 36.1,
+   "n": 3
+  },
+  "whisper-tiny::ja": {
+   "err": 0.4703,
+   "metric": "cer",
+   "rtf": 0.0348,
+   "xrealtime": 28.7,
+   "n": 3
+  },
+  "whisper-base::en": {
+   "err": 0.1056,
+   "metric": "wer",
+   "rtf": 0.0367,
+   "xrealtime": 27.3,
+   "n": 3
+  },
+  "whisper-base::fr": {
+   "err": 0.338,
+   "metric": "wer",
+   "rtf": 0.0455,
+   "xrealtime": 22.0,
+   "n": 3
+  },
+  "whisper-base::de": {
+   "err": 0.2471,
+   "metric": "wer",
+   "rtf": 0.0345,
+   "xrealtime": 29.0,
+   "n": 3
+  },
+  "whisper-base::es": {
+   "err": 0.0622,
+   "metric": "wer",
+   "rtf": 0.0395,
+   "xrealtime": 25.3,
+   "n": 3
+  },
+  "whisper-base::vi": {
+   "err": 0.3671,
+   "metric": "wer",
+   "rtf": 0.0566,
+   "xrealtime": 17.7,
+   "n": 3
+  },
+  "whisper-base::zh": {
+   "err": 0.6068,
+   "metric": "cer",
+   "rtf": 0.0415,
+   "xrealtime": 24.1,
+   "n": 3
+  },
+  "whisper-base::ja": {
+   "err": 0.3263,
+   "metric": "cer",
+   "rtf": 0.0466,
+   "xrealtime": 21.5,
+   "n": 3
+  },
+  "whisper-small::en": {
+   "err": 0.0897,
+   "metric": "wer",
+   "rtf": 0.0698,
+   "xrealtime": 14.3,
+   "n": 3
+  },
+  "whisper-small::fr": {
+   "err": 0.1251,
+   "metric": "wer",
+   "rtf": 0.0841,
+   "xrealtime": 11.9,
+   "n": 3
+  },
+  "whisper-small::de": {
+   "err": 0.0462,
+   "metric": "wer",
+   "rtf": 0.0638,
+   "xrealtime": 15.7,
+   "n": 3
+  },
+  "whisper-small::es": {
+   "err": 0.0376,
+   "metric": "wer",
+   "rtf": 0.0723,
+   "xrealtime": 13.8,
+   "n": 3
+  },
+  "whisper-small::vi": {
+   "err": 0.2617,
+   "metric": "wer",
+   "rtf": 0.0903,
+   "xrealtime": 11.1,
+   "n": 3
+  },
+  "whisper-small::zh": {
+   "err": 0.581,
+   "metric": "cer",
+   "rtf": 0.0742,
+   "xrealtime": 13.5,
+   "n": 3
+  },
+  "whisper-small::ja": {
+   "err": 0.1506,
+   "metric": "cer",
+   "rtf": 0.0867,
+   "xrealtime": 11.5,
+   "n": 3
+  },
+  "whisper-medium::en": {
+   "err": 0.0435,
+   "metric": "wer",
+   "rtf": 0.1899,
+   "xrealtime": 5.3,
+   "n": 3
+  },
+  "whisper-medium::fr": {
+   "err": 0.0826,
+   "metric": "wer",
+   "rtf": 0.1915,
+   "xrealtime": 5.2,
+   "n": 3
+  },
+  "whisper-medium::de": {
+   "err": 0.0462,
+   "metric": "wer",
+   "rtf": 0.1392,
+   "xrealtime": 7.2,
+   "n": 3
+  },
+  "whisper-medium::es": {
+   "err": 0.0115,
+   "metric": "wer",
+   "rtf": 0.1473,
+   "xrealtime": 6.8,
+   "n": 3
+  },
+  "whisper-medium::vi": {
+   "err": 0.0962,
+   "metric": "wer",
+   "rtf": 0.205,
+   "xrealtime": 4.9,
+   "n": 3
+  },
+  "whisper-medium::zh": {
+   "err": 0.525,
+   "metric": "cer",
+   "rtf": 0.1555,
+   "xrealtime": 6.4,
+   "n": 3
+  },
+  "whisper-medium::ja": {
+   "err": 0.0865,
+   "metric": "cer",
+   "rtf": 0.1831,
+   "xrealtime": 5.5,
+   "n": 3
+  },
+  "whisper-large-v3::en": {
+   "err": 0.0594,
+   "metric": "wer",
+   "rtf": 0.306,
+   "xrealtime": 3.3,
+   "n": 3
+  },
+  "whisper-large-v3::fr": {
+   "err": 0.0592,
+   "metric": "wer",
+   "rtf": 0.3351,
+   "xrealtime": 3.0,
+   "n": 3
+  },
+  "whisper-large-v3::de": {
+   "err": 0.0462,
+   "metric": "wer",
+   "rtf": 0.2513,
+   "xrealtime": 4.0,
+   "n": 3
+  },
+  "whisper-large-v3::es": {
+   "err": 0.0115,
+   "metric": "wer",
+   "rtf": 0.2799,
+   "xrealtime": 3.6,
+   "n": 3
+  },
+  "whisper-large-v3::vi": {
+   "err": 0.0683,
+   "metric": "wer",
+   "rtf": 0.3602,
+   "xrealtime": 2.8,
+   "n": 3
+  },
+  "whisper-large-v3::zh": {
+   "err": 0.4215,
+   "metric": "cer",
+   "rtf": 0.2982,
+   "xrealtime": 3.4,
+   "n": 3
+  },
+  "whisper-large-v3::ja": {
+   "err": 0.0938,
+   "metric": "cer",
+   "rtf": 0.3267,
+   "xrealtime": 3.1,
+   "n": 3
+  },
+  "whisper-turbo::en": {
+   "err": 0.0594,
+   "metric": "wer",
+   "rtf": 0.1937,
+   "xrealtime": 5.2,
+   "n": 3
+  },
+  "whisper-turbo::fr": {
+   "err": 0.0533,
+   "metric": "wer",
+   "rtf": 0.1922,
+   "xrealtime": 5.2,
+   "n": 3
+  },
+  "whisper-turbo::de": {
+   "err": 0.0462,
+   "metric": "wer",
+   "rtf": 0.2095,
+   "xrealtime": 4.8,
+   "n": 3
+  },
+  "whisper-turbo::es": {
+   "err": 0.0115,
+   "metric": "wer",
+   "rtf": 0.2161,
+   "xrealtime": 4.6,
+   "n": 3
+  },
+  "whisper-turbo::vi": null,
+  "whisper-turbo::zh": {
+   "err": 0.4428,
+   "metric": "cer",
+   "rtf": 0.325,
+   "xrealtime": 3.1,
+   "n": 3
+  },
+  "whisper-turbo::ja": {
+   "err": 0.073,
+   "metric": "cer",
+   "rtf": 0.3049,
+   "xrealtime": 3.3,
+   "n": 3
+  },
+  "parakeet-v3::fr": {
+   "err": 0.0667,
+   "metric": "wer",
+   "rtf": 0.0107,
+   "xrealtime": 93.3,
+   "n": 3
+  },
+  "parakeet-v3::de": {
+   "err": 0.0515,
+   "metric": "wer",
+   "rtf": 0.008,
+   "xrealtime": 124.9,
+   "n": 3
+  },
+  "parakeet-v3::es": {
+   "err": 0.0361,
+   "metric": "wer",
+   "rtf": 0.0085,
+   "xrealtime": 118.0,
+   "n": 3
+  },
+  "sensevoice::zh": {
+   "err": 0.4215,
+   "metric": "cer",
+   "rtf": 0.0237,
+   "xrealtime": 42.2,
+   "n": 3
+  },
+  "sensevoice::ja": {
+   "err": 0.0955,
+   "metric": "cer",
+   "rtf": 0.0261,
+   "xrealtime": 38.3,
+   "n": 3
+  },
+  "sensevoice::en": {
+   "err": 0.0594,
+   "metric": "wer",
+   "rtf": 0.0205,
+   "xrealtime": 48.8,
+   "n": 3
+  },
+  "groq-turbo::en": {
+   "err": 0.1221,
+   "metric": "wer",
+   "rtf": 0.0389,
+   "xrealtime": 25.7,
+   "n": 3
+  },
+  "groq-turbo::fr": {
+   "err": 0.0592,
+   "metric": "wer",
+   "rtf": 0.0306,
+   "xrealtime": 32.6,
+   "n": 3
+  },
+  "groq-turbo::de": {
+   "err": 0.0462,
+   "metric": "wer",
+   "rtf": 0.0376,
+   "xrealtime": 26.6,
+   "n": 3
+  },
+  "groq-turbo::es": {
+   "err": 0.018,
+   "metric": "wer",
+   "rtf": 0.0299,
+   "xrealtime": 33.5,
+   "n": 3
+  },
+  "groq-turbo::vi": {
+   "err": 0.0683,
+   "metric": "wer",
+   "rtf": 0.0573,
+   "xrealtime": 17.4,
+   "n": 3
+  },
+  "groq-turbo::zh": {
+   "err": 0.4852,
+   "metric": "cer",
+   "rtf": 0.0322,
+   "xrealtime": 31.1,
+   "n": 3
+  },
+  "groq-turbo::ja": {
+   "err": 0.3613,
+   "metric": "cer",
+   "rtf": 0.0747,
+   "xrealtime": 13.4,
+   "n": 3
+  },
+  "groq-large-v3::en": {
+   "err": 0.0594,
+   "metric": "wer",
+   "rtf": 0.0565,
+   "xrealtime": 17.7,
+   "n": 3
+  },
+  "groq-large-v3::fr": {
+   "err": 0.0533,
+   "metric": "wer",
+   "rtf": 0.0486,
+   "xrealtime": 20.6,
+   "n": 3
+  },
+  "groq-large-v3::de": {
+   "err": 0.0462,
+   "metric": "wer",
+   "rtf": 0.0561,
+   "xrealtime": 17.8,
+   "n": 3
+  },
+  "groq-large-v3::es": {
+   "err": 0.0115,
+   "metric": "wer",
+   "rtf": 0.0446,
+   "xrealtime": 22.4,
+   "n": 3
+  },
+  "groq-large-v3::vi": {
+   "err": 0.0892,
+   "metric": "wer",
+   "rtf": 0.0622,
+   "xrealtime": 16.1,
+   "n": 3
+  },
+  "groq-large-v3::zh": {
+   "err": 0.4802,
+   "metric": "cer",
+   "rtf": 0.0603,
+   "xrealtime": 16.6,
+   "n": 3
+  },
+  "groq-large-v3::ja": {
+   "err": 0.3821,
+   "metric": "cer",
+   "rtf": 0.0421,
+   "xrealtime": 23.8,
+   "n": 3
+  },
+  "parakeet-v3::en": {
+   "err": 0.086,
+   "metric": "wer",
+   "rtf": 0.0115,
+   "xrealtime": 86.6,
+   "n": 3
+  }
+ }
+}

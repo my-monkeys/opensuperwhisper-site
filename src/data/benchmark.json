@@ -1,0 +1,392 @@
+{
+ "whisper-tiny": {
+  "overall": {
+   "xrt": 28.5,
+   "err": 38.1
+  },
+  "byLang": {
+   "en": {
+    "xrt": 27.5,
+    "err": 15.8,
+    "metric": "wer"
+   },
+   "fr": {
+    "xrt": 15.7,
+    "err": 48.6,
+    "metric": "wer"
+   },
+   "de": {
+    "xrt": 34.5,
+    "err": 29.3,
+    "metric": "wer"
+   },
+   "es": {
+    "xrt": 31.0,
+    "err": 14.6,
+    "metric": "wer"
+   },
+   "vi": {
+    "xrt": 26.3,
+    "err": 57.7,
+    "metric": "wer"
+   },
+   "zh": {
+    "xrt": 36.1,
+    "err": 53.4,
+    "metric": "cer"
+   },
+   "ja": {
+    "xrt": 28.7,
+    "err": 47.0,
+    "metric": "cer"
+   }
+  }
+ },
+ "whisper-base": {
+  "overall": {
+   "xrt": 23.8,
+   "err": 29.3
+  },
+  "byLang": {
+   "en": {
+    "xrt": 27.3,
+    "err": 10.6,
+    "metric": "wer"
+   },
+   "fr": {
+    "xrt": 22.0,
+    "err": 33.8,
+    "metric": "wer"
+   },
+   "de": {
+    "xrt": 29.0,
+    "err": 24.7,
+    "metric": "wer"
+   },
+   "es": {
+    "xrt": 25.3,
+    "err": 6.2,
+    "metric": "wer"
+   },
+   "vi": {
+    "xrt": 17.7,
+    "err": 36.7,
+    "metric": "wer"
+   },
+   "zh": {
+    "xrt": 24.1,
+    "err": 60.7,
+    "metric": "cer"
+   },
+   "ja": {
+    "xrt": 21.5,
+    "err": 32.6,
+    "metric": "cer"
+   }
+  }
+ },
+ "whisper-small": {
+  "overall": {
+   "xrt": 13.1,
+   "err": 18.5
+  },
+  "byLang": {
+   "en": {
+    "xrt": 14.3,
+    "err": 9.0,
+    "metric": "wer"
+   },
+   "fr": {
+    "xrt": 11.9,
+    "err": 12.5,
+    "metric": "wer"
+   },
+   "de": {
+    "xrt": 15.7,
+    "err": 4.6,
+    "metric": "wer"
+   },
+   "es": {
+    "xrt": 13.8,
+    "err": 3.8,
+    "metric": "wer"
+   },
+   "vi": {
+    "xrt": 11.1,
+    "err": 26.2,
+    "metric": "wer"
+   },
+   "zh": {
+    "xrt": 13.5,
+    "err": 58.1,
+    "metric": "cer"
+   },
+   "ja": {
+    "xrt": 11.5,
+    "err": 15.1,
+    "metric": "cer"
+   }
+  }
+ },
+ "whisper-medium": {
+  "overall": {
+   "xrt": 5.9,
+   "err": 12.7
+  },
+  "byLang": {
+   "en": {
+    "xrt": 5.3,
+    "err": 4.3,
+    "metric": "wer"
+   },
+   "fr": {
+    "xrt": 5.2,
+    "err": 8.3,
+    "metric": "wer"
+   },
+   "de": {
+    "xrt": 7.2,
+    "err": 4.6,
+    "metric": "wer"
+   },
+   "es": {
+    "xrt": 6.8,
+    "err": 1.1,
+    "metric": "wer"
+   },
+   "vi": {
+    "xrt": 4.9,
+    "err": 9.6,
+    "metric": "wer"
+   },
+   "zh": {
+    "xrt": 6.4,
+    "err": 52.5,
+    "metric": "cer"
+   },
+   "ja": {
+    "xrt": 5.5,
+    "err": 8.6,
+    "metric": "cer"
+   }
+  }
+ },
+ "whisper-large": {
+  "overall": {
+   "xrt": 3.3,
+   "err": 10.9
+  },
+  "byLang": {
+   "en": {
+    "xrt": 3.3,
+    "err": 5.9,
+    "metric": "wer"
+   },
+   "fr": {
+    "xrt": 3.0,
+    "err": 5.9,
+    "metric": "wer"
+   },
+   "de": {
+    "xrt": 4.0,
+    "err": 4.6,
+    "metric": "wer"
+   },
+   "es": {
+    "xrt": 3.6,
+    "err": 1.1,
+    "metric": "wer"
+   },
+   "vi": {
+    "xrt": 2.8,
+    "err": 6.8,
+    "metric": "wer"
+   },
+   "zh": {
+    "xrt": 3.4,
+    "err": 42.1,
+    "metric": "cer"
+   },
+   "ja": {
+    "xrt": 3.1,
+    "err": 9.4,
+    "metric": "cer"
+   }
+  }
+ },
+ "whisper-turbo": {
+  "overall": {
+   "xrt": 4.4,
+   "err": 11.4
+  },
+  "byLang": {
+   "en": {
+    "xrt": 5.2,
+    "err": 5.9,
+    "metric": "wer"
+   },
+   "fr": {
+    "xrt": 5.2,
+    "err": 5.3,
+    "metric": "wer"
+   },
+   "de": {
+    "xrt": 4.8,
+    "err": 4.6,
+    "metric": "wer"
+   },
+   "es": {
+    "xrt": 4.6,
+    "err": 1.1,
+    "metric": "wer"
+   },
+   "zh": {
+    "xrt": 3.1,
+    "err": 44.3,
+    "metric": "cer"
+   },
+   "ja": {
+    "xrt": 3.3,
+    "err": 7.3,
+    "metric": "cer"
+   }
+  }
+ },
+ "parakeet-v3": {
+  "overall": {
+   "xrt": 105.7,
+   "err": 6.0
+  },
+  "byLang": {
+   "fr": {
+    "xrt": 93.3,
+    "err": 6.7,
+    "metric": "wer"
+   },
+   "de": {
+    "xrt": 124.9,
+    "err": 5.1,
+    "metric": "wer"
+   },
+   "es": {
+    "xrt": 118.0,
+    "err": 3.6,
+    "metric": "wer"
+   },
+   "en": {
+    "xrt": 86.6,
+    "err": 8.6,
+    "metric": "wer"
+   }
+  }
+ },
+ "sensevoice": {
+  "overall": {
+   "xrt": 43.1,
+   "err": 19.2
+  },
+  "byLang": {
+   "zh": {
+    "xrt": 42.2,
+    "err": 42.1,
+    "metric": "cer"
+   },
+   "ja": {
+    "xrt": 38.3,
+    "err": 9.6,
+    "metric": "cer"
+   },
+   "en": {
+    "xrt": 48.8,
+    "err": 5.9,
+    "metric": "wer"
+   }
+  }
+ },
+ "groq-turbo": {
+  "overall": {
+   "xrt": 25.8,
+   "err": 16.6
+  },
+  "byLang": {
+   "en": {
+    "xrt": 25.7,
+    "err": 12.2,
+    "metric": "wer"
+   },
+   "fr": {
+    "xrt": 32.6,
+    "err": 5.9,
+    "metric": "wer"
+   },
+   "de": {
+    "xrt": 26.6,
+    "err": 4.6,
+    "metric": "wer"
+   },
+   "es": {
+    "xrt": 33.5,
+    "err": 1.8,
+    "metric": "wer"
+   },
+   "vi": {
+    "xrt": 17.4,
+    "err": 6.8,
+    "metric": "wer"
+   },
+   "zh": {
+    "xrt": 31.1,
+    "err": 48.5,
+    "metric": "cer"
+   },
+   "ja": {
+    "xrt": 13.4,
+    "err": 36.1,
+    "metric": "cer"
+   }
+  }
+ },
+ "groq-large": {
+  "overall": {
+   "xrt": 19.3,
+   "err": 16.0
+  },
+  "byLang": {
+   "en": {
+    "xrt": 17.7,
+    "err": 5.9,
+    "metric": "wer"
+   },
+   "fr": {
+    "xrt": 20.6,
+    "err": 5.3,
+    "metric": "wer"
+   },
+   "de": {
+    "xrt": 17.8,
+    "err": 4.6,
+    "metric": "wer"
+   },
+   "es": {
+    "xrt": 22.4,
+    "err": 1.1,
+    "metric": "wer"
+   },
+   "vi": {
+    "xrt": 16.1,
+    "err": 8.9,
+    "metric": "wer"
+   },
+   "zh": {
+    "xrt": 16.6,
+    "err": 48.0,
+    "metric": "cer"
+   },
+   "ja": {
+    "xrt": 23.8,
+    "err": 38.2,
+    "metric": "cer"
+   }
+  }
+ }
+}

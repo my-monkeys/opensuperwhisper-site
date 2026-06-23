@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.astro/
+benchmark/.venv/
+benchmark/pq_cache*/
+benchmark/clips/
+.DS_Store
