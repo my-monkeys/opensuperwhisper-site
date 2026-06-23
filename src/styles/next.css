@@ -84,3 +84,17 @@
   .nx-tablist { flex-direction: row; flex-wrap: wrap; }
   .nx-pane { min-height: auto; padding: 32px; }
 }
+
+/* ---------- footer: My-Monkey galaxy header + explainer + OSW line ---------- */
+.fe { border-top: 1px solid var(--line); background: var(--paper); }
+.fe .wrap { padding: 46px 28px 22px; }
+.fe-head { display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; }
+.fe-brand { display: flex; align-items: center; gap: 9px; font-weight: 640; font-size: 1.18rem; letter-spacing: -0.01em; }
+.fe-univ { display: inline-flex; align-items: center; gap: 7px; font-weight: 540; font-size: 0.92rem; white-space: nowrap;
+  color: var(--ink); background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 9px 17px; transition: border-color .15s, transform .15s; }
+.fe-univ:hover { border-color: var(--ink); transform: translateY(-1px); }
+.fe-about { margin: 14px 0 26px; max-width: 64ch; color: var(--ink-2); font-size: 0.98rem; line-height: 1.55; padding-bottom: 26px; border-bottom: 1px solid var(--line); }
+.fe-about strong { color: var(--ink); font-weight: 580; }
+.fe-foot { display: flex; justify-content: space-between; align-items: center; padding-top: 18px; font-size: 0.88rem; color: var(--ink-3); flex-wrap: wrap; gap: 8px; }
+.fe-foot a { color: var(--ink-2); }
+.fe-foot a:hover { color: var(--accent-ink); }
