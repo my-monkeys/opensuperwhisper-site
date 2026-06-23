@@ -26,8 +26,13 @@
 
 /* ---------- variant labels ---------- */
 /* ---------- features: auto-sliding tabs ---------- */
-.nx-feat { padding: clamp(70px, 10vw, 120px) 0; }
+.nx-feat { padding: clamp(70px, 10vw, 120px) 0; position: relative; overflow: hidden; }
+.nx-feat > .wrap { position: relative; z-index: 1; }
 .nx-feat-lead { max-width: 60ch; margin: 14px 0 40px; }
+
+/* stats band (between the scroll hero and the comparator) */
+.stats-band { padding: clamp(28px, 4vw, 52px) 0; }
+.stats-band .stat-strip { margin-top: 0; }
 .nx-tabs-grid { display: grid; grid-template-columns: 0.82fr 1.18fr; gap: 36px; align-items: stretch; }
 .nx-tablist { display: flex; flex-direction: column; gap: 6px; }
 .nx-tab { position: relative; overflow: hidden; display: flex; align-items: center; gap: 13px; text-align: left;

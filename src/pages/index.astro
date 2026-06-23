@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import "../styles/next.css";
 import Comparator from "../components/Comparator.tsx";
 
 const engines = [
@@ -8,7 +9,7 @@ const engines = [
   { name: "SenseVoice", desc: "Non-autoregressive and quick — Chinese, Cantonese, English, Japanese, Korean.", tag: "on-device" },
   { name: "Groq", desc: "Server-side whisper-large-v3, absurdly fast. Optional — audio leaves your Mac.", tag: "cloud" },
 ];
-const wave = Array.from({ length: 34 });
+const wave = Array.from({ length: 42 });
 const stats = [
   { n: "4", l: "engines" }, { n: "99", l: "languages" },
   { n: "0", l: "telemetry" }, { n: "$0", l: "forever" },
@@ -24,13 +25,27 @@ const I = {
   terminal: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M9.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L146.7 256 9.4 118.6zM224 384l256 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-256 0c-17.7 0-32-14.3-32-32s14.3-32 32-32z"/></svg>`,
 };
 const features = [
-  { cls: "", icon: I.mic, title: "Live transcript", body: "Watch the words build up in the indicator as you speak — Parakeet's streaming preview, not a spinner." },
-  { cls: "", icon: I.language, title: "Translate as you speak", body: "Dictate in any of ~99 languages and get clean English out, in one shortcut." },
-  { cls: "", icon: I.book, title: "Custom dictionary", body: "Teach it your proper nouns and jargon. Your names and acronyms, never mangled." },
-  { cls: "", icon: I.broom, title: "Drop the filler", body: "Strips “um”, “uh” and the like — and never pastes “No speech detected”." },
-  { cls: "", icon: I.dot, title: "Lives in the notch", body: "A recording indicator at your cursor, the screen edge, or a Dynamic Island / notch mode." },
-  { cls: "", icon: I.shield, title: "Private by default", body: "No account, no telemetry. Turn history off entirely or cap how long it's kept." },
-  { cls: "feat-wide", icon: I.terminal, title: "Scriptable CLI", mono: "opensuperwhisper transcribe note.m4a", body: "Pipes like any Unix tool — automate transcription straight from the terminal." },
+  { icon: I.mic, k: "Live transcript",
+    long: "Watch the words build up in the indicator as you speak — Parakeet streams the transcript in real time, so you're never staring at a spinner waiting for the result.",
+    viz: `<div class="vz vz-type">Send the quarterly report to the team<span class="dc-caret"></span></div><span class="vz-cap">streaming · ~200 ms behind your voice</span>` },
+  { icon: I.language, k: "Translate as you speak",
+    long: "Dictate in any of ~99 languages and get clean English out in a single shortcut — Whisper handles the recognition and the translation in one pass.",
+    viz: `<div class="vz vz-tr"><span class="vz-from">« Envoyez le rapport avant ce soir »</span><span class="vz-arrow">→</span><span class="vz-to">“Send the report by tonight.”</span></div>` },
+  { icon: I.wand, k: "AI cleanup via Ollama",
+    long: "Punctuation, casing and rambling, tidied by a local Ollama model running on your own machine. Fully on-device and opt-in — your words never leave your Mac.",
+    viz: `<div class="vz vz-clean"><span class="cd-before">um so like send the the report to alex ok</span><span class="vz-arrow">↓ Ollama</span><span class="cd-after">Send the report to Alex.</span></div>` },
+  { icon: I.book, k: "Custom dictionary",
+    long: "Teach it your proper nouns and jargon — names, acronyms, product names — and they come out verbatim every time instead of being mangled into something close.",
+    viz: `<div class="vz vz-chips"><span>Kubernetes</span><span>OAuth2</span><span>Saanvi</span><span>GraphQL</span><span>My-Monkey</span></div><span class="vz-cap">recognised exactly as you spell them</span>` },
+  { icon: I.broom, k: "Drop the filler",
+    long: "Strips “um”, “uh” and the other verbal tics automatically, and never pastes “No speech detected” into your document when you pause.",
+    viz: `<div class="vz vz-filler"><span class="vz-strike">um,</span> <span class="vz-strike">so like,</span> just send it <span class="vz-strike">you know</span> <span class="vz-arrow">→</span> <b>Just send it.</b></div>` },
+  { icon: I.shield, k: "Private by default",
+    long: "No account, no telemetry, no cloud unless you explicitly pick the Groq engine. Turn transcription history off entirely, or cap how long it's kept.",
+    viz: `<div class="vz vz-badges"><span class="badge">● On-device</span><span class="badge">0 telemetry</span><span class="badge">No account</span></div>` },
+  { icon: I.terminal, k: "Scriptable CLI",
+    long: "A real command-line tool ships in the app bundle. Transcribe files from the terminal and pipe the text into anything — scripts, notes, your own tooling.",
+    viz: `<div class="vz vz-cli"><span class="prompt">$</span> opensuperwhisper transcribe note.m4a &gt; note.txt</div>` },
 ];
 ---
 
@@ -47,6 +62,8 @@ const features = [
     <meta property="og:url" content="https://opensuperwhisper.com/" />
     <meta property="og:title" content="OpenSuperWhisper — free, open-source voice dictation for macOS" />
     <meta property="og:description" content="Speak, it types — in any app, on your Mac. Four transcription engines, fully on-device, open-source and free. Compare the models head-to-head." />
+    <meta property="og:image" content="https://opensuperwhisper.com/og.png" />
+    <meta name="twitter:card" content="summary_large_image" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;680&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -63,47 +80,40 @@ const features = [
       </div>
     </nav>
 
-    <header class="hero">
-      <div class="hero-glow" aria-hidden="true"></div>
-      <div class="wrap">
-      <div class="hero-grid">
-        <div class="hero-text">
+    <section class="nx-hero">
+      <div class="nx-hero-sticky">
+      <div class="nx-stage">
+        <div class="nx-intro">
           <p class="eyebrow">Free · Open-source · 100% on-device</p>
           <h1 class="display">Speak. It types.<br />On your Mac, for free.</h1>
-          <p class="lead hero-lead">
-            OpenSuperWhisper turns your voice into text in any app — your pick of <strong>four
-            transcription engines</strong>, running on your machine. No subscription, no account,
-            nothing leaves your Mac unless you choose the cloud.
-          </p>
+          <p class="lead">Your voice into text in any app — four transcription engines, running on your machine. No subscription, no account, nothing leaves your Mac unless you choose the cloud.</p>
           <div class="hero-actions">
             <div class="cmd"><span class="prompt">$</span> brew install --cask my-monkeys/tap/opensuperwhisper</div>
             <a class="btn btn-ghost" href="https://github.com/my-monkeys/OpenSuperWhisper/releases" data-umami-event="download" data-umami-event-loc="hero">Download the .dmg</a>
           </div>
           <p class="hero-sub">Apple Silicon &amp; Intel · macOS 14+ · MIT licensed</p>
         </div>
-
-        <div class="hero-visual" aria-hidden="true">
-          <div class="dictation-card">
-            <div class="dc-head">
-              <span class="dc-rec"><span class="dc-dot"></span> Listening</span>
-              <span class="badge">● Parakeet</span>
-            </div>
-            <div class="dc-wave">{wave.map((_, i) => <span style={`animation-delay:${(i % 11) * 0.07}s;animation-duration:${0.9 + (i % 5) * 0.13}s`}></span>)}</div>
-            <p class="dc-text">Send the quarterly report to the team before <span class="dc-type">end of day</span><span class="dc-caret"></span></p>
-            <div class="dc-foot"><span>⌘V — pasted into Slack</span><span class="dc-check">✓</span></div>
+        <div class="nx-recorder" id="recorder">
+          <div class="nx-rec-head">
+            <span class="dc-rec"><span class="dc-dot"></span> Listening…</span>
+            <span class="badge">● Parakeet · on-device</span>
           </div>
-          <div class="float-chip chip-1">⌥ Space to dictate</div>
-          <div class="float-chip chip-2">Nothing left your Mac</div>
+          <div class="nx-wave">{wave.map((_, i) => <span style={`animation-delay:${(i % 11) * 0.07}s;animation-duration:${0.9 + (i % 5) * 0.13}s`}></span>)}</div>
+          <p class="nx-rec-text">Send the quarterly report to the team before <span class="dc-type">end of day</span><span class="dc-caret"></span></p>
+          <div class="nx-rec-foot"><span>⌘V — pasted into Slack</span><span class="dc-check">✓</span></div>
         </div>
       </div>
+      <div class="nx-scrollhint">scroll ↓</div>
+      </div>
+    </section>
 
-      <div class="stat-strip">
+    <section class="stats-band">
+      <div class="wrap stat-strip">
         {stats.map((s) => (
           <div class="stat"><strong>{s.n}</strong><span>{s.l}</span></div>
         ))}
       </div>
-      </div>
-    </header>
+    </section>
 
     <section id="compare" class="compare">
       <div class="section-glow sg-bl" aria-hidden="true"></div>
@@ -118,34 +128,35 @@ const features = [
       </div>
     </section>
 
-    <section id="features" class="features-sec">
+    <section id="features" class="nx-feat">
       <div class="section-glow sg-tr" aria-hidden="true"></div>
       <div class="wrap">
         <p class="eyebrow">More than a transcriber</p>
         <h2 class="h2">It doesn't just type. It polishes.</h2>
-        <p class="lead section-lead">
+        <p class="lead nx-feat-lead">
           Everything runs on your Mac — even the LLM cleanup, through your own
           <a href="https://ollama.com">Ollama</a>. The cloud is one optional engine, never a requirement.
         </p>
-        <div class="bento">
-          <div class="feat feat-big">
-            <span class="feat-icon feat-icon-lg" set:html={I.wand} />
-            <h3>AI cleanup, on your machine</h3>
-            <p>Punctuation, casing and rambling — tidied by a <strong>local Ollama model</strong>. Opt-in, fully on-device, never sent anywhere.</p>
-            <div class="cleanup-demo">
-              <p class="cd-before">um so like send the the report to alex today ok</p>
-              <div class="cd-arrow"><span>Ollama cleanup</span></div>
-              <p class="cd-after">Send the report to Alex today.</p>
-            </div>
+        <div class="nx-tabs-grid">
+          <div class="nx-tablist">
+            {features.map((f, i) => (
+              <button class={`nx-tab ${i === 0 ? "on" : ""}`} data-i={i}>
+                <span class="feat-icon" set:html={f.icon} />
+                <span class="nx-tab-k">{f.k}</span>
+                <span class="nx-tab-prog"></span>
+              </button>
+            ))}
           </div>
-          {features.map((f) => (
-            <div class={`feat ${f.cls}`}>
-              <span class="feat-icon" set:html={f.icon} />
-              <h3>{f.title}</h3>
-              {f.mono && <code class="feat-mono">{f.mono}</code>}
-              <p>{f.body}</p>
-            </div>
-          ))}
+          <div class="nx-panes">
+            {features.map((f, i) => (
+              <div class={`nx-pane ${i === 0 ? "on" : ""}`} data-i={i}>
+                <div class="nx-pane-icon" set:html={f.icon} />
+                <h3>{f.k}</h3>
+                <p>{f.long}</p>
+                <div class="nx-pane-viz" set:html={f.viz} />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -186,5 +197,43 @@ const features = [
         <a href="https://github.com/my-monkeys/OpenSuperWhisper" data-umami-event="github" data-umami-event-loc="footer">github.com/my-monkeys/OpenSuperWhisper</a>
       </div>
     </footer>
+
+    <script>
+      import gsap from "gsap";
+      import ScrollTrigger from "gsap/ScrollTrigger";
+      gsap.registerPlugin(ScrollTrigger);
+
+      // scroll-driven hero: recorder shrinks & docks right as the headline reveals
+      if (window.matchMedia("(min-width: 900px)").matches) {
+        const tl = gsap.timeline({
+          scrollTrigger: { trigger: ".nx-hero", start: "top top", end: "bottom bottom", scrub: 0.7 },
+        });
+        tl.fromTo("#recorder", { scale: 1.34, xPercent: -64 }, { scale: 1, xPercent: 0, ease: "none" }, 0);
+        tl.fromTo(".nx-intro", { autoAlpha: 0, x: -40 }, { autoAlpha: 1, x: 0, ease: "none" }, 0.34);
+        tl.to(".nx-scrollhint", { autoAlpha: 0, ease: "none" }, 0.05);
+      } else {
+        gsap.set(".nx-intro", { autoAlpha: 1 });
+      }
+
+      // features: auto-sliding tabs. Progress bar drives the advance; hover pauses, click jumps.
+      const tabs = Array.from(document.querySelectorAll(".nx-tab"));
+      const panes = Array.from(document.querySelectorAll(".nx-pane"));
+      let prog;
+      const HOLD = 5;
+      function show(n) {
+        tabs.forEach((t, k) => t.classList.toggle("on", k === n));
+        panes.forEach((p, k) => p.classList.toggle("on", k === n));
+        gsap.fromTo(panes[n], { autoAlpha: 0.2, y: 16 }, { autoAlpha: 1, y: 0, duration: 0.45, ease: "power2.out" });
+        if (prog) prog.kill();
+        tabs.forEach((t) => gsap.set(t.querySelector(".nx-tab-prog"), { scaleX: 0 }));
+        prog = gsap.fromTo(tabs[n].querySelector(".nx-tab-prog"),
+          { scaleX: 0 }, { scaleX: 1, duration: HOLD, ease: "none", onComplete: () => show((n + 1) % tabs.length) });
+      }
+      tabs.forEach((t, k) => t.addEventListener("click", () => show(k)));
+      const featSec = document.querySelector(".nx-feat");
+      featSec.addEventListener("mouseenter", () => prog && prog.pause());
+      featSec.addEventListener("mouseleave", () => prog && prog.resume());
+      ScrollTrigger.create({ trigger: ".nx-feat", start: "top 75%", once: true, onEnter: () => show(0) });
+    </script>
   </body>
 </html>
