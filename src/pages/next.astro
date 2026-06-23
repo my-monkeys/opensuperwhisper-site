@@ -1,0 +1,162 @@
+---
+import "../styles/global.css";
+import "../styles/next.css";
+
+const I = {
+  wand: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M234.7 42.7L197 56.8c-3 1.1-5 4-5 7.2s2 6.1 5 7.2l37.7 14.1L248.8 123c1.1 3 4 5 7.2 5s6.1-2 7.2-5l14.1-37.7L315 71.2c3-1.1 5-4 5-7.2s-2-6.1-5-7.2L277.3 42.7 263.2 5c-1.1-3-4-5-7.2-5s-6.1 2-7.2 5L234.7 42.7zM46.1 395.4c-18.7 18.7-18.7 49.1 0 67.9l34.6 34.6c18.7 18.7 49.1 18.7 67.9 0L529.9 116.5c18.7-18.7 18.7-49.1 0-67.9L495.3 14.1c-18.7-18.7-49.1-18.7-67.9 0L46.1 395.4zM484.6 82.6l-105 105-23.3-23.3 105-105 23.3 23.3zM7.5 117.2C3 118.9 0 123.2 0 128s3 9.1 7.5 10.8L64 160l21.2 56.5c1.7 4.5 6 7.5 10.8 7.5s9.1-3 10.8-7.5L128 160l56.5-21.2c4.5-1.7 7.5-6 7.5-10.8s-3-9.1-7.5-10.8L128 96 106.8 39.5C105.1 35 100.8 32 96 32s-9.1 3-10.8 7.5L64 96 7.5 117.2zm352 256c-4.5 1.7-7.5 6-7.5 10.8s3 9.1 7.5 10.8L416 416l21.2 56.5c1.7 4.5 6 7.5 10.8 7.5s9.1-3 10.8-7.5L480 416l56.5-21.2c4.5-1.7 7.5-6 7.5-10.8s-3-9.1-7.5-10.8L480 352l-21.2-56.5c-1.7-4.5-6-7.5-10.8-7.5s-9.1 3-10.8 7.5L416 352l-56.5 21.2z"/></svg>`,
+  mic: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M96 96c0-53 43-96 96-96 50.3 0 91.6 38.7 95.7 88L232 88c-13.3 0-24 10.7-24 24s10.7 24 24 24l56 0 0 48-56 0c-13.3 0-24 10.7-24 24s10.7 24 24 24l55.7 0c-4.1 49.3-45.3 88-95.7 88-53 0-96-43-96-96L96 96zM24 160c13.3 0 24 10.7 24 24l0 40c0 79.5 64.5 144 144 144s144-64.5 144-144l0-40c0-13.3 10.7-24 24-24s24 10.7 24 24l0 40c0 97.9-73.3 178.7-168 190.5l0 49.5 48 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-144 0c-13.3 0-24-10.7-24-24s10.7-24 24-24l48 0 0-49.5C73.3 402.7 0 321.9 0 224l0-40c0-13.3 10.7-24 24-24z"/></svg>`,
+  language: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M160 0c17.7 0 32 14.3 32 32l0 32 128 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-9.6 0-8.4 23.1c-16.4 45.2-41.1 86.5-72.2 122 14.2 8.8 29 16.6 44.4 23.5l50.4 22.4 62.2-140c5.1-11.6 16.6-19 29.2-19s24.1 7.4 29.2 19l128 288c7.2 16.2-.1 35.1-16.2 42.2s-35.1-.1-42.2-16.2l-20-45-157.5 0-20 45c-7.2 16.2-26.1 23.4-42.2 16.2s-23.4-26.1-16.2-42.2l39.8-89.5-50.4-22.4c-23-10.2-45-22.4-65.8-36.4-21.3 17.2-44.6 32.2-69.5 44.7L78.3 380.6c-15.8 7.9-35 1.5-42.9-14.3s-1.5-35 14.3-42.9l34.5-17.3c16.3-8.2 31.8-17.7 46.4-28.3-13.8-12.7-26.8-26.4-38.9-40.9L81.6 224.7c-11.3-13.6-9.5-33.8 4.1-45.1s33.8-9.5 45.1 4.1l10.2 12.2c11.5 13.9 24.1 26.8 37.4 38.7 27.5-30.4 49.2-66.1 63.5-105.4l.5-1.2-210.3 0C14.3 128 0 113.7 0 96S14.3 64 32 64l96 0 0-32c0-17.7 14.3-32 32-32zM416 270.8L365.7 384 466.3 384 416 270.8z"/></svg>`,
+  book: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M384 512L96 512c-53 0-96-43-96-96L0 96C0 43 43 0 96 0L400 0c26.5 0 48 21.5 48 48l0 288c0 20.9-13.4 38.7-32 45.3l0 66.7c17.7 0 32 14.3 32 32s-14.3 32-32 32l-32 0zM96 384c-17.7 0-32 14.3-32 32s14.3 32 32 32l256 0 0-64-256 0zm32-232c0 13.3 10.7 24 24 24l176 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-176 0c-13.3 0-24 10.7-24 24zm24 72c-13.3 0-24 10.7-24 24s10.7 24 24 24l176 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-176 0z"/></svg>`,
+  broom: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M566.6 54.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192-34.7-34.7c-4.2-4.2-10-6.6-16-6.6-12.5 0-22.6 10.1-22.6 22.6l0 29.1 108.3 108.3 29.1 0c12.5 0 22.6-10.1 22.6-22.6 0-6-2.4-11.8-6.6-16l-34.7-34.7 192-192zM341.1 353.4L222.6 234.9c-42.7-3.7-85.2 11.7-115.8 42.3l-8 8c-22.3 22.3-34.8 52.5-34.8 84 0 6.8 7.1 11.2 13.2 8.2l51.1-25.5c5-2.5 9.5 4.1 5.4 7.9L7.3 473.4C2.7 477.6 0 483.6 0 489.9 0 502.1 9.9 512 22.1 512l173.3 0c38.8 0 75.9-15.4 103.4-42.8 30.6-30.6 45.9-73.1 42.3-115.8z"/></svg>`,
+  dot: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 512a256 256 0 1 0 0-512 256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z"/></svg>`,
+  shield: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 0c4.6 0 9.2 1 13.4 2.9L457.8 82.8c22 9.3 38.4 31 38.3 57.2-.5 99.2-41.3 280.7-213.6 363.2-16.7 8-36.1 8-52.8 0-172.4-82.5-213.1-264-213.6-363.2-.1-26.2 16.3-47.9 38.3-57.2L242.7 2.9C246.9 1 251.4 0 256 0zm0 66.8l0 378.1c138-66.8 175.1-214.8 176-303.4l-176-74.6 0 0z"/></svg>`,
+  terminal: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M9.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L146.7 256 9.4 118.6zM224 384l256 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-256 0c-17.7 0-32-14.3-32-32s14.3-32 32-32z"/></svg>`,
+};
+const features = [
+  { icon: I.mic, k: "Live transcript",
+    long: "Watch the words build up in the indicator as you speak — Parakeet streams the transcript in real time, so you're never staring at a spinner waiting for the result.",
+    viz: `<div class="vz vz-type">Send the quarterly report to the team<span class="dc-caret"></span></div><span class="vz-cap">streaming · ~200 ms behind your voice</span>` },
+  { icon: I.language, k: "Translate as you speak",
+    long: "Dictate in any of ~99 languages and get clean English out in a single shortcut — Whisper handles the recognition and the translation in one pass.",
+    viz: `<div class="vz vz-tr"><span class="vz-from">« Envoyez le rapport avant ce soir »</span><span class="vz-arrow">→</span><span class="vz-to">“Send the report by tonight.”</span></div>` },
+  { icon: I.wand, k: "AI cleanup via Ollama",
+    long: "Punctuation, casing and rambling, tidied by a local Ollama model running on your own machine. Fully on-device and opt-in — your words never leave your Mac.",
+    viz: `<div class="vz vz-clean"><span class="cd-before">um so like send the the report to alex ok</span><span class="vz-arrow">↓ Ollama</span><span class="cd-after">Send the report to Alex.</span></div>` },
+  { icon: I.book, k: "Custom dictionary",
+    long: "Teach it your proper nouns and jargon — names, acronyms, product names — and they come out verbatim every time instead of being mangled into something close.",
+    viz: `<div class="vz vz-chips"><span>Kubernetes</span><span>OAuth2</span><span>Saanvi</span><span>GraphQL</span><span>My-Monkey</span></div><span class="vz-cap">recognised exactly as you spell them</span>` },
+  { icon: I.broom, k: "Drop the filler",
+    long: "Strips “um”, “uh” and the other verbal tics automatically, and never pastes “No speech detected” into your document when you pause.",
+    viz: `<div class="vz vz-filler"><span class="vz-strike">um,</span> <span class="vz-strike">so like,</span> just send it <span class="vz-strike">you know</span> <span class="vz-arrow">→</span> <b>Just send it.</b></div>` },
+  { icon: I.shield, k: "Private by default",
+    long: "No account, no telemetry, no cloud unless you explicitly pick the Groq engine. Turn transcription history off entirely, or cap how long it's kept.",
+    viz: `<div class="vz vz-badges"><span class="badge">● On-device</span><span class="badge">0 telemetry</span><span class="badge">No account</span></div>` },
+  { icon: I.terminal, k: "Scriptable CLI",
+    long: "A real command-line tool ships in the app bundle. Transcribe files from the terminal and pipe the text into anything — scripts, notes, your own tooling.",
+    viz: `<div class="vz vz-cli"><span class="prompt">$</span> opensuperwhisper transcribe note.m4a &gt; note.txt</div>` },
+];
+const wave = Array.from({ length: 42 });
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>OpenSuperWhisper — /next preview</title>
+    <meta name="robots" content="noindex" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;680&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  </head>
+  <body class="nx">
+    <nav class="nav">
+      <a class="brand" href="/next">OpenSuperWhisper</a>
+      <div class="nav-links">
+        <a href="/">← live site</a>
+        <a class="btn btn-primary nav-cta" href="https://github.com/my-monkeys/OpenSuperWhisper/releases">Download</a>
+      </div>
+    </nav>
+
+    <!-- ===== scroll-driven hero ===== -->
+    <section class="nx-hero">
+      <div class="nx-hero-sticky">
+      <div class="nx-stage">
+        <div class="nx-intro">
+          <p class="eyebrow">Free · Open-source · 100% on-device</p>
+          <h1 class="display">Speak. It types.<br />On your Mac, for free.</h1>
+          <p class="lead">Your voice, four transcription engines, nothing leaving your Mac. Open-source, no subscription.</p>
+          <div class="hero-actions">
+            <div class="cmd"><span class="prompt">$</span> brew install --cask my-monkeys/tap/opensuperwhisper</div>
+          </div>
+        </div>
+
+        <div class="nx-recorder" id="recorder">
+          <div class="nx-rec-head">
+            <span class="dc-rec"><span class="dc-dot"></span> Listening…</span>
+            <span class="badge">● Parakeet · on-device</span>
+          </div>
+          <div class="nx-wave">{wave.map((_, i) => <span style={`animation-delay:${(i % 11) * 0.07}s;animation-duration:${0.9 + (i % 5) * 0.13}s`}></span>)}</div>
+          <p class="nx-rec-text">Send the quarterly report to the team before <span class="dc-type">end of day</span><span class="dc-caret"></span></p>
+          <div class="nx-rec-foot"><span>⌘V — pasted into Slack</span><span class="dc-check">✓</span></div>
+        </div>
+      </div>
+      <div class="nx-scrollhint">scroll ↓</div>
+      </div>
+    </section>
+
+    <!-- ===== features: auto-sliding tabs ===== -->
+    <section class="nx-feat" id="features">
+      <div class="wrap">
+        <p class="eyebrow">More than a transcriber</p>
+        <h2 class="h2">It doesn't just type. It polishes.</h2>
+        <p class="lead nx-feat-lead">Everything runs on your Mac — even the LLM cleanup, through your own Ollama. The cloud is one optional engine, never a requirement.</p>
+        <div class="nx-tabs-grid">
+          <div class="nx-tablist">
+            {features.map((f, i) => (
+              <button class={`nx-tab ${i === 0 ? "on" : ""}`} data-i={i}>
+                <span class="feat-icon" set:html={f.icon} />
+                <span class="nx-tab-k">{f.k}</span>
+                <span class="nx-tab-prog"></span>
+              </button>
+            ))}
+          </div>
+          <div class="nx-panes">
+            {features.map((f, i) => (
+              <div class={`nx-pane ${i === 0 ? "on" : ""}`} data-i={i}>
+                <div class="nx-pane-icon" set:html={f.icon} />
+                <h3>{f.k}</h3>
+                <p>{f.long}</p>
+                <div class="nx-pane-viz" set:html={f.viz} />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="foot"><div class="wrap foot-inner">
+      <span>/next preview — <a href="/">back to the live site</a></span>
+    </div></footer>
+
+    <script>
+      import gsap from "gsap";
+      import ScrollTrigger from "gsap/ScrollTrigger";
+      gsap.registerPlugin(ScrollTrigger);
+
+      // ---- scroll-driven hero: recorder starts big & centered, shrinks to its slot as the intro reveals
+      if (window.matchMedia("(min-width: 900px)").matches) {
+        const tl = gsap.timeline({
+          scrollTrigger: { trigger: ".nx-hero", start: "top top", end: "bottom bottom", scrub: 0.7 },
+        });
+        tl.fromTo("#recorder", { scale: 1.34, xPercent: -64 },
+          { scale: 1, xPercent: 0, ease: "none" }, 0);
+        tl.fromTo(".nx-intro", { autoAlpha: 0, x: -40 }, { autoAlpha: 1, x: 0, ease: "none" }, 0.34);
+        tl.to(".nx-scrollhint", { autoAlpha: 0, ease: "none" }, 0.05);
+      } else {
+        gsap.set(".nx-intro", { autoAlpha: 1 });
+      }
+
+      // ---- features: auto-sliding tabs. The progress bar drives the advance; hover pauses, click jumps.
+      const tabs = Array.from(document.querySelectorAll(".nx-tab"));
+      const panes = Array.from(document.querySelectorAll(".nx-pane"));
+      let prog;
+      const HOLD = 5;
+      function show(n) {
+        tabs.forEach((t, k) => t.classList.toggle("on", k === n));
+        panes.forEach((p, k) => p.classList.toggle("on", k === n));
+        gsap.fromTo(panes[n], { autoAlpha: 0.2, y: 16 }, { autoAlpha: 1, y: 0, duration: 0.45, ease: "power2.out" });
+        if (prog) prog.kill();
+        tabs.forEach((t) => gsap.set(t.querySelector(".nx-tab-prog"), { scaleX: 0 }));
+        prog = gsap.fromTo(tabs[n].querySelector(".nx-tab-prog"),
+          { scaleX: 0 }, { scaleX: 1, duration: HOLD, ease: "none", onComplete: () => show((n + 1) % tabs.length) });
+      }
+      tabs.forEach((t, k) => t.addEventListener("click", () => show(k)));
+      const featSec = document.querySelector(".nx-feat");
+      featSec.addEventListener("mouseenter", () => prog && prog.pause());
+      featSec.addEventListener("mouseleave", () => prog && prog.resume());
+      ScrollTrigger.create({ trigger: ".nx-feat", start: "top 75%", once: true, onEnter: () => show(0) });
+    </script>
+  </body>
+</html>

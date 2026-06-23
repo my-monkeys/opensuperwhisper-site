@@ -1,0 +1,81 @@
+/* /next — experimental scroll-driven page. Reuses global.css tokens.
+   NB: no overflow-x on body/.nx — it breaks ScrollTrigger pinning. The hero clips its own. */
+
+/* ---------- scroll hero (tall section + sticky inner = robust scrub, no ScrollTrigger pin) ---------- */
+.nx-hero { position: relative; height: 230vh; }
+.nx-hero-sticky { position: sticky; top: 0; height: 100vh; display: flex; align-items: center; overflow: hidden; }
+.nx-stage {
+  max-width: var(--maxw); margin: 0 auto; padding: 0 28px; width: 100%;
+  display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 56px; align-items: center;
+}
+.nx-intro .display { margin: 18px 0 22px; max-width: 16ch; }
+.nx-intro .lead { max-width: 46ch; }
+.nx-intro .hero-actions { margin-top: 28px; }
+
+.nx-recorder {
+  background: #fff; border: 1px solid var(--line); border-radius: 24px; padding: 28px;
+  box-shadow: 0 40px 90px -30px rgba(20,18,16,.30); transform-origin: center center; will-change: transform;
+}
+.nx-rec-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 22px; }
+.nx-rec-head .dc-rec { font-size: 1rem; }
+.nx-wave { display: flex; align-items: center; gap: 4px; height: 86px; margin-bottom: 24px; }
+.nx-wave span { flex: 1; background: linear-gradient(var(--accent), #6f82ff); border-radius: 4px; height: 16%; animation: eq 1.1s ease-in-out infinite; }
+.nx-rec-text { font-size: 1.5rem; line-height: 1.38; letter-spacing: -0.02em; min-height: 2.7em; }
+.nx-rec-foot { display: flex; align-items: center; justify-content: space-between; margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--line); font-size: 0.92rem; color: var(--ink-3); }
+.nx-scrollhint { position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%); font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); }
+
+/* ---------- variant labels ---------- */
+/* ---------- features: auto-sliding tabs ---------- */
+.nx-feat { padding: clamp(70px, 10vw, 120px) 0; }
+.nx-feat-lead { max-width: 60ch; margin: 14px 0 40px; }
+.nx-tabs-grid { display: grid; grid-template-columns: 0.82fr 1.18fr; gap: 36px; align-items: stretch; }
+.nx-tablist { display: flex; flex-direction: column; gap: 6px; }
+.nx-tab { position: relative; overflow: hidden; display: flex; align-items: center; gap: 13px; text-align: left;
+  padding: 15px 17px; border-radius: 13px; border: 1px solid transparent; background: transparent; cursor: pointer;
+  font: inherit; font-size: 1.04rem; font-weight: 500; color: var(--ink-2); transition: background .18s, color .18s, box-shadow .18s; }
+.nx-tab .feat-icon { width: 36px; height: 36px; margin-bottom: 0; flex: none; }
+.nx-tab .feat-icon svg { width: 16px; height: 16px; }
+.nx-tab:hover { background: #fff; color: var(--ink); }
+.nx-tab.on { background: #fff; color: var(--ink); border-color: var(--line); box-shadow: 0 8px 22px -10px rgba(20,18,16,.18); }
+.nx-tab-prog { position: absolute; left: 0; bottom: 0; height: 2.5px; width: 100%; background: var(--accent);
+  transform: scaleX(0); transform-origin: left; border-radius: 2px; }
+.nx-tab:not(.on) .nx-tab-prog { opacity: 0; }
+
+.nx-panes { position: relative; }
+.nx-pane { display: none; flex-direction: column; justify-content: center; background: #fff; border: 1px solid var(--line);
+  border-radius: 22px; padding: 46px; min-height: 380px; box-shadow: 0 24px 60px -28px rgba(20,18,16,.16); }
+.nx-pane.on { display: flex; }
+.nx-pane-icon { width: 60px; height: 60px; border-radius: 15px; background: rgba(31,59,255,.1); color: var(--accent);
+  display: inline-flex; align-items: center; justify-content: center; margin-bottom: 22px; }
+.nx-pane-icon svg { width: 28px; height: 28px; }
+.nx-pane h3 { font-size: 1.85rem; font-weight: 640; letter-spacing: -0.03em; margin-bottom: 12px; }
+.nx-pane > p { color: var(--ink-2); font-size: 1.12rem; line-height: 1.5; max-width: 42ch; }
+.nx-pane-viz { margin-top: 26px; }
+
+/* mini-demos inside each pane */
+.vz-cap { display: block; margin-top: 10px; font-size: 0.82rem; color: var(--ink-3); }
+.vz-arrow { color: var(--accent-ink); font-weight: 600; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; }
+.vz-type { font-size: 1.24rem; color: var(--ink); background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; }
+.vz-tr { display: flex; flex-direction: column; gap: 8px; }
+.vz-tr .vz-from { color: var(--ink-3); }
+.vz-tr .vz-to { font-size: 1.2rem; font-weight: 500; }
+.vz-clean { display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
+.vz-clean .cd-before { font-size: 0.95rem; color: var(--ink-3); background: var(--paper); border: 1px dashed #d8d3c6; border-radius: 10px; padding: 11px 14px; }
+.vz-clean .cd-after { font-size: 1.12rem; font-weight: 500; background: rgba(31,59,255,.05); border: 1px solid rgba(31,59,255,.18); border-radius: 10px; padding: 11px 14px; }
+.vz-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.vz-chips span { font-family: var(--mono); font-size: 0.9rem; background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 6px 11px; }
+.vz-filler { font-size: 1.22rem; line-height: 1.7; }
+.vz-filler .vz-strike { color: var(--ink-3); text-decoration: line-through; }
+.vz-badges { display: flex; flex-wrap: wrap; gap: 8px; }
+.vz-cli { font-family: var(--mono); font-size: 0.92rem; background: var(--ink); color: var(--paper); border-radius: 12px; padding: 16px 18px; }
+.vz-cli .prompt { color: rgba(255,255,255,.4); margin-right: 8px; }
+
+@media (max-width: 900px) {
+  .nx-hero { height: auto; }
+  .nx-hero-sticky { position: static; height: auto; overflow: visible; padding: 80px 0; }
+  .nx-stage { grid-template-columns: 1fr; gap: 36px; }
+  .nx-recorder { max-width: 440px; }
+  .nx-tabs-grid { grid-template-columns: 1fr; gap: 24px; }
+  .nx-tablist { flex-direction: row; flex-wrap: wrap; }
+  .nx-pane { min-height: auto; padding: 32px; }
+}
