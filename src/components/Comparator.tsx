@@ -43,12 +43,21 @@ export default function Comparator() {
   const allMeasured = rows.length > 0 && rows.every((r) => r.v.measured);
   const someMeasured = rows.some((r) => r.v.measured);
 
+  const track = (name: string, data?: Record<string, unknown>) =>
+    (window as unknown as { umami?: { track: (n: string, d?: unknown) => void } }).umami?.track(name, data);
+
   return (
     <div className="comparator">
       <div className="cmp-controls">
         <label className="cmp-filter">
           <span>I want to transcribe in</span>
-          <select value={lang} onChange={(e) => setLang(e.target.value)}>
+          <select
+            value={lang}
+            onChange={(e) => {
+              setLang(e.target.value);
+              track("compare-language", { lang: e.target.value });
+            }}
+          >
             <option value="any">any language</option>
             {Object.entries(LANGUAGES).map(([code, name]) => (
               <option key={code} value={code}>{name}</option>
@@ -57,8 +66,8 @@ export default function Comparator() {
         </label>
         <div className="cmp-sort">
           <span>Sort by</span>
-          <button data-on={sort === "speed"} onClick={() => setSort("speed")}>Speed</button>
-          <button data-on={sort === "accuracy"} onClick={() => setSort("accuracy")}>Accuracy</button>
+          <button data-on={sort === "speed"} onClick={() => { setSort("speed"); track("compare-sort", { by: "speed" }); }}>Speed</button>
+          <button data-on={sort === "accuracy"} onClick={() => { setSort("accuracy"); track("compare-sort", { by: "accuracy" }); }}>Accuracy</button>
         </div>
       </div>
 
