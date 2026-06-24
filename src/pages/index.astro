@@ -2,6 +2,11 @@
 import "../styles/global.css";
 import "../styles/next.css";
 import Comparator from "../components/Comparator.tsx";
+import { CHANGELOG } from "../data/changelog";
+
+const latestChange = CHANGELOG[0];
+const fmtDate = (d: string) =>
+  new Date(d).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
 
 const engines = [
   { name: "Whisper", desc: "The reference. ~99 languages, six sizes, can translate to English.", tag: "on-device" },
@@ -76,6 +81,7 @@ const features = [
       <div class="nav-links">
         <a href="#compare">Compare models</a>
         <a href="#engines">Engines</a>
+        <a href="/changelog">Changelog</a>
         <a href="https://github.com/my-monkeys/OpenSuperWhisper" data-umami-event="github" data-umami-event-loc="nav">GitHub</a>
         <a class="btn btn-primary nav-cta" href="#get" data-umami-event="download-cta" data-umami-event-loc="nav">Download</a>
       </div>
@@ -177,6 +183,21 @@ const features = [
             </div>
           ))}
         </div>
+      </div>
+    </section>
+
+    <section id="whatsnew" class="whatsnew">
+      <div class="wrap whatsnew-inner">
+        <p class="eyebrow">Latest update</p>
+        <a class="wn-card" href="/changelog" data-umami-event="changelog" data-umami-event-loc="home">
+          <div class="cl-meta">
+            <span class="cl-ver">v{latestChange.version}</span>
+            <time class="cl-date" datetime={latestChange.date}>{fmtDate(latestChange.date)}</time>
+          </div>
+          <h2 class="wn-title">{latestChange.title}</h2>
+          <p class="wn-sum">{latestChange.summary}</p>
+          <span class="wn-more">See all changes →</span>
+        </a>
       </div>
     </section>
 

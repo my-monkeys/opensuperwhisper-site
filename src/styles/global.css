@@ -162,6 +162,36 @@ section { padding: clamp(72px, 11vw, 130px) 0; }
 .cmp-score[data-tier="mid"]  { background: rgba(154,112,0,.15); color: #9a7000; }
 .cmp-score[data-tier="low"]  { background: rgba(192,57,43,.13); color: #c0392b; }
 .cmp-score[data-tier="na"]   { background: var(--paper); color: var(--ink-3); }
+
+/* Changelog page (/changelog) + home "latest update" block */
+.cl-page { padding: 64px 0 96px; }
+.cl-head { max-width: 640px; margin-bottom: 46px; }
+.cl-title { margin: 6px 0 14px; }
+.cl-list { list-style: none; margin: 0; padding: 0; }
+.cl-item { display: grid; grid-template-columns: 170px 1fr; gap: 28px; padding: 26px 0; border-top: 1px solid var(--line); }
+.cl-item:last-child { border-bottom: 1px solid var(--line); }
+.cl-meta { display: flex; flex-direction: column; gap: 4px; }
+.cl-ver { font-family: "Geist Mono", monospace; font-weight: 500; color: var(--accent-ink); font-size: 0.95rem; }
+.cl-date { font-size: 0.84rem; color: var(--ink-3); }
+.cl-h { font-size: 1.18rem; font-weight: 620; letter-spacing: -0.01em; margin: 0 0 6px; }
+.cl-sum { color: var(--ink-2); line-height: 1.55; margin: 0; max-width: 62ch; }
+.cl-more { margin-top: 38px; }
+.cl-more a, .wn-more { color: var(--accent-ink); font-weight: 500; text-decoration: none; }
+.cl-more a:hover { text-decoration: underline; }
+
+.whatsnew { padding: 44px 0; }
+.whatsnew-inner { max-width: 720px; }
+.whatsnew .eyebrow { margin-bottom: 14px; }
+.wn-card { display: block; text-decoration: none; color: inherit; background: var(--paper-2); border: 1px solid var(--line); border-radius: 16px; padding: 22px 26px; transition: transform .15s, border-color .15s; }
+.wn-card:hover { transform: translateY(-2px); border-color: var(--accent); }
+.wn-card .cl-meta { flex-direction: row; align-items: baseline; gap: 12px; }
+.wn-title { font-size: 1.32rem; font-weight: 640; letter-spacing: -0.015em; margin: 12px 0 6px; }
+.wn-sum { color: var(--ink-2); line-height: 1.5; margin: 0 0 14px; }
+.wn-more { font-size: 0.95rem; }
+
+@media (max-width: 700px) {
+  .cl-item { grid-template-columns: 1fr; gap: 8px; }
+}
 .cmp-engine { font-size: 0.82rem; color: var(--ink-3); }
 .cmp-note { font-size: 0.78rem; color: var(--cloud); }
 .cmp-star { color: var(--accent, #c0392b); font-weight: 700; margin-left: 1px; cursor: help; }

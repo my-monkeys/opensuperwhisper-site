@@ -1,0 +1,97 @@
+---
+import "../styles/global.css";
+import "../styles/next.css";
+import { CHANGELOG } from "../data/changelog";
+
+const fmt = (d: string) =>
+  new Date(d).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Changelog — OpenSuperWhisper</title>
+    <meta
+      name="description"
+      content="What's new in OpenSuperWhisper — the release history of the free, open-source macOS dictation app."
+    />
+    <link rel="icon" href="/icon.png" type="image/png" />
+    <link rel="apple-touch-icon" href="/icon.png" />
+    <link rel="canonical" href="https://opensuperwhisper.com/changelog" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://opensuperwhisper.com/changelog" />
+    <meta property="og:title" content="Changelog — OpenSuperWhisper" />
+    <meta property="og:description" content="The release history of OpenSuperWhisper, the free, open-source macOS dictation app." />
+    <meta property="og:image" content="https://opensuperwhisper.com/og.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;680&family=Geist+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <script defer src="https://uuu.my-monkey.fr/u.js" data-website-id="6734df40-5bb0-485e-a311-6ee24b1c7dc7"></script>
+  </head>
+  <body>
+    <nav class="nav">
+      <a class="brand" href="/"><img src="/icon.png" alt="" class="brand-icon" />OpenSuperWhisper</a>
+      <div class="nav-links">
+        <a href="/#compare">Compare models</a>
+        <a href="/#engines">Engines</a>
+        <a href="/changelog" aria-current="page">Changelog</a>
+        <a href="https://github.com/my-monkeys/OpenSuperWhisper" data-umami-event="github" data-umami-event-loc="nav">GitHub</a>
+        <a class="btn btn-primary nav-cta" href="/#get" data-umami-event="download-cta" data-umami-event-loc="nav">Download</a>
+      </div>
+    </nav>
+
+    <main class="cl-page wrap">
+      <header class="cl-head">
+        <p class="eyebrow">Changelog</p>
+        <h1 class="display cl-title">What's new</h1>
+        <p class="lead">Every release since My-Monkey picked up the fork and kept it alive.</p>
+      </header>
+
+      <ol class="cl-list">
+        {
+          CHANGELOG.map((e) => (
+            <li class="cl-item">
+              <div class="cl-meta">
+                <span class="cl-ver">v{e.version}</span>
+                <time class="cl-date" datetime={e.date}>{fmt(e.date)}</time>
+              </div>
+              <div class="cl-body">
+                <h2 class="cl-h">{e.title}</h2>
+                <p class="cl-sum">{e.summary}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+
+      <p class="cl-more">
+        <a href="https://github.com/my-monkeys/OpenSuperWhisper/releases" data-umami-event="gh-releases">
+          Full release notes on GitHub →
+        </a>
+      </p>
+    </main>
+
+    <footer class="fe">
+      <div class="wrap">
+        <div class="fe-head">
+          <div class="fe-brand">🐵 My-Monkey</div>
+          <a class="fe-univ" href="https://my-monkey.fr/projets/" data-umami-event="my-monkey-universe">Tout l'univers →</a>
+        </div>
+        <p class="fe-about">
+          OpenSuperWhisper was an abandoned project — <strong>My-Monkey</strong> picked up the fork and keeps it alive.
+          We're a collective shipping free, open-source software: sometimes a little absurd, always ours.
+        </p>
+        <div class="fe-foot">
+          <span>OpenSuperWhisper · MIT licensed</span>
+          <a href="https://github.com/my-monkeys/OpenSuperWhisper" data-umami-event="github" data-umami-event-loc="footer">github.com/my-monkeys/OpenSuperWhisper</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
