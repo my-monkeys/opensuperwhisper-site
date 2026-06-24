@@ -154,8 +154,14 @@ section { padding: clamp(72px, 11vw, 130px) 0; }
 .cmp-row { border-bottom: 1px solid var(--line); transition: background .12s; }
 .cmp-row:last-child { border-bottom: 0; }
 .cmp-row:hover { background: var(--paper); }
-.cmp-model { display: flex; flex-direction: column; gap: 2px; }
+.cmp-model { display: flex; flex-direction: row; align-items: center; gap: 13px; }
+.cmp-model-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
 .cmp-model strong { font-weight: 580; letter-spacing: -0.01em; }
+.cmp-score { flex: none; width: 40px; height: 40px; border-radius: 10px; display: grid; place-items: center; font-weight: 680; font-size: 0.98rem; font-variant-numeric: tabular-nums; }
+.cmp-score[data-tier="good"] { background: rgba(31,122,61,.13); color: #1f7a3d; }
+.cmp-score[data-tier="mid"]  { background: rgba(154,112,0,.15); color: #9a7000; }
+.cmp-score[data-tier="low"]  { background: rgba(192,57,43,.13); color: #c0392b; }
+.cmp-score[data-tier="na"]   { background: var(--paper); color: var(--ink-3); }
 .cmp-engine { font-size: 0.82rem; color: var(--ink-3); }
 .cmp-note { font-size: 0.78rem; color: var(--cloud); }
 .cmp-star { color: var(--accent, #c0392b); font-weight: 700; margin-left: 1px; cursor: help; }
