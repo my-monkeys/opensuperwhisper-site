@@ -79,9 +79,18 @@ export default function Comparator() {
         {rows.map(({ m, v }) => (
           <div className="cmp-row" role="row" key={m.id}>
             <div className="cmp-model">
-              <strong>{m.label}</strong>
+              <strong>
+                {m.label}
+                {m.available === false && (
+                  <sup className="cmp-star" title={m.note}>*</sup>
+                )}
+              </strong>
               <span className="cmp-engine">{m.engine} · {m.size}</span>
-              {m.note && <span className="cmp-note">{m.note}</span>}
+              {m.note && (
+                <span className="cmp-note" data-unavailable={m.available === false}>
+                  {m.available === false ? "* " : ""}{m.note}
+                </span>
+              )}
             </div>
             <div><DeviceBadge d={m.device} /></div>
             <div className="cmp-langs">{m.langs === "all" ? "99 languages" : `${m.langs.length} languages`}</div>

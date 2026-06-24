@@ -77,6 +77,20 @@
    ]
   },
   {
+   "id": "moonshine-base",
+   "label": "Moonshine base",
+   "engine": "moonshine",
+   "device": "on-device",
+   "langs": [
+    "en",
+    "es",
+    "ar",
+    "ja",
+    "vi",
+    "zh"
+   ]
+  },
+  {
    "id": "groq-turbo",
    "label": "Groq large-v3-turbo",
    "engine": "groq",
@@ -536,6 +550,48 @@
    "metric": "wer",
    "rtf": 0.0115,
    "xrealtime": 86.6,
+   "n": 3
+  },
+  "moonshine-base::en": {
+   "err": 0.3901,
+   "metric": "wer",
+   "rtf": 0.0158,
+   "xrealtime": 63.2,
+   "n": 3
+  },
+  "moonshine-base::es": {
+   "err": 0.0246,
+   "metric": "wer",
+   "rtf": 0.1278,
+   "xrealtime": 7.8,
+   "n": 3
+  },
+  "moonshine-base::ar": {
+   "err": 0.66,
+   "metric": "wer",
+   "rtf": 0.0183,
+   "xrealtime": 54.6,
+   "n": 5
+  },
+  "moonshine-base::ja": {
+   "err": 0.4322,
+   "metric": "cer",
+   "rtf": 0.0163,
+   "xrealtime": 61.5,
+   "n": 3
+  },
+  "moonshine-base::zh": {
+   "err": 0.5467,
+   "metric": "cer",
+   "rtf": 0.0152,
+   "xrealtime": 65.7,
+   "n": 3
+  },
+  "moonshine-base::vi": {
+   "err": 0.1593,
+   "metric": "wer",
+   "rtf": 0.0199,
+   "xrealtime": 50.2,
    "n": 3
   }
  }

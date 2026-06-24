@@ -388,5 +388,43 @@
     "metric": "cer"
    }
   }
+ },
+ "moonshine-base": {
+  "overall": {
+   "xrt": 50.5,
+   "err": 36.9
+  },
+  "byLang": {
+   "en": {
+    "xrt": 63.2,
+    "err": 39.0,
+    "metric": "wer"
+   },
+   "es": {
+    "xrt": 7.8,
+    "err": 2.5,
+    "metric": "wer"
+   },
+   "ar": {
+    "xrt": 54.6,
+    "err": 66.0,
+    "metric": "wer"
+   },
+   "ja": {
+    "xrt": 61.5,
+    "err": 43.2,
+    "metric": "cer"
+   },
+   "zh": {
+    "xrt": 65.7,
+    "err": 54.7,
+    "metric": "cer"
+   },
+   "vi": {
+    "xrt": 50.2,
+    "err": 15.9,
+    "metric": "wer"
+   }
+  }
  }
 }

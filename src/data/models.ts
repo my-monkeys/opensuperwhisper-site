@@ -5,7 +5,7 @@ export type Device = "on-device" | "cloud";
 export interface Model {
   id: string;
   label: string;
-  engine: "Whisper" | "Parakeet" | "SenseVoice" | "Groq";
+  engine: "Whisper" | "Parakeet" | "SenseVoice" | "Groq" | "Moonshine";
   device: Device;
   size: string;          // on-disk size, or "—" for cloud
   langs: string[] | "all"; // ISO codes it handles ("all" ≈ 99 Whisper languages)
@@ -14,6 +14,7 @@ export interface Model {
   wer: number | null;    // average word/char error %, lower = better
   measured: boolean;     // true once it's our own benchmark, false = published estimate
   note?: string;
+  available?: boolean;   // false = benchmarked but not shipped in the app (shown with an asterisk)
 }
 
 export const LANGUAGES: Record<string, string> = {
@@ -33,6 +34,7 @@ export const MODELS: Model[] = [
   { id: "whisper-turbo",  label: "Whisper large-v3-turbo",engine: "Whisper",    device: "on-device", size: "1.6 GB", langs: "all", translate: true,  xrt: 6,   wer: 11,   measured: false },
   { id: "parakeet-v3",    label: "Parakeet v3",           engine: "Parakeet",   device: "on-device", size: "2.4 GB", langs: EU,    translate: false, xrt: 40,  wer: 9,    measured: false, note: "Live preview while you speak" },
   { id: "sensevoice",     label: "SenseVoice",            engine: "SenseVoice", device: "on-device", size: "239 MB", langs: ["zh","ja","ko","en"], translate: false, xrt: 28, wer: 10, measured: false },
+  { id: "moonshine-base", label: "Moonshine base",        engine: "Moonshine",  device: "on-device", size: "141 MB", langs: ["en","es","ar","ja","vi","zh"], translate: false, xrt: null, wer: null, measured: false, available: false, note: "Not shipped — set aside after our benchmark, given accuracy and language coverage." },
   { id: "groq-turbo",     label: "Groq large-v3-turbo",   engine: "Groq",       device: "cloud",     size: "—",      langs: "all", translate: false, xrt: 216, wer: 12,   measured: false, note: "Cloud — audio leaves your Mac" },
   { id: "groq-large",     label: "Groq large-v3",         engine: "Groq",       device: "cloud",     size: "—",      langs: "all", translate: true,  xrt: 189, wer: 10.3, measured: false, note: "Cloud — audio leaves your Mac" },
 ];

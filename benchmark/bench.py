@@ -43,12 +43,29 @@ MODELS = [
     {"id": "whisper-turbo",      "label": "Whisper large-v3-turbo","engine": "whisper",   "wmodel": "ggml-large-v3-turbo.bin","device": "on-device", "langs": None},
     {"id": "parakeet-v3",        "label": "Parakeet v3",           "engine": "fluidaudio","fa": "v3",                          "device": "on-device", "langs": ["en","fr","de","es","it","pt","ru"]},
     {"id": "sensevoice",         "label": "SenseVoice",            "engine": "sensevoice",                                     "device": "on-device", "langs": ["zh","ja","ko","en"]},
+    {"id": "moonshine-base",     "label": "Moonshine base",        "engine": "moonshine",                                      "device": "on-device", "langs": ["en","es","ar","ja","vi","zh"]},
     {"id": "groq-turbo",         "label": "Groq large-v3-turbo",   "engine": "groq",      "groq": "whisper-large-v3-turbo",    "device": "cloud",     "langs": None},
     {"id": "groq-large-v3",      "label": "Groq large-v3",         "engine": "groq",      "groq": "whisper-large-v3",          "device": "cloud",     "langs": None},
 ]
 
 def sh(*a): subprocess.run(a, check=False, capture_output=True)
 def defaults(key, val): sh("defaults", "write", BUNDLE, key, val)
+
+MOON = Path.home() / "Library/Application Support/fr.my-monkey.opensuperwhisper/moonshine-models"
+MOON_FILES = ["tokens.txt", "encoder_model.ort", "decoder_model_merged.ort"]
+
+def ensure_moonshine(lang):
+    """Download the Moonshine base model for `lang` (sherpa-onnx HF repo) if missing."""
+    d = MOON / lang
+    if all((d / f).exists() for f in MOON_FILES):
+        return True
+    d.mkdir(parents=True, exist_ok=True)
+    repo = f"csukuangfj2/sherpa-onnx-moonshine-base-{lang}-quantized-2026-02-27"
+    for f in MOON_FILES:
+        url = f"https://huggingface.co/{repo}/resolve/main/{f}"
+        if subprocess.run(["curl", "-sSL", "-f", url, "-o", str(d / f)]).returncode != 0:
+            return False
+    return True
 
 def fetch_clips(ui_lang, cfg):
     """FLEURS test clips via the auto-converted Parquet (the loading-script API is gone). Download
@@ -102,6 +119,8 @@ def run_cell(model, ui_lang, cfg, refs):
         defaults("fluidAudioModelVersion", model["fa"])
     if model["engine"] == "groq":
         defaults("groqModel", model["groq"])
+    if model["engine"] == "moonshine":
+        defaults("moonshineLanguage", ui_lang)
     out = subprocess.run([str(BIN), "bench", str(CLIPS / ui_lang)],
                          capture_output=True, text=True, timeout=900)
     try:
@@ -129,7 +148,11 @@ def run_cell(model, ui_lang, cfg, refs):
 def main():
     results = json.loads(RESULTS.read_text()) if RESULTS.exists() else {"models": MODELS, "langs": list(LANGS), "cells": {}}
     cells = results["cells"]
-    for model in MODELS:
+    run_models = MODELS
+    _om = os.environ.get("ONLY_MODELS")
+    if _om:
+        run_models = [m for m in MODELS if m["id"] in _om.split(",")]
+    for model in run_models:
         # only languages present in the (possibly ONLY_LANGS-filtered) set
         targets = [l for l in (model["langs"] or list(LANGS)) if l in LANGS]
         for ui_lang in targets:
@@ -138,6 +161,8 @@ def main():
                 continue
             if model["engine"] == "whisper" and not (WMODELS / model["wmodel"]).exists():
                 print(f"skip {key} (model not downloaded)", flush=True); continue
+            if model["engine"] == "moonshine" and not ensure_moonshine(ui_lang):
+                print(f"skip {key} (moonshine model unavailable)", flush=True); continue
             print(f"[{model['id']}] {ui_lang} …", flush=True, end=" ")
             try:
                 refs = fetch_clips(ui_lang, LANGS[ui_lang])
