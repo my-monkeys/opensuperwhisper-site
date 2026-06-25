@@ -9,6 +9,13 @@ export interface ChangeEntry {
 
 export const CHANGELOG: ChangeEntry[] = [
   {
+    version: "0.9.0",
+    date: "2026-06-25",
+    title: "Direct keyboard insertion",
+    summary:
+      "Transcriptions are now typed directly into the focused app instead of through the clipboard — fixing the bug where the previous clipboard could be pasted instead (notably in ChatGPT), with line breaks no longer submitting chat inputs. Plus a hotkey-freeze fix and a more reliable window reopen.",
+  },
+  {
     version: "0.8.0",
     date: "2026-06-23",
     title: "Redesigned Settings",
