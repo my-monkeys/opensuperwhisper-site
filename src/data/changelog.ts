@@ -9,6 +9,13 @@ export interface ChangeEntry {
 
 export const CHANGELOG: ChangeEntry[] = [
   {
+    version: "0.9.2",
+    date: "2026-06-26",
+    title: "Universal paste insertion",
+    summary:
+      "Transcriptions now insert reliably into every app — including Messages, Claude Code and other Electron/rich-text fields where direct typing silently failed. Insertion is back to a clipboard paste (⌘V) by default, made race-free and unconditional; switch back to typing in Settings if you'd rather keep your clipboard untouched.",
+  },
+  {
     version: "0.9.0",
     date: "2026-06-25",
     title: "Direct keyboard insertion",
