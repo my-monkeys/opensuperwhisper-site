@@ -213,6 +213,49 @@ const features = [
       </div>
     </section>
 
+    <section id="feedback" class="feedback">
+      <div class="section-glow sg-bl" aria-hidden="true"></div>
+      <div class="wrap fb-inner">
+        <h2 class="h2">We're in beta — help us shape it</h2>
+        <p class="lead">OpenSuperWhisper gets better with your feedback. Found a bug, or have an idea? Tell us — every report helps us build something more stable.</p>
+        <form id="fb-form" class="fb-form">
+          <textarea id="fb-message" name="message" rows="4" required maxlength="4000" placeholder="What works, what doesn't, what you'd love to see…"></textarea>
+          <div class="fb-row">
+            <input id="fb-email" name="email" type="email" maxlength="200" placeholder="Email (optional — only if you'd like a reply)" />
+            <button class="btn btn-primary" type="submit" id="fb-submit">Send feedback</button>
+          </div>
+          <p class="fb-status" id="fb-status" role="status" aria-live="polite"></p>
+        </form>
+        <p class="fb-alt">Technical? <a href="https://github.com/my-monkeys/OpenSuperWhisper/issues/new">Open a GitHub issue</a> · <a href="https://github.com/my-monkeys/OpenSuperWhisper/releases">Grab a beta build</a></p>
+      </div>
+    </section>
+
+    <script>
+      const fbForm = document.getElementById("fb-form");
+      if (fbForm) {
+        const fbStatus = document.getElementById("fb-status");
+        const fbSubmit = document.getElementById("fb-submit");
+        fbForm.addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const message = document.getElementById("fb-message").value.trim();
+          const email = document.getElementById("fb-email").value.trim();
+          if (message.length < 2) { fbStatus.textContent = "Please write a little more."; return; }
+          fbSubmit.disabled = true; fbStatus.textContent = "Sending…";
+          try {
+            const res = await fetch("https://git.my-monkey.fr/api/feedback", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ message, email: email || undefined, product: "opensuperwhisper", context: "opensuperwhisper.com" }),
+            });
+            if (res.ok) { fbForm.reset(); fbStatus.textContent = "Thank you! Your feedback landed. 🍌"; }
+            else { fbStatus.textContent = "Hmm, that didn't go through — please try again, or use GitHub Issues."; }
+          } catch {
+            fbStatus.textContent = "Network error — please try again, or use GitHub Issues.";
+          } finally { fbSubmit.disabled = false; }
+        });
+      }
+    </script>
+
     <footer class="fe">
       <div class="wrap">
         <div class="fe-head">
@@ -264,5 +307,30 @@ const features = [
       featSec.addEventListener("mouseleave", () => prog && prog.resume());
       ScrollTrigger.create({ trigger: ".nx-feat", start: "top 75%", once: true, onEnter: () => show(0) });
     </script>
+    <style>
+      .feedback { padding: 96px 0; position: relative; }
+      .fb-inner { max-width: 720px; position: relative; }
+      .fb-form { margin-top: 28px; display: grid; gap: 12px; }
+      .fb-form textarea,
+      .fb-form input {
+        width: 100%; font: inherit; color: var(--ink);
+        padding: 13px 15px; border-radius: 12px;
+        border: 1px solid var(--line); background: var(--paper-2);
+        transition: border-color .15s ease, background .15s ease;
+      }
+      .fb-form textarea { resize: vertical; min-height: 112px; line-height: 1.5; }
+      .fb-form textarea::placeholder,
+      .fb-form input::placeholder { color: var(--ink-3); }
+      .fb-form textarea:focus,
+      .fb-form input:focus { outline: none; border-color: var(--accent); background: #fff; }
+      .fb-row { display: flex; gap: 12px; align-items: stretch; flex-wrap: wrap; }
+      .fb-row input { flex: 1 1 280px; }
+      .fb-row .btn { white-space: nowrap; }
+      .fb-status { min-height: 1.2em; margin: 2px 0 0; font-size: .92rem; color: var(--ink-2); }
+      .fb-alt { margin-top: 20px; font-size: .92rem; color: var(--ink-3); }
+      .fb-alt a { color: var(--accent); text-decoration: none; }
+      .fb-alt a:hover { text-decoration: underline; }
+      @media (max-width: 560px) { .fb-row .btn { width: 100%; } }
+    </style>
   </body>
 </html>
