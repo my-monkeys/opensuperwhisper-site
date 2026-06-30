@@ -1,0 +1,364 @@
+---
+// Bilingual "free, open-source SuperWhisper alternative" comparison page body.
+// The page (.astro) owns <head> (title/meta/hreflang); this owns nav + content + footer + JSON-LD.
+// Competitor facts are accurate as of June 2026 (superwhisper.com/pricing) — keep the date + source
+// note in sync if you touch the numbers. Fair by design: SuperWhisper's real strengths are listed too.
+interface Props { lang: "en" | "fr" }
+const { lang } = Astro.props;
+
+const EN_URL = "https://opensuperwhisper.com/superwhisper-alternative";
+const FR_URL = "https://opensuperwhisper.com/fr/superwhisper-alternative";
+const url = lang === "fr" ? FR_URL : EN_URL;
+
+const GH = "https://github.com/my-monkeys/OpenSuperWhisper";
+const BREW = "brew install --cask my-monkeys/tap/opensuperwhisper";
+
+// ── Comparison matrix ────────────────────────────────────────────────────────
+// kind: "good" = ✅ free/yes, "warn" = ⚠ limited/Pro-gated, "no" = ❌, "na" = —, "text" = raw label.
+type Cell = { kind: "good" | "warn" | "no" | "na"; en: string; fr: string };
+const cell = (kind: Cell["kind"], en: string, fr: string): Cell => ({ kind, en, fr });
+const rows: { en: string; fr: string; osw: Cell; sw: Cell }[] = [
+  { en: "Price", fr: "Prix",
+    osw: cell("text", "Free, forever", "Gratuit, à vie"),
+    sw:  cell("text", "Free tier + Pro from $8.49/mo ($249.99 lifetime)", "Palier gratuit + Pro dès 8,49 $/mois (249,99 $ à vie)") },
+  { en: "No paid upgrade — ever", fr: "Aucune option payante",
+    osw: cell("good", "Yes", "Oui"), sw: cell("no", "Pro / Lifetime", "Pro / à vie") },
+  { en: "Open source (MIT)", fr: "Open source (MIT)",
+    osw: cell("good", "Yes", "Oui"), sw: cell("no", "Closed-source", "Code fermé") },
+  { en: "Runs fully on-device", fr: "Tourne 100 % en local",
+    osw: cell("good", "All engines", "Tous les moteurs"),
+    sw:  cell("warn", "Small models only; large & cloud = Pro", "Petits modèles ; gros & cloud = Pro") },
+  { en: "File transcription", fr: "Transcription de fichiers",
+    osw: cell("good", "Free (app + CLI)", "Gratuit (app + CLI)"), sw: cell("warn", "Pro only", "Pro seulement") },
+  { en: "Translate to English as you speak", fr: "Traduction vers l’anglais en direct",
+    osw: cell("good", "Free (Whisper)", "Gratuit (Whisper)"), sw: cell("warn", "Pro only", "Pro seulement") },
+  { en: "Live transcript preview", fr: "Aperçu de la transcription en direct",
+    osw: cell("good", "Parakeet", "Parakeet"), sw: cell("na", "—", "—") },
+  { en: "Custom dictionary / vocabulary", fr: "Dictionnaire / vocabulaire perso",
+    osw: cell("good", "Yes", "Oui"), sw: cell("good", "Yes", "Oui") },
+  { en: "Scriptable command-line tool", fr: "Outil en ligne de commande",
+    osw: cell("good", "Yes", "Oui"), sw: cell("no", "No", "Non") },
+  { en: "Telemetry", fr: "Télémétrie",
+    osw: cell("good", "None", "Aucune"), sw: cell("na", "—", "—") },
+  { en: "Platforms", fr: "Plateformes",
+    osw: cell("text", "macOS 14+ · Apple Silicon + Intel", "macOS 14+ · Apple Silicon + Intel"),
+    sw:  cell("text", "macOS · Windows · iOS", "macOS · Windows · iOS") },
+  { en: "Meeting recording", fr: "Enregistrement de réunions",
+    osw: cell("no", "No", "Non"), sw: cell("good", "Yes", "Oui") },
+  { en: "Named app integrations", fr: "Intégrations d’apps dédiées",
+    osw: cell("text", "Universal paste (any app)", "Collage universel (toute app)"),
+    sw:  cell("text", "30+ named (Slack, Notion…)", "30+ dédiées (Slack, Notion…)") },
+];
+
+// ── Copy ─────────────────────────────────────────────────────────────────────
+const T = {
+  en: {
+    navCompare: "Compare models", navEngines: "Engines", navChangelog: "Changelog",
+    navGithub: "GitHub", navDownload: "Download",
+    crumbHome: "Home", crumbHere: "SuperWhisper alternative",
+    eyebrow: "Free · Open-source · SuperWhisper alternative",
+    h1: "The free, open-source SuperWhisper alternative",
+    lead: "OpenSuperWhisper turns your voice into text in any app on your Mac — 100% free, open-source, and on-device. No subscription, no account, no paywall on the features SuperWhisper keeps for Pro.",
+    ctaDownload: "Download for macOS", ctaCompare: "Compare the engines →",
+    brewLabel: "or install with Homebrew",
+    whyH: "Why look for a SuperWhisper alternative?",
+    why: "SuperWhisper is a polished app, but it’s a closed-source commercial product: a free tier on top, with translation, file transcription and the large AI models locked behind a Pro subscription (or a $249.99 lifetime licence). If you’d rather not rent your dictation app — or you just want code you can read and trust — here’s the open one.",
+    tableH: "OpenSuperWhisper vs SuperWhisper",
+    tableLead: "Feature by feature, no spin. Where SuperWhisper genuinely wins, we say so.",
+    colOsw: "OpenSuperWhisper", colSw: "SuperWhisper",
+    legend: "✅ free & included · ⚠ limited or Pro-only · ❌ not available · — not applicable",
+    fairH: "Where SuperWhisper is the better pick",
+    fair: "Credit where it’s due. SuperWhisper runs on Windows and iPhone (OpenSuperWhisper is Mac-only), records and transcribes meetings, ships 30+ named app integrations, and hands you big hosted models with zero setup. If you need cross-platform or those exact integrations, it’s a strong choice — and there’s a free tier to try.",
+    pickH: "Pick OpenSuperWhisper if you want…",
+    picks: [
+      "An app that’s genuinely free with no upsell and no account",
+      "Open-source code (MIT) you can audit, fork, or build yourself",
+      "File transcription and live English translation without paying",
+      "Four transcription engines you can benchmark and choose between",
+      "A scriptable CLI to pipe transcripts into your own tools",
+    ],
+    faqH: "SuperWhisper alternative — FAQ",
+    faq: [
+      { q: "Is there a free alternative to SuperWhisper?",
+        a: "Yes. OpenSuperWhisper is a 100% free, open-source (MIT) voice-dictation app for macOS. There’s no paid tier and no account — the features SuperWhisper reserves for Pro, like file transcription and live translation, are free here." },
+      { q: "Is OpenSuperWhisper really completely free?",
+        a: "Yes — free forever, with no premium upgrade to buy. It’s maintained by the My-Monkey collective and the full source is on GitHub under the MIT licence." },
+      { q: "Does it work offline / on-device?",
+        a: "Yes. The Whisper, Parakeet and SenseVoice engines run entirely on your Mac, so your audio never leaves the device. Only the optional Groq engine uses the cloud, and only if you pick it." },
+      { q: "Can I transcribe audio files and translate for free?",
+        a: "Yes. File transcription works from the app and a command-line tool, and Whisper translates ~99 languages into English in one shortcut — both free, where SuperWhisper gates them behind Pro." },
+      { q: "Does it run on Intel Macs?",
+        a: "Yes. There’s a dedicated Intel build alongside the Apple Silicon one. macOS 14 (Sonoma) or newer is required." },
+      { q: "Is OpenSuperWhisper open source?",
+        a: "Yes — MIT-licensed and developed in the open at github.com/my-monkeys/OpenSuperWhisper, a maintained fork of the original OpenSuperWhisper project." },
+    ],
+    note: "Pricing and features as of June 2026, from superwhisper.com/pricing. “SuperWhisper” is a trademark of its respective owner; OpenSuperWhisper is an independent, unaffiliated open-source project and makes no claim of association.",
+    footAbout: "OpenSuperWhisper was an abandoned project — My-Monkey picked up the fork and keeps it alive. We’re a collective shipping free, open-source software: sometimes a little absurd, always ours.",
+    footUniverse: "Tout l'univers →",
+  },
+  fr: {
+    navCompare: "Comparer les modèles", navEngines: "Moteurs", navChangelog: "Nouveautés",
+    navGithub: "GitHub", navDownload: "Télécharger",
+    crumbHome: "Accueil", crumbHere: "Alternative à SuperWhisper",
+    eyebrow: "Gratuit · Open-source · Alternative à SuperWhisper",
+    h1: "L’alternative gratuite et open-source à SuperWhisper",
+    lead: "OpenSuperWhisper transforme votre voix en texte dans n’importe quelle app de votre Mac — 100 % gratuit, open-source et en local. Sans abonnement, sans compte, sans payer pour les fonctions que SuperWhisper réserve au Pro.",
+    ctaDownload: "Télécharger pour macOS", ctaCompare: "Comparer les moteurs →",
+    brewLabel: "ou installez avec Homebrew",
+    whyH: "Pourquoi chercher une alternative à SuperWhisper ?",
+    why: "SuperWhisper est une app soignée, mais c’est un produit commercial à code fermé : un palier gratuit, puis la traduction, la transcription de fichiers et les gros modèles d’IA verrouillés derrière un abonnement Pro (ou une licence à vie à 249,99 $). Si vous préférez ne pas louer votre app de dictée — ou simplement avoir un code que vous pouvez lire et auditer — voici la version ouverte.",
+    tableH: "OpenSuperWhisper vs SuperWhisper",
+    tableLead: "Fonction par fonction, sans enrobage. Là où SuperWhisper gagne vraiment, on le dit.",
+    colOsw: "OpenSuperWhisper", colSw: "SuperWhisper",
+    legend: "✅ gratuit & inclus · ⚠ limité ou Pro · ❌ indisponible · — non applicable",
+    fairH: "Là où SuperWhisper est le meilleur choix",
+    fair: "Soyons justes. SuperWhisper tourne sur Windows et iPhone (OpenSuperWhisper est Mac uniquement), enregistre et transcrit les réunions, propose plus de 30 intégrations d’apps dédiées et fournit de gros modèles hébergés sans aucune configuration. Si vous voulez du multi-plateforme ou ces intégrations précises, c’est un choix solide — et il y a un palier gratuit pour l’essayer.",
+    pickH: "Choisissez OpenSuperWhisper si vous voulez…",
+    picks: [
+      "Une app vraiment gratuite, sans vente incitative ni compte",
+      "Un code open-source (MIT) auditable, forkable, compilable",
+      "La transcription de fichiers et la traduction en direct sans payer",
+      "Quatre moteurs de transcription à comparer et choisir",
+      "Une CLI scriptable pour brancher la transcription sur vos outils",
+    ],
+    faqH: "Alternative à SuperWhisper — FAQ",
+    faq: [
+      { q: "Existe-t-il une alternative gratuite à SuperWhisper ?",
+        a: "Oui. OpenSuperWhisper est une app de dictée vocale 100 % gratuite et open-source (MIT) pour macOS. Aucun palier payant, aucun compte — les fonctions que SuperWhisper réserve au Pro, comme la transcription de fichiers et la traduction en direct, sont ici gratuites." },
+      { q: "OpenSuperWhisper est-il vraiment 100 % gratuit ?",
+        a: "Oui — gratuit à vie, sans aucune version premium à acheter. Il est maintenu par le collectif My-Monkey et tout le code source est sur GitHub sous licence MIT." },
+      { q: "Fonctionne-t-il hors ligne / en local ?",
+        a: "Oui. Les moteurs Whisper, Parakeet et SenseVoice tournent entièrement sur votre Mac : votre audio ne quitte jamais l’appareil. Seul le moteur Groq, optionnel, utilise le cloud — et uniquement si vous le choisissez." },
+      { q: "Puis-je transcrire des fichiers et traduire gratuitement ?",
+        a: "Oui. La transcription de fichiers marche depuis l’app et un outil en ligne de commande, et Whisper traduit ~99 langues vers l’anglais en un raccourci — gratuitement, là où SuperWhisper les verrouille derrière le Pro." },
+      { q: "Fonctionne-t-il sur les Mac Intel ?",
+        a: "Oui. Une version Intel dédiée existe à côté de la version Apple Silicon. macOS 14 (Sonoma) ou plus récent est requis." },
+      { q: "OpenSuperWhisper est-il open source ?",
+        a: "Oui — sous licence MIT et développé au grand jour sur github.com/my-monkeys/OpenSuperWhisper, un fork maintenu du projet OpenSuperWhisper d’origine." },
+    ],
+    note: "Tarifs et fonctions à jour de juin 2026, d’après superwhisper.com/pricing. « SuperWhisper » est une marque de son propriétaire respectif ; OpenSuperWhisper est un projet open-source indépendant et sans affiliation, et ne revendique aucun lien.",
+    footAbout: "OpenSuperWhisper était un projet abandonné — My-Monkey a repris le fork et le maintient en vie. On est un collectif qui livre du logiciel libre et gratuit : parfois un peu absurde, toujours le nôtre.",
+    footUniverse: "Tout l'univers →",
+  },
+} as const;
+
+const t = T[lang];
+// There is no French homepage — the FR page is a standalone landing, so both languages
+// link back to the single (English) homepage.
+const home = "/";
+
+// ── Schema.org ───────────────────────────────────────────────────────────────
+const softwareSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "OpenSuperWhisper",
+  applicationCategory: "UtilitiesApplication",
+  operatingSystem: "macOS 14+",
+  description: t.lead,
+  url: "https://opensuperwhisper.com/",
+  downloadUrl: `${GH}/releases`,
+  license: "https://opensource.org/licenses/MIT",
+  isAccessibleForFree: true,
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+};
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: t.faq.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: t.crumbHome, item: `https://opensuperwhisper.com${home}` },
+    { "@type": "ListItem", position: 2, name: t.crumbHere, item: url },
+  ],
+};
+---
+
+<nav class="nav">
+  <a class="brand" href={home}><img src="/icon.png" alt="" class="brand-icon" />OpenSuperWhisper</a>
+  <div class="nav-links">
+    <a href={`${home}#compare`}>{t.navCompare}</a>
+    <a href={`${home}#engines`}>{t.navEngines}</a>
+    <a href="/changelog">{t.navChangelog}</a>
+    <a href={GH} data-umami-event="github" data-umami-event-loc="nav">{t.navGithub}</a>
+    <a class="btn btn-primary nav-cta" href={`${GH}/releases`} data-umami-event="download-cta" data-umami-event-loc="nav-vs">{t.navDownload}</a>
+  </div>
+</nav>
+
+<main class="vs-page wrap">
+  <nav class="vs-crumb" aria-label="Breadcrumb">
+    <a href={home}>{t.crumbHome}</a><span aria-hidden="true">/</span><span>{t.crumbHere}</span>
+  </nav>
+
+  <header class="vs-hero">
+    <p class="eyebrow">{t.eyebrow}</p>
+    <h1 class="display vs-h1">{t.h1}</h1>
+    <p class="lead vs-lead">{t.lead}</p>
+    <div class="hero-actions vs-actions">
+      <a class="btn btn-primary" href={`${GH}/releases`} data-umami-event="download" data-umami-event-loc="vs-hero">{t.ctaDownload}</a>
+      <a class="btn btn-ghost" href={`${home}#compare`}>{t.ctaCompare}</a>
+    </div>
+    <div class="vs-brew"><span class="vs-brew-label">{t.brewLabel}</span><code class="cmd"><span class="prompt">$</span> {BREW}</code></div>
+  </header>
+
+  <section class="vs-why">
+    <h2 class="h2">{t.whyH}</h2>
+    <p class="lead">{t.why}</p>
+  </section>
+
+  <section class="vs-table-sec" aria-labelledby="vs-table-h">
+    <h2 class="h2" id="vs-table-h">{t.tableH}</h2>
+    <p class="lead section-lead">{t.tableLead}</p>
+    <div class="vs-table-scroll">
+      <table class="vs-table">
+        <thead>
+          <tr>
+            <th scope="col" class="vs-feat-col"></th>
+            <th scope="col" class="vs-osw-col">{t.colOsw}<span class="vs-tag">{lang === "fr" ? "gratuit" : "free"}</span></th>
+            <th scope="col">{t.colSw}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((r) => (
+            <tr>
+              <th scope="row">{lang === "fr" ? r.fr : r.en}</th>
+              {[r.osw, r.sw].map((c) => (
+                <td class={`vs-c vs-${c.kind}`}>
+                  {c.kind === "good" && <span class="vs-mark" aria-hidden="true">✓</span>}
+                  {c.kind === "warn" && <span class="vs-mark" aria-hidden="true">!</span>}
+                  {c.kind === "no" && <span class="vs-mark" aria-hidden="true">✕</span>}
+                  <span class="vs-c-txt">{lang === "fr" ? c.fr : c.en}</span>
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="vs-legend">{t.legend}</p>
+  </section>
+
+  <section class="vs-split">
+    <div class="vs-pick">
+      <h2 class="h2">{t.pickH}</h2>
+      <ul class="vs-picks">
+        {t.picks.map((p) => <li>{p}</li>)}
+      </ul>
+      <a class="btn btn-primary vs-pick-cta" href={`${GH}/releases`} data-umami-event="download" data-umami-event-loc="vs-pick">{t.ctaDownload}</a>
+    </div>
+    <div class="vs-fair">
+      <h2 class="h2">{t.fairH}</h2>
+      <p class="lead">{t.fair}</p>
+    </div>
+  </section>
+
+  <section class="vs-faq" aria-labelledby="vs-faq-h">
+    <h2 class="h2" id="vs-faq-h">{t.faqH}</h2>
+    <div class="vs-faq-list">
+      {t.faq.map((f) => (
+        <details class="vs-faq-item">
+          <summary>{f.q}</summary>
+          <p>{f.a}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <p class="vs-note">{t.note}</p>
+</main>
+
+<footer class="fe">
+  <div class="wrap">
+    <div class="fe-head">
+      <div class="fe-brand">🐵 My-Monkey</div>
+      <a class="fe-univ" href="https://my-monkey.fr/projets/" data-umami-event="my-monkey-universe">{t.footUniverse}</a>
+    </div>
+    <p class="fe-about">{t.footAbout}</p>
+    <div class="fe-foot">
+      <span>OpenSuperWhisper · MIT licensed</span>
+      <a href={GH} data-umami-event="github" data-umami-event-loc="footer">github.com/my-monkeys/OpenSuperWhisper</a>
+    </div>
+  </div>
+</footer>
+
+<script type="application/ld+json" set:html={JSON.stringify(softwareSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+
+<style>
+  .vs-page { padding: 28px 0 96px; }
+  .vs-crumb { display: flex; gap: 8px; align-items: center; font-size: .86rem; color: var(--ink-3); margin: 8px 0 36px; }
+  .vs-crumb a { color: var(--ink-2); text-decoration: none; }
+  .vs-crumb a:hover { color: var(--accent); }
+
+  .vs-hero { max-width: 760px; }
+  .vs-h1 { margin: 14px 0 0; }
+  .vs-lead { margin-top: 18px; }
+  .vs-actions { margin-top: 26px; display: flex; gap: 12px; flex-wrap: wrap; }
+  .vs-brew { margin-top: 18px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .vs-brew-label { font-size: .86rem; color: var(--ink-3); }
+  .cmd { font-family: var(--mono); font-size: .9rem; background: var(--paper-2); border: 1px solid var(--line);
+    border-radius: 10px; padding: 8px 12px; color: var(--ink); white-space: nowrap; }
+  .cmd .prompt { color: var(--accent); margin-right: 6px; }
+
+  .vs-why { margin-top: 72px; max-width: 760px; }
+  .vs-why .lead { margin-top: 14px; }
+
+  .vs-table-sec { margin-top: 72px; }
+  .section-lead { max-width: 620px; margin-top: 12px; }
+  .vs-table-scroll { margin-top: 28px; overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius); }
+  .vs-table { width: 100%; border-collapse: collapse; min-width: 640px; font-size: .96rem; }
+  .vs-table th, .vs-table td { text-align: left; padding: 14px 18px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .vs-table tbody tr:last-child th, .vs-table tbody tr:last-child td { border-bottom: 0; }
+  .vs-table thead th { font-weight: 620; font-size: .82rem; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-3); background: var(--paper-2); }
+  .vs-table thead .vs-osw-col { color: var(--ink); }
+  .vs-table tbody th { font-weight: 540; color: var(--ink); width: 38%; }
+  .vs-feat-col { width: 38%; }
+  .vs-tag { display: inline-block; margin-left: 8px; font-size: .66rem; font-weight: 600; letter-spacing: .04em;
+    text-transform: uppercase; color: var(--good); background: rgba(10,143,87,.12); padding: 2px 7px; border-radius: 999px; }
+  .vs-osw-col, .vs-table td:nth-child(2) { background: rgba(31,59,255,.035); }
+
+  .vs-c { color: var(--ink-2); }
+  .vs-c-txt { vertical-align: middle; }
+  .vs-mark { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px;
+    border-radius: 999px; font-size: .72rem; font-weight: 700; margin-right: 8px; vertical-align: middle; }
+  .vs-good { color: var(--ink); }
+  .vs-good .vs-mark { background: rgba(10,143,87,.14); color: var(--good); }
+  .vs-warn .vs-mark { background: rgba(200,99,26,.14); color: var(--cloud); }
+  .vs-no { color: var(--ink-3); }
+  .vs-no .vs-mark { background: rgba(0,0,0,.06); color: var(--ink-3); }
+  .vs-na { color: var(--ink-3); }
+
+  .vs-legend { margin-top: 14px; font-size: .82rem; color: var(--ink-3); }
+
+  .vs-split { margin-top: 72px; display: grid; grid-template-columns: 1.05fr .95fr; gap: 40px; align-items: start; }
+  .vs-pick { background: var(--paper-2); border: 1px solid var(--line); border-radius: var(--radius); padding: 32px; }
+  .vs-picks { margin: 20px 0 26px; padding: 0; list-style: none; display: grid; gap: 12px; }
+  .vs-picks li { position: relative; padding-left: 28px; color: var(--ink); line-height: 1.45; }
+  .vs-picks li::before { content: "✓"; position: absolute; left: 0; top: 0; color: var(--good); font-weight: 700; }
+  .vs-pick-cta { margin-top: 4px; }
+  .vs-fair .lead { margin-top: 14px; }
+
+  .vs-faq { margin-top: 84px; max-width: 800px; }
+  .vs-faq-list { margin-top: 24px; border-top: 1px solid var(--line); }
+  .vs-faq-item { border-bottom: 1px solid var(--line); }
+  .vs-faq-item summary { cursor: pointer; padding: 18px 4px; font-weight: 560; font-size: 1.05rem; color: var(--ink);
+    list-style: none; display: flex; justify-content: space-between; gap: 16px; align-items: baseline; }
+  .vs-faq-item summary::-webkit-details-marker { display: none; }
+  .vs-faq-item summary::after { content: "+"; color: var(--accent); font-weight: 500; font-size: 1.3rem; line-height: 1; }
+  .vs-faq-item[open] summary::after { content: "–"; }
+  .vs-faq-item p { margin: 0 4px 20px; color: var(--ink-2); line-height: 1.6; max-width: 70ch; }
+
+  .vs-note { margin-top: 64px; padding-top: 20px; border-top: 1px solid var(--line);
+    font-size: .8rem; color: var(--ink-3); line-height: 1.6; max-width: 80ch; }
+
+  @media (max-width: 820px) {
+    .vs-split { grid-template-columns: 1fr; gap: 28px; }
+  }
+</style>

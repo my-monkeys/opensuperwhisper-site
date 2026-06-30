@@ -59,15 +59,15 @@ const features = [
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>OpenSuperWhisper — free, open-source voice dictation for macOS</title>
-    <meta name="description" content="Turn your voice into text in any app on your Mac. Four transcription engines, fully on-device, open-source and free. Compare the models head-to-head." />
+    <title>OpenSuperWhisper — Free Voice Dictation for Mac · SuperWhisper Alternative</title>
+    <meta name="description" content="OpenSuperWhisper is the free, open-source alternative to SuperWhisper — voice dictation in any app on your Mac, with four on-device engines. No subscription, no account. Compare the models head-to-head." />
     <link rel="icon" href="/icon.png" type="image/png" />
     <link rel="apple-touch-icon" href="/icon.png" />
     <link rel="canonical" href="https://opensuperwhisper.com/" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://opensuperwhisper.com/" />
-    <meta property="og:title" content="OpenSuperWhisper — free, open-source voice dictation for macOS" />
-    <meta property="og:description" content="Speak, it types — in any app, on your Mac. Four transcription engines, fully on-device, open-source and free. Compare the models head-to-head." />
+    <meta property="og:title" content="OpenSuperWhisper — Free, Open-Source SuperWhisper Alternative for Mac" />
+    <meta property="og:description" content="Speak, it types — in any app on your Mac. The free, open-source alternative to SuperWhisper: four engines, fully on-device, no subscription, no account." />
     <meta property="og:image" content="https://opensuperwhisper.com/og.png" />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -99,6 +99,7 @@ const features = [
             <a class="btn btn-ghost" href="https://github.com/my-monkeys/OpenSuperWhisper/releases" data-umami-event="download" data-umami-event-loc="hero">Download the .dmg</a>
           </div>
           <p class="hero-sub">Apple Silicon &amp; Intel · macOS 14+ · MIT licensed</p>
+          <p class="hero-alt">The free, open-source <strong>SuperWhisper alternative</strong> — <a href="/superwhisper-alternative" data-umami-event="vs-superwhisper" data-umami-event-loc="hero">see how they compare →</a></p>
         </div>
         <div class="nx-recorder" id="recorder">
           <div class="nx-rec-head">
@@ -308,6 +309,10 @@ const features = [
       ScrollTrigger.create({ trigger: ".nx-feat", start: "top 75%", once: true, onEnter: () => show(0) });
     </script>
     <style>
+      .hero-alt { margin-top: 12px; font-size: 0.92rem; color: var(--ink-2); }
+      .hero-alt strong { color: var(--ink); font-weight: 600; }
+      .hero-alt a { color: var(--accent); text-decoration: none; font-weight: 500; white-space: nowrap; }
+      .hero-alt a:hover { text-decoration: underline; }
       .feedback { padding: 96px 0; position: relative; }
       .fb-inner { max-width: 720px; position: relative; }
       .fb-form { margin-top: 28px; display: grid; gap: 12px; }
