@@ -24,8 +24,8 @@ const features = [
     viz: `<div class="vz vz-type">Send the quarterly report to the team<span class="dc-caret"></span></div>` },
   { num: "02", name: "Record your way", title: "Record your way",
     body: "A key combo or a single modifier — hold to speak, release to insert. The indicator lives where you want it: near the cursor, at a screen edge, or docked in the notch / Dynamic Island, with optional Stop / Cancel buttons on the bubble.",
-    cap: "media pauses while you speak · any mic from the menu bar",
-    viz: `<div class="nb"><div class="nb-bar"><span class="nb-island"><span class="dc-dot"></span><span class="nb-wave"><span></span><span></span><span></span><span></span><span></span><span></span></span>Listening</span></div><div class="nb-desk"></div></div>` },
+    cap: "shown here: notch mode + the cursor pill with its opt-in Stop / Cancel buttons",
+    viz: `<div class="nb"><div class="nb-menubar"><span class="nb-notch"><span class="rec-dot"></span>Recording…</span></div><div class="nb-desk"><span class="nb-pill"><span class="rec-dot"></span>Recording…<span class="nb-btns"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="8.5" y="8.5" width="7" height="7" rx="1.2" fill="currentColor"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M9 3h6l1 2h4v2H4V5h4l1-2zm-3 6h12l-.9 11.1A2 2 0 0 1 15.1 22H8.9a2 2 0 0 1-2-1.9L6 9zm4 2v8h1.5v-8H10zm3 0v8h1.5v-8H13z"/></svg></span></span></div></div>` },
   { num: "03", name: "Translate", title: "Translate as you speak",
     body: "Dictate in any of ~99 languages and get clean English out in a single shortcut — Whisper handles the recognition and the translation in one pass.",
     cap: "",
@@ -349,35 +349,43 @@ const shots = [
       const cards = Array.from(rail.querySelectorAll(".cr-card"));
       const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-      let cur = 0, timer = null, armedAt = 0, remaining = HOLD, paused = false;
+      // One state machine for the timer + progress bar. While the pointer is over the
+      // section (paused), a manual navigation must NOT start a frozen bar or re-arm the
+      // timer — the fresh cycle is deferred to mouseleave (pending).
+      let cur = 0, timer = null, armedAt = 0, remaining = HOLD, paused = false, pending = false;
 
-      function arm(ms) {
-        clearTimeout(timer);
-        if (reduced) return;
-        armedAt = Date.now();
-        remaining = ms;
-        timer = setTimeout(() => show((cur + 1) % N), ms);
+      function clearBars() {
+        cards.forEach((c) => { c.querySelector(".cr-prog").style.animation = "none"; });
       }
 
-      function progress(n) {
-        cards.forEach((c) => { c.querySelector(".cr-prog").style.animation = "none"; });
+      function startCycle() {
+        clearBars();
+        clearTimeout(timer);
         if (reduced) return;
-        const p = cards[n].querySelector(".cr-prog");
+        const p = cards[cur].querySelector(".cr-prog");
         void p.offsetWidth; // reflow so the animation restarts from zero
         p.style.animation = `crProg ${HOLD}ms linear forwards`;
-        p.style.animationPlayState = paused ? "paused" : "running";
+        armedAt = Date.now();
+        remaining = HOLD;
+        timer = setTimeout(() => show((cur + 1) % N), HOLD);
       }
 
       function show(n, scroll = true) {
         cur = n;
         panes.dataset.on = String(n);
         cards.forEach((c, k) => c.classList.toggle("on", k === n));
-        progress(n);
         if (scroll) {
           const c = cards[n];
           rail.scrollTo({ left: c.offsetLeft - rail.offsetWidth / 2 + c.offsetWidth / 2, behavior: "smooth" });
         }
-        arm(HOLD);
+        if (paused) {
+          // Hovering: hold off — bar stays empty, timer silent, cycle starts on leave.
+          clearBars();
+          clearTimeout(timer);
+          pending = true;
+        } else {
+          startCycle();
+        }
       }
 
       document.getElementById("cr-prev").addEventListener("click", () => show((cur + N - 1) % N));
@@ -387,15 +395,26 @@ const shots = [
       sec.addEventListener("mouseenter", () => {
         if (paused || reduced) return;
         paused = true;
-        remaining -= Date.now() - armedAt;
-        clearTimeout(timer);
-        cards[cur].querySelector(".cr-prog").style.animationPlayState = "paused";
+        if (!pending) {
+          remaining -= Date.now() - armedAt;
+          clearTimeout(timer);
+          cards[cur].querySelector(".cr-prog").style.animationPlayState = "paused";
+        }
       });
       sec.addEventListener("mouseleave", () => {
         if (!paused) return;
         paused = false;
-        cards[cur].querySelector(".cr-prog").style.animationPlayState = "running";
-        arm(Math.max(400, remaining));
+        if (pending) {
+          pending = false;
+          startCycle();
+        } else {
+          const p = cards[cur].querySelector(".cr-prog");
+          p.style.animationPlayState = "running";
+          armedAt = Date.now();
+          remaining = Math.max(400, remaining);
+          clearTimeout(timer);
+          timer = setTimeout(() => show((cur + 1) % N), remaining);
+        }
       });
 
       // Drag-to-scroll on the rail, without turning drags into card clicks.
@@ -489,14 +508,21 @@ const shots = [
         transform: scaleX(0); transform-origin: left; border-radius: 2px; }
       @keyframes crProg { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 
-      /* notch mini-demo (pane 02) */
-      .nb { background: #0c0c10; border-radius: 16px; padding: 10px 14px 14px; box-shadow: 0 20px 44px -18px rgba(0,0,0,.45); }
-      .nb-bar { display: flex; justify-content: center; }
-      .nb-island { display: inline-flex; align-items: center; gap: 9px; background: #000; border-radius: 999px; padding: 8px 16px;
-        font-size: .78rem; color: #ddd; border: 1px solid #26262c; }
-      .nb-wave { display: flex; align-items: center; gap: 2.5px; height: 14px; width: 44px; }
-      .nb-wave span { flex: 1; background: linear-gradient(var(--accent), #6f82ff); border-radius: 2px; height: 20%; animation: eq 1.1s ease-in-out infinite; }
-      .nb-desk { height: 52px; margin-top: 12px; border-radius: 9px; background: linear-gradient(180deg, #17171c, #101014); }
+      /* indicator mini-demo (pane 02) — mirrors the real app: the black notch pill
+         hanging from the menu bar, and the cursor-mode pill with its opt-in buttons */
+      .nb { background: #2a2b31; border-radius: 16px; padding: 0 0 14px; overflow: hidden; box-shadow: 0 20px 44px -18px rgba(0,0,0,.45); }
+      .nb-menubar { position: relative; height: 26px; background: #17181c; display: flex; justify-content: center; }
+      .nb-notch { display: inline-flex; align-items: center; gap: 7px; background: #000; color: #d6d6d9;
+        border-radius: 0 0 13px 13px; padding: 5px 18px 7px; font-size: .74rem; font-weight: 560; margin-top: 0; }
+      .nb-desk { position: relative; height: 96px; margin: 12px 14px 0; border-radius: 9px;
+        background: linear-gradient(180deg, #3a3c44, #2e3037); display: flex; align-items: center; justify-content: center; }
+      .nb-pill { display: inline-flex; align-items: center; gap: 8px; background: rgba(243,240,232,.96); color: #57555f;
+        border-radius: 999px; padding: 8px 14px; font-size: .8rem; font-weight: 560; box-shadow: 0 10px 28px -8px rgba(0,0,0,.5); }
+      .nb-btns { display: inline-flex; align-items: center; gap: 7px; margin-left: 4px; color: #e0403a; }
+      .nb-btns svg { width: 15px; height: 15px; display: block; }
+      .rec-dot { width: 7px; height: 7px; border-radius: 999px; background: #ff453a; box-shadow: 0 0 6px rgba(255,69,58,.6);
+        animation: recblink 1.6s ease-in-out infinite; flex: none; }
+      @keyframes recblink { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
 
       /* ── Screenshots ── */
       .shots { border-top: 1px solid var(--line); padding: clamp(70px, 10vw, 120px) 0; }
