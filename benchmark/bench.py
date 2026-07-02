@@ -159,7 +159,34 @@ def run_cell(model, ui_lang, cfg, refs):
         "n": len(errs),
     }
 
+PREF_KEYS = ["selectedEngine", "whisperLanguage", "selectedWhisperModelPath", "groqModel", "fluidAudioModelVersion"]
+
+def snapshot_prefs():
+    out = {}
+    for k in PREF_KEYS:
+        r = subprocess.run(["defaults", "read", BUNDLE, k], capture_output=True, text=True)
+        out[k] = r.stdout.strip() if r.returncode == 0 else None
+    return out
+
+def restore_prefs(snap):
+    for k, v in snap.items():
+        if v is None:
+            subprocess.run(["defaults", "delete", BUNDLE, k], capture_output=True)
+        else:
+            defaults(k, v)
+    print("app prefs restored:", {k: v for k, v in snap.items() if v})
+
 def main():
+    # the bench stomps the app's live prefs cell after cell — always put them back,
+    # even on crash/Ctrl-C (learned the hard way: a run that ended on the Korean cell
+    # left the user dictating French into the Korean model)
+    snap = snapshot_prefs()
+    try:
+        run_all()
+    finally:
+        restore_prefs(snap)
+
+def run_all():
     results = json.loads(RESULTS.read_text()) if RESULTS.exists() else {"models": MODELS, "langs": list(LANGS), "cells": {}}
     cells = results["cells"]
     run_models = MODELS
