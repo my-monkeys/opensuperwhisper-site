@@ -41,6 +41,10 @@ MODELS = [
     {"id": "whisper-medium",     "label": "Whisper medium",        "engine": "whisper",   "wmodel": "ggml-medium.bin",        "device": "on-device", "langs": None},
     {"id": "whisper-large-v3",   "label": "Whisper large-v3",      "engine": "whisper",   "wmodel": "ggml-large-v3.bin",      "device": "on-device", "langs": None},
     {"id": "whisper-turbo",      "label": "Whisper large-v3-turbo","engine": "whisper",   "wmodel": "ggml-large-v3-turbo.bin","device": "on-device", "langs": None},
+    {"id": "distil-large-v3",    "label": "Distil large-v3",       "engine": "whisper",   "wmodel": "ggml-distil-large-v3.bin","device": "on-device", "langs": ["en"]},
+    # System speech model (SpeechAnalyzer, macOS 26+). Langs = bench set ∩ SpeechTranscriber
+    # supported locales on this machine (no ru/vi/ar as of Tahoe 27).
+    {"id": "apple-speech",       "label": "Apple Speech",          "engine": "apple",                                          "device": "on-device", "langs": ["en","fr","de","es","it","pt","zh","ja","ko"]},  # hi dropped: outputs romanized Hindi, not comparable to FLEURS devanagari
     {"id": "parakeet-v3",        "label": "Parakeet v3",           "engine": "fluidaudio","fa": "v3",                          "device": "on-device", "langs": ["en","fr","de","es","it","pt","ru"]},
     {"id": "sensevoice",         "label": "SenseVoice",            "engine": "sensevoice",                                     "device": "on-device", "langs": ["zh","ja","ko","en"]},
     {"id": "moonshine-base",     "label": "Moonshine base",        "engine": "moonshine",                                      "device": "on-device", "langs": ["en","es","ar","ja","vi","zh"]},
@@ -106,7 +110,9 @@ def score(hyp, ref, ui_lang):
     h, r = normalize(hyp), normalize(ref)
     if not r: return None
     if ui_lang in CJK:
-        return jiwer.cer(r, h)
+        # CER standard: whitespace-free (the FLEURS zh reference space-separates every
+        # character, which skewed CER for engines that don't emit spaced output).
+        return jiwer.cer(r.replace(" ", ""), h.replace(" ", ""))
     return jiwer.wer(r, h)
 
 def run_cell(model, ui_lang, cfg, refs):
@@ -119,8 +125,16 @@ def run_cell(model, ui_lang, cfg, refs):
         defaults("fluidAudioModelVersion", model["fa"])
     if model["engine"] == "groq":
         defaults("groqModel", model["groq"])
+        time.sleep(45)  # Groq free tier: let the per-minute rate limit reset between cells
     if model["engine"] == "moonshine":
         defaults("moonshineLanguage", ui_lang)
+    if model["engine"] == "apple":
+        # First use of a language makes the app pull the system speech assets
+        # (AssetInventory) — run a throwaway transcribe first so the timed run
+        # measures steady-state transcription only.
+        first = sorted((CLIPS / ui_lang).glob("*.wav"))[0]
+        subprocess.run([str(BIN), "transcribe", str(first)],
+                       capture_output=True, timeout=1800)
     out = subprocess.run([str(BIN), "bench", str(CLIPS / ui_lang)],
                          capture_output=True, text=True, timeout=900)
     try:

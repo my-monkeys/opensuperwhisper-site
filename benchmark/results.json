@@ -49,6 +49,33 @@
    "langs": null
   },
   {
+   "id": "distil-large-v3",
+   "label": "Distil large-v3",
+   "engine": "whisper",
+   "wmodel": "ggml-distil-large-v3.bin",
+   "device": "on-device",
+   "langs": [
+    "en"
+   ]
+  },
+  {
+   "id": "apple-speech",
+   "label": "Apple Speech",
+   "engine": "apple",
+   "device": "on-device",
+   "langs": [
+    "en",
+    "fr",
+    "de",
+    "es",
+    "it",
+    "pt",
+    "zh",
+    "ja",
+    "ko"
+   ]
+  },
+  {
    "id": "parakeet-v3",
    "label": "Parakeet v3",
    "engine": "fluidaudio",
@@ -152,20 +179,6 @@
    "xrealtime": 26.3,
    "n": 3
   },
-  "whisper-tiny::zh": {
-   "err": 0.5342,
-   "metric": "cer",
-   "rtf": 0.0277,
-   "xrealtime": 36.1,
-   "n": 3
-  },
-  "whisper-tiny::ja": {
-   "err": 0.4703,
-   "metric": "cer",
-   "rtf": 0.0348,
-   "xrealtime": 28.7,
-   "n": 3
-  },
   "whisper-base::en": {
    "err": 0.1056,
    "metric": "wer",
@@ -199,20 +212,6 @@
    "metric": "wer",
    "rtf": 0.0566,
    "xrealtime": 17.7,
-   "n": 3
-  },
-  "whisper-base::zh": {
-   "err": 0.6068,
-   "metric": "cer",
-   "rtf": 0.0415,
-   "xrealtime": 24.1,
-   "n": 3
-  },
-  "whisper-base::ja": {
-   "err": 0.3263,
-   "metric": "cer",
-   "rtf": 0.0466,
-   "xrealtime": 21.5,
    "n": 3
   },
   "whisper-small::en": {
@@ -250,20 +249,6 @@
    "xrealtime": 11.1,
    "n": 3
   },
-  "whisper-small::zh": {
-   "err": 0.581,
-   "metric": "cer",
-   "rtf": 0.0742,
-   "xrealtime": 13.5,
-   "n": 3
-  },
-  "whisper-small::ja": {
-   "err": 0.1506,
-   "metric": "cer",
-   "rtf": 0.0867,
-   "xrealtime": 11.5,
-   "n": 3
-  },
   "whisper-medium::en": {
    "err": 0.0435,
    "metric": "wer",
@@ -297,20 +282,6 @@
    "metric": "wer",
    "rtf": 0.205,
    "xrealtime": 4.9,
-   "n": 3
-  },
-  "whisper-medium::zh": {
-   "err": 0.525,
-   "metric": "cer",
-   "rtf": 0.1555,
-   "xrealtime": 6.4,
-   "n": 3
-  },
-  "whisper-medium::ja": {
-   "err": 0.0865,
-   "metric": "cer",
-   "rtf": 0.1831,
-   "xrealtime": 5.5,
    "n": 3
   },
   "whisper-large-v3::en": {
@@ -348,20 +319,6 @@
    "xrealtime": 2.8,
    "n": 3
   },
-  "whisper-large-v3::zh": {
-   "err": 0.4215,
-   "metric": "cer",
-   "rtf": 0.2982,
-   "xrealtime": 3.4,
-   "n": 3
-  },
-  "whisper-large-v3::ja": {
-   "err": 0.0938,
-   "metric": "cer",
-   "rtf": 0.3267,
-   "xrealtime": 3.1,
-   "n": 3
-  },
   "whisper-turbo::en": {
    "err": 0.0594,
    "metric": "wer",
@@ -391,20 +348,6 @@
    "n": 3
   },
   "whisper-turbo::vi": null,
-  "whisper-turbo::zh": {
-   "err": 0.4428,
-   "metric": "cer",
-   "rtf": 0.325,
-   "xrealtime": 3.1,
-   "n": 3
-  },
-  "whisper-turbo::ja": {
-   "err": 0.073,
-   "metric": "cer",
-   "rtf": 0.3049,
-   "xrealtime": 3.3,
-   "n": 3
-  },
   "parakeet-v3::fr": {
    "err": 0.0667,
    "metric": "wer",
@@ -424,20 +367,6 @@
    "metric": "wer",
    "rtf": 0.0085,
    "xrealtime": 118.0,
-   "n": 3
-  },
-  "sensevoice::zh": {
-   "err": 0.4215,
-   "metric": "cer",
-   "rtf": 0.0237,
-   "xrealtime": 42.2,
-   "n": 3
-  },
-  "sensevoice::ja": {
-   "err": 0.0955,
-   "metric": "cer",
-   "rtf": 0.0261,
-   "xrealtime": 38.3,
    "n": 3
   },
   "sensevoice::en": {
@@ -482,20 +411,6 @@
    "xrealtime": 17.4,
    "n": 3
   },
-  "groq-turbo::zh": {
-   "err": 0.4852,
-   "metric": "cer",
-   "rtf": 0.0322,
-   "xrealtime": 31.1,
-   "n": 3
-  },
-  "groq-turbo::ja": {
-   "err": 0.3613,
-   "metric": "cer",
-   "rtf": 0.0747,
-   "xrealtime": 13.4,
-   "n": 3
-  },
   "groq-large-v3::en": {
    "err": 0.0594,
    "metric": "wer",
@@ -531,20 +446,6 @@
    "xrealtime": 16.1,
    "n": 3
   },
-  "groq-large-v3::zh": {
-   "err": 0.4802,
-   "metric": "cer",
-   "rtf": 0.0603,
-   "xrealtime": 16.6,
-   "n": 3
-  },
-  "groq-large-v3::ja": {
-   "err": 0.3821,
-   "metric": "cer",
-   "rtf": 0.0421,
-   "xrealtime": 23.8,
-   "n": 3
-  },
   "parakeet-v3::en": {
    "err": 0.086,
    "metric": "wer",
@@ -573,26 +474,586 @@
    "xrealtime": 54.6,
    "n": 5
   },
-  "moonshine-base::ja": {
-   "err": 0.4322,
-   "metric": "cer",
-   "rtf": 0.0163,
-   "xrealtime": 61.5,
-   "n": 3
-  },
-  "moonshine-base::zh": {
-   "err": 0.5467,
-   "metric": "cer",
-   "rtf": 0.0152,
-   "xrealtime": 65.7,
-   "n": 3
-  },
   "moonshine-base::vi": {
    "err": 0.1593,
    "metric": "wer",
    "rtf": 0.0199,
    "xrealtime": 50.2,
    "n": 3
+  },
+  "apple-speech::en": {
+   "err": 0.0695,
+   "metric": "wer",
+   "rtf": 0.0976,
+   "xrealtime": 10.3,
+   "n": 3
+  },
+  "apple-speech::fr": {
+   "err": 0.065,
+   "metric": "wer",
+   "rtf": 0.0362,
+   "xrealtime": 27.6,
+   "n": 3
+  },
+  "apple-speech::de": {
+   "err": 0.0793,
+   "metric": "wer",
+   "rtf": 0.052,
+   "xrealtime": 19.2,
+   "n": 3
+  },
+  "apple-speech::es": {
+   "err": 0.041,
+   "metric": "wer",
+   "rtf": 0.0353,
+   "xrealtime": 28.3,
+   "n": 3
+  },
+  "apple-speech::it": {
+   "err": 0.0312,
+   "metric": "wer",
+   "rtf": 0.0363,
+   "xrealtime": 27.5,
+   "n": 5
+  },
+  "apple-speech::pt": {
+   "err": 0.1742,
+   "metric": "wer",
+   "rtf": 0.0351,
+   "xrealtime": 28.5,
+   "n": 5
+  },
+  "whisper-tiny::it": {
+   "err": 0.2684,
+   "metric": "wer",
+   "rtf": 0.0565,
+   "xrealtime": 17.7,
+   "n": 5
+  },
+  "whisper-tiny::pt": {
+   "err": 0.4163,
+   "metric": "wer",
+   "rtf": 0.0489,
+   "xrealtime": 20.4,
+   "n": 5
+  },
+  "whisper-tiny::ru": {
+   "err": 0.2102,
+   "metric": "wer",
+   "rtf": 0.0566,
+   "xrealtime": 17.7,
+   "n": 5
+  },
+  "whisper-tiny::ar": {
+   "err": 0.567,
+   "metric": "wer",
+   "rtf": 0.0762,
+   "xrealtime": 13.1,
+   "n": 5
+  },
+  "whisper-tiny::hi": {
+   "err": 1.1493,
+   "metric": "wer",
+   "rtf": 0.1277,
+   "xrealtime": 7.8,
+   "n": 5
+  },
+  "whisper-tiny::zh": {
+   "err": 0.2206,
+   "metric": "cer",
+   "rtf": 0.0505,
+   "xrealtime": 19.8,
+   "n": 3
+  },
+  "whisper-tiny::ja": {
+   "err": 0.4482,
+   "metric": "cer",
+   "rtf": 0.0593,
+   "xrealtime": 16.9,
+   "n": 3
+  },
+  "whisper-tiny::ko": {
+   "err": 0.2594,
+   "metric": "cer",
+   "rtf": 0.0523,
+   "xrealtime": 19.1,
+   "n": 5
+  },
+  "whisper-base::it": {
+   "err": 0.223,
+   "metric": "wer",
+   "rtf": 0.0706,
+   "xrealtime": 14.2,
+   "n": 5
+  },
+  "whisper-base::pt": {
+   "err": 0.2748,
+   "metric": "wer",
+   "rtf": 0.058,
+   "xrealtime": 17.2,
+   "n": 5
+  },
+  "whisper-base::ru": {
+   "err": 0.1262,
+   "metric": "wer",
+   "rtf": 0.0621,
+   "xrealtime": 16.1,
+   "n": 5
+  },
+  "whisper-base::ar": {
+   "err": 0.4215,
+   "metric": "wer",
+   "rtf": 0.0846,
+   "xrealtime": 11.8,
+   "n": 5
+  },
+  "whisper-base::hi": {
+   "err": 1.025,
+   "metric": "wer",
+   "rtf": 0.1411,
+   "xrealtime": 7.1,
+   "n": 5
+  },
+  "whisper-base::zh": {
+   "err": 0.3544,
+   "metric": "cer",
+   "rtf": 0.0606,
+   "xrealtime": 16.5,
+   "n": 3
+  },
+  "whisper-base::ja": {
+   "err": 0.3069,
+   "metric": "cer",
+   "rtf": 0.0736,
+   "xrealtime": 13.6,
+   "n": 3
+  },
+  "whisper-base::ko": {
+   "err": 0.1136,
+   "metric": "cer",
+   "rtf": 0.0653,
+   "xrealtime": 15.3,
+   "n": 5
+  },
+  "whisper-small::it": {
+   "err": 0.0537,
+   "metric": "wer",
+   "rtf": 0.1217,
+   "xrealtime": 8.2,
+   "n": 5
+  },
+  "whisper-small::pt": {
+   "err": 0.1303,
+   "metric": "wer",
+   "rtf": 0.0984,
+   "xrealtime": 10.2,
+   "n": 5
+  },
+  "whisper-small::ru": {
+   "err": 0.0449,
+   "metric": "wer",
+   "rtf": 0.1033,
+   "xrealtime": 9.7,
+   "n": 5
+  },
+  "whisper-small::ar": {
+   "err": 0.2226,
+   "metric": "wer",
+   "rtf": 0.1651,
+   "xrealtime": 6.1,
+   "n": 5
+  },
+  "whisper-small::hi": {
+   "err": 0.5856,
+   "metric": "wer",
+   "rtf": 0.2981,
+   "xrealtime": 3.4,
+   "n": 5
+  },
+  "whisper-small::zh": {
+   "err": 0.304,
+   "metric": "cer",
+   "rtf": 0.1225,
+   "xrealtime": 8.2,
+   "n": 3
+  },
+  "whisper-small::ja": {
+   "err": 0.1138,
+   "metric": "cer",
+   "rtf": 0.1412,
+   "xrealtime": 7.1,
+   "n": 3
+  },
+  "whisper-small::ko": {
+   "err": 0.0417,
+   "metric": "cer",
+   "rtf": 0.1165,
+   "xrealtime": 8.6,
+   "n": 5
+  },
+  "whisper-medium::it": {
+   "err": 0.0261,
+   "metric": "wer",
+   "rtf": 0.29,
+   "xrealtime": 3.4,
+   "n": 5
+  },
+  "whisper-medium::pt": {
+   "err": 0.1437,
+   "metric": "wer",
+   "rtf": 0.2378,
+   "xrealtime": 4.2,
+   "n": 5
+  },
+  "whisper-medium::ru": {
+   "err": 0.0154,
+   "metric": "wer",
+   "rtf": 0.2366,
+   "xrealtime": 4.2,
+   "n": 5
+  },
+  "whisper-medium::ar": {
+   "err": 0.1187,
+   "metric": "wer",
+   "rtf": 0.2997,
+   "xrealtime": 3.3,
+   "n": 5
+  },
+  "whisper-medium::hi": {
+   "err": 0.3708,
+   "metric": "wer",
+   "rtf": 0.5516,
+   "xrealtime": 1.8,
+   "n": 5
+  },
+  "whisper-medium::zh": {
+   "err": 0.1963,
+   "metric": "cer",
+   "rtf": 0.2338,
+   "xrealtime": 4.3,
+   "n": 3
+  },
+  "whisper-medium::ja": {
+   "err": 0.0469,
+   "metric": "cer",
+   "rtf": 0.2777,
+   "xrealtime": 3.6,
+   "n": 3
+  },
+  "whisper-medium::ko": {
+   "err": 0.0174,
+   "metric": "cer",
+   "rtf": 0.2578,
+   "xrealtime": 3.9,
+   "n": 5
+  },
+  "whisper-large-v3::it": {
+   "err": 0.0174,
+   "metric": "wer",
+   "rtf": 0.4992,
+   "xrealtime": 2.0,
+   "n": 5
+  },
+  "whisper-large-v3::pt": {
+   "err": 0.0516,
+   "metric": "wer",
+   "rtf": 0.4165,
+   "xrealtime": 2.4,
+   "n": 5
+  },
+  "whisper-large-v3::ru": {
+   "err": 0.0,
+   "metric": "wer",
+   "rtf": 0.3868,
+   "xrealtime": 2.6,
+   "n": 5
+  },
+  "whisper-large-v3::ar": {
+   "err": 0.1294,
+   "metric": "wer",
+   "rtf": 0.5232,
+   "xrealtime": 1.9,
+   "n": 5
+  },
+  "whisper-large-v3::hi": {
+   "err": 0.279,
+   "metric": "wer",
+   "rtf": 0.9453,
+   "xrealtime": 1.1,
+   "n": 5
+  },
+  "whisper-large-v3::zh": {
+   "err": 0.0,
+   "metric": "cer",
+   "rtf": 0.4311,
+   "xrealtime": 2.3,
+   "n": 3
+  },
+  "whisper-large-v3::ja": {
+   "err": 0.0551,
+   "metric": "cer",
+   "rtf": 0.5133,
+   "xrealtime": 1.9,
+   "n": 3
+  },
+  "whisper-large-v3::ko": {
+   "err": 0.0271,
+   "metric": "cer",
+   "rtf": 0.3948,
+   "xrealtime": 2.5,
+   "n": 5
+  },
+  "whisper-turbo::it": {
+   "err": 0.0174,
+   "metric": "wer",
+   "rtf": 0.2609,
+   "xrealtime": 3.8,
+   "n": 5
+  },
+  "whisper-turbo::pt": {
+   "err": 0.0808,
+   "metric": "wer",
+   "rtf": 0.2095,
+   "xrealtime": 4.8,
+   "n": 5
+  },
+  "whisper-turbo::ru": {
+   "err": 0.0,
+   "metric": "wer",
+   "rtf": 0.2205,
+   "xrealtime": 4.5,
+   "n": 5
+  },
+  "whisper-turbo::ar": {
+   "err": 0.1161,
+   "metric": "wer",
+   "rtf": 0.2861,
+   "xrealtime": 3.5,
+   "n": 5
+  },
+  "whisper-turbo::hi": {
+   "err": 0.3059,
+   "metric": "wer",
+   "rtf": 0.3988,
+   "xrealtime": 2.5,
+   "n": 5
+  },
+  "whisper-turbo::zh": {
+   "err": 0.0408,
+   "metric": "cer",
+   "rtf": 0.2714,
+   "xrealtime": 3.7,
+   "n": 3
+  },
+  "whisper-turbo::ja": {
+   "err": 0.0329,
+   "metric": "cer",
+   "rtf": 0.25,
+   "xrealtime": 4.0,
+   "n": 3
+  },
+  "whisper-turbo::ko": {
+   "err": 0.0351,
+   "metric": "cer",
+   "rtf": 0.2285,
+   "xrealtime": 4.4,
+   "n": 5
+  },
+  "distil-large-v3::en": {
+   "err": 0.0796,
+   "metric": "wer",
+   "rtf": 0.2456,
+   "xrealtime": 4.1,
+   "n": 3
+  },
+  "apple-speech::zh": {
+   "err": 0.0249,
+   "metric": "cer",
+   "rtf": 0.0402,
+   "xrealtime": 24.9,
+   "n": 3
+  },
+  "apple-speech::ja": {
+   "err": 0.0423,
+   "metric": "cer",
+   "rtf": 0.0349,
+   "xrealtime": 28.7,
+   "n": 3
+  },
+  "apple-speech::ko": {
+   "err": 0.0215,
+   "metric": "cer",
+   "rtf": 0.0293,
+   "xrealtime": 34.1,
+   "n": 5
+  },
+  "parakeet-v3::it": {
+   "err": 0.0087,
+   "metric": "wer",
+   "rtf": 0.5257,
+   "xrealtime": 1.9,
+   "n": 5
+  },
+  "parakeet-v3::pt": {
+   "err": 0.0854,
+   "metric": "wer",
+   "rtf": 0.025,
+   "xrealtime": 39.9,
+   "n": 5
+  },
+  "parakeet-v3::ru": {
+   "err": 0.0077,
+   "metric": "wer",
+   "rtf": 0.0245,
+   "xrealtime": 40.9,
+   "n": 5
+  },
+  "sensevoice::zh": {
+   "err": 0.0,
+   "metric": "cer",
+   "rtf": 0.0843,
+   "xrealtime": 11.9,
+   "n": 3
+  },
+  "sensevoice::ja": {
+   "err": 0.061,
+   "metric": "cer",
+   "rtf": 0.0862,
+   "xrealtime": 11.6,
+   "n": 3
+  },
+  "sensevoice::ko": {
+   "err": 0.0837,
+   "metric": "cer",
+   "rtf": 0.0627,
+   "xrealtime": 15.9,
+   "n": 5
+  },
+  "moonshine-base::ja": {
+   "err": 1.1483,
+   "metric": "cer",
+   "rtf": 0.2478,
+   "xrealtime": 4.0,
+   "n": 3
+  },
+  "moonshine-base::zh": {
+   "err": 1.9189,
+   "metric": "cer",
+   "rtf": 0.2759,
+   "xrealtime": 3.6,
+   "n": 3
+  },
+  "groq-turbo::it": {
+   "err": 0.0312,
+   "metric": "wer",
+   "rtf": 0.0478,
+   "xrealtime": 20.9,
+   "n": 5
+  },
+  "groq-turbo::pt": {
+   "err": 0.0854,
+   "metric": "wer",
+   "rtf": 0.0405,
+   "xrealtime": 24.7,
+   "n": 5
+  },
+  "groq-turbo::ru": {
+   "err": 0.0,
+   "metric": "wer",
+   "rtf": 0.0456,
+   "xrealtime": 22.0,
+   "n": 5
+  },
+  "groq-turbo::ar": {
+   "err": 0.1161,
+   "metric": "wer",
+   "rtf": 0.0393,
+   "xrealtime": 25.4,
+   "n": 5
+  },
+  "groq-turbo::hi": {
+   "err": 0.3009,
+   "metric": "wer",
+   "rtf": 0.0484,
+   "xrealtime": 20.7,
+   "n": 5
+  },
+  "groq-turbo::zh": {
+   "err": 0.0249,
+   "metric": "cer",
+   "rtf": 0.0447,
+   "xrealtime": 22.3,
+   "n": 3
+  },
+  "groq-turbo::ja": {
+   "err": 0.0329,
+   "metric": "cer",
+   "rtf": 0.0377,
+   "xrealtime": 26.5,
+   "n": 3
+  },
+  "groq-turbo::ko": {
+   "err": 0.0351,
+   "metric": "cer",
+   "rtf": 0.0352,
+   "xrealtime": 28.4,
+   "n": 5
+  },
+  "groq-large-v3::it": {
+   "err": 0.0312,
+   "metric": "wer",
+   "rtf": 0.0352,
+   "xrealtime": 28.4,
+   "n": 5
+  },
+  "groq-large-v3::pt": {
+   "err": 0.0854,
+   "metric": "wer",
+   "rtf": 0.0348,
+   "xrealtime": 28.8,
+   "n": 5
+  },
+  "groq-large-v3::ru": {
+   "err": 0.0,
+   "metric": "wer",
+   "rtf": 0.0351,
+   "xrealtime": 28.5,
+   "n": 5
+  },
+  "groq-large-v3::ar": {
+   "err": 0.1161,
+   "metric": "wer",
+   "rtf": 0.0373,
+   "xrealtime": 26.8,
+   "n": 5
+  },
+  "groq-large-v3::hi": {
+   "err": 0.3009,
+   "metric": "wer",
+   "rtf": 0.0528,
+   "xrealtime": 18.9,
+   "n": 5
+  },
+  "groq-large-v3::zh": {
+   "err": 0.0249,
+   "metric": "cer",
+   "rtf": 0.0376,
+   "xrealtime": 26.6,
+   "n": 3
+  },
+  "groq-large-v3::ja": {
+   "err": 0.0329,
+   "metric": "cer",
+   "rtf": 0.0352,
+   "xrealtime": 28.4,
+   "n": 3
+  },
+  "groq-large-v3::ko": {
+   "err": 0.0351,
+   "metric": "cer",
+   "rtf": 0.0357,
+   "xrealtime": 28.0,
+   "n": 5
   }
  }
 }

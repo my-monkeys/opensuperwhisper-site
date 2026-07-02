@@ -5,7 +5,7 @@ export type Device = "on-device" | "cloud";
 export interface Model {
   id: string;
   label: string;
-  engine: "Whisper" | "Parakeet" | "SenseVoice" | "Groq" | "Moonshine";
+  engine: "Whisper" | "Parakeet" | "SenseVoice" | "Apple" | "Groq" | "Moonshine";
   device: Device;
   size: string;          // on-disk size, or "—" for cloud
   langs: string[] | "all"; // ISO codes it handles ("all" ≈ 99 Whisper languages)
@@ -32,6 +32,8 @@ export const MODELS: Model[] = [
   { id: "whisper-medium", label: "Whisper medium",        engine: "Whisper",    device: "on-device", size: "1.5 GB", langs: "all", translate: true,  xrt: 5,   wer: 11.5, measured: false },
   { id: "whisper-large",  label: "Whisper large-v3",      engine: "Whisper",    device: "on-device", size: "3.1 GB", langs: "all", translate: true,  xrt: 2.5, wer: 9.8,  measured: false },
   { id: "whisper-turbo",  label: "Whisper large-v3-turbo",engine: "Whisper",    device: "on-device", size: "1.6 GB", langs: "all", translate: true,  xrt: 6,   wer: 11,   measured: false },
+  { id: "distil-large-v3", label: "Distil large-v3",     engine: "Whisper",    device: "on-device", size: "1.5 GB", langs: ["en"], translate: false, xrt: null, wer: null, measured: false, note: "Distilled large-v3 — English only, much faster" },
+  { id: "apple-speech",   label: "Apple Speech",          engine: "Apple",      device: "on-device", size: "System", langs: ["en","fr","de","es","it","pt","zh","ja","ko"], translate: false, xrt: null, wer: null, measured: false, note: "Built into macOS 26+ — models managed by the system" },
   { id: "parakeet-v3",    label: "Parakeet v3",           engine: "Parakeet",   device: "on-device", size: "2.4 GB", langs: EU,    translate: false, xrt: 40,  wer: 9,    measured: false, note: "Live preview while you speak" },
   { id: "sensevoice",     label: "SenseVoice",            engine: "SenseVoice", device: "on-device", size: "239 MB", langs: ["zh","ja","ko","en"], translate: false, xrt: 28, wer: 10, measured: false },
   { id: "moonshine-base", label: "Moonshine base",        engine: "Moonshine",  device: "on-device", size: "141 MB", langs: ["en","es","ar","ja","vi","zh"], translate: false, xrt: null, wer: null, measured: false, available: false, note: "Not shipped — set aside after our benchmark, given accuracy and language coverage." },
