@@ -24,8 +24,8 @@ const features = [
     viz: `<div class="vz vz-type">Send the quarterly report to the team<span class="dc-caret"></span></div>` },
   { num: "02", name: "Record your way", title: "Record your way",
     body: "A key combo or a single modifier — hold to speak, release to insert. The indicator lives where you want it: near the cursor, at a screen edge, or docked in the notch / Dynamic Island, with optional Stop / Cancel buttons on the bubble.",
-    cap: "shown here: notch mode + the cursor pill with its opt-in Stop / Cancel buttons",
-    viz: `<div class="nb"><div class="nb-menubar"><span class="nb-notch"><span class="rec-dot"></span>Recording…</span></div><div class="nb-desk"><span class="nb-pill"><span class="rec-dot"></span>Recording…<span class="nb-btns"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="8.5" y="8.5" width="7" height="7" rx="1.2" fill="currentColor"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M9 3h6l1 2h4v2H4V5h4l1-2zm-3 6h12l-.9 11.1A2 2 0 0 1 15.1 22H8.9a2 2 0 0 1-2-1.9L6 9zm4 2v8h1.5v-8H10zm3 0v8h1.5v-8H13z"/></svg></span></span></div></div>` },
+    cap: "the pill follows your cursor · Stop / Cancel buttons are opt-in",
+    viz: `<div class="cursor-demo"><span class="nb-pill"><span class="rec-dot"></span>Recording…<span class="nb-btns"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="8.5" y="8.5" width="7" height="7" rx="1.2" fill="currentColor"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M9 3h6l1 2h4v2H4V5h4l1-2zm-3 6h12l-.9 11.1A2 2 0 0 1 15.1 22H8.9a2 2 0 0 1-2-1.9L6 9zm4 2v8h1.5v-8H10zm3 0v8h1.5v-8H13z"/></svg></span></span><svg class="cursor-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5.5 3.2v17.6c0 .45.54.67.85.35l4.13-4.13c.1-.1.22-.15.36-.15h5.83c.45 0 .67-.54.35-.85L6.35 2.85c-.31-.31-.85-.09-.85.35z" fill="#16151a" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg></div>` },
   { num: "03", name: "Translate", title: "Translate as you speak",
     body: "Dictate in any of ~99 languages and get clean English out in a single shortcut — Whisper handles the recognition and the translation in one pass.",
     cap: "",
@@ -508,20 +508,20 @@ const shots = [
         transform: scaleX(0); transform-origin: left; border-radius: 2px; }
       @keyframes crProg { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 
-      /* indicator mini-demo (pane 02) — mirrors the real app: the black notch pill
-         hanging from the menu bar, and the cursor-mode pill with its opt-in buttons */
-      .nb { background: #2a2b31; border-radius: 16px; padding: 0 0 14px; overflow: hidden; box-shadow: 0 20px 44px -18px rgba(0,0,0,.45); }
-      .nb-menubar { position: relative; height: 26px; background: #17181c; display: flex; justify-content: center; }
-      .nb-notch { display: inline-flex; align-items: center; gap: 7px; background: #000; color: #d6d6d9;
-        border-radius: 0 0 13px 13px; padding: 5px 18px 7px; font-size: .74rem; font-weight: 560; margin-top: 0; }
-      .nb-desk { position: relative; height: 96px; margin: 12px 14px 0; border-radius: 9px;
-        background: linear-gradient(180deg, #3a3c44, #2e3037); display: flex; align-items: center; justify-content: center; }
-      .nb-pill { display: inline-flex; align-items: center; gap: 8px; background: rgba(243,240,232,.96); color: #57555f;
-        border-radius: 999px; padding: 8px 14px; font-size: .8rem; font-weight: 560; box-shadow: 0 10px 28px -8px rgba(0,0,0,.5); }
-      .nb-btns { display: inline-flex; align-items: center; gap: 7px; margin-left: 4px; color: #e0403a; }
-      .nb-btns svg { width: 15px; height: 15px; display: block; }
-      .rec-dot { width: 7px; height: 7px; border-radius: 999px; background: #ff453a; box-shadow: 0 0 6px rgba(255,69,58,.6);
+      /* indicator mini-demo (pane 02) — the app's cursor-mode pill, floating right
+         above a big pointer, exactly like a dictation in any text field */
+      .cursor-demo { display: flex; flex-direction: column; align-items: center; gap: 16px; padding: 22px 0 8px; }
+      .cursor-demo .nb-pill { animation: pillfloat 3.2s ease-in-out infinite; }
+      .nb-pill { display: inline-flex; align-items: center; gap: 8px; background: rgba(243,240,232,.97); color: #57555f;
+        border: 1px solid var(--line); border-radius: 999px; padding: 9px 16px; font-size: .88rem; font-weight: 560;
+        box-shadow: 0 18px 40px -14px rgba(20,18,16,.35); }
+      .nb-btns { display: inline-flex; align-items: center; gap: 8px; margin-left: 5px; color: #e0403a; }
+      .nb-btns svg { width: 16px; height: 16px; display: block; }
+      .rec-dot { width: 8px; height: 8px; border-radius: 999px; background: #ff453a; box-shadow: 0 0 6px rgba(255,69,58,.6);
         animation: recblink 1.6s ease-in-out infinite; flex: none; }
+      .cursor-arrow { width: 46px; height: 46px; display: block; filter: drop-shadow(0 6px 12px rgba(20,18,16,.28));
+        margin-left: 18px; }
+      @keyframes pillfloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
       @keyframes recblink { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
 
       /* ── Screenshots ── */
