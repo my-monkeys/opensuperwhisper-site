@@ -44,7 +44,7 @@ const features = [
     viz: `<div class="vz vz-clean"><span class="cd-before">um so like send the the report to alex ok</span><span class="vz-arrow">↓ Ollama</span><span class="cd-after">Send the report to Alex.</span></div>` },
   { num: "07", name: "Model per app", title: "Model per app",
     body: "Bind a model to an app — or a website in supported browsers — and it switches automatically when you dictate there. A fast model for chat, an accurate one for email, a specialized one for your editor.",
-    cap: "App Context · switches at record-start, from the menu bar",
+    cap: "Rules · switches at record-start, from the menu bar",
     viz: `<div class="vz vz-chips"><span>Mail → Whisper large</span><span>Slack → Parakeet</span><span>docs.google.com → Remote</span></div>` },
   { num: "08", name: "History", title: "History that remembers",
     body: "Every dictation records where it happened — app, window, site — and which model transcribed it. Failed dictations keep their audio with a retry button instead of vanishing.",
@@ -74,10 +74,10 @@ const shots = [
   { img: "/screenshots/remote-engine.png", alt: "Remote engine settings", cap: "Remote engine", g: "g2",
     title: "Any server, your rules",
     body: "Point it at any OpenAI-compatible endpoint, test the connection, pick from the server's speech-to-text models. Save your own presets; fall back to a local model if the server is down." },
-  { img: "/screenshots/app-context.png", alt: "App Context settings", cap: "App Context", g: "g3",
+  { img: "/screenshots/app-context.png", alt: "Rules — per-app and per-site model rules", cap: "Rules", g: "g3",
     title: "The right model, per app",
     body: "Bind a model to an app or a website and it switches automatically when you dictate there — managed here or from the menu-bar picker." },
-  { img: "/screenshots/recording-settings.png", alt: "Recording settings", cap: "Recording", g: "g4",
+  { img: "/screenshots/recording-settings.png", alt: "Dictation settings", cap: "Dictation", g: "g4",
     title: "Tune how you record",
     body: "Combo or single-modifier shortcut, hold-to-record, indicator position — cursor, screen edge or notch — and optional Stop / Cancel buttons on the bubble." },
 ];
@@ -529,10 +529,10 @@ const shots = [
       .shot-row { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 5vw, 60px); align-items: center; margin-top: clamp(44px, 6vw, 72px); }
       .shot-row.rev .shot-fig { order: 2; }
       .shot-fig { border-radius: 20px; padding: clamp(18px, 3vw, 38px); border: 1px solid var(--line);
-        background: linear-gradient(135deg, rgba(31,59,255,.08), rgba(31,59,255,.015) 62%, rgba(200,99,26,.045)); }
-      .shot-fig.g2 { background: linear-gradient(315deg, rgba(31,59,255,.07), rgba(31,59,255,.01) 58%, rgba(10,143,87,.05)); }
-      .shot-fig.g3 { background: linear-gradient(160deg, rgba(10,143,87,.06), rgba(31,59,255,.015) 55%, rgba(31,59,255,.07)); }
-      .shot-fig.g4 { background: linear-gradient(200deg, rgba(200,99,26,.05), rgba(31,59,255,.02) 50%, rgba(31,59,255,.08)); }
+        background: linear-gradient(135deg, rgba(232,115,74,.08), rgba(232,115,74,.015) 62%, rgba(200,99,26,.045)); }
+      .shot-fig.g2 { background: linear-gradient(315deg, rgba(232,115,74,.07), rgba(232,115,74,.01) 58%, rgba(10,143,87,.05)); }
+      .shot-fig.g3 { background: linear-gradient(160deg, rgba(10,143,87,.06), rgba(232,115,74,.015) 55%, rgba(232,115,74,.07)); }
+      .shot-fig.g4 { background: linear-gradient(200deg, rgba(200,99,26,.05), rgba(232,115,74,.02) 50%, rgba(232,115,74,.08)); }
       .shot-fig img { width: 100%; height: auto; display: block; border-radius: 10px; box-shadow: 0 26px 54px -22px rgba(20,18,16,.38); }
       .shot-txt h3 { font-size: clamp(1.3rem, 2.2vw, 1.65rem); font-weight: 640; letter-spacing: -.025em; margin: 10px 0 10px; }
       .shot-txt p { color: var(--ink-2); line-height: 1.55; max-width: 46ch; }
