@@ -9,6 +9,13 @@ export interface ChangeEntry {
 
 export const CHANGELOG: ChangeEntry[] = [
   {
+    version: "0.9.4-beta.3",
+    date: "2026-07-02",
+    title: "Remote presets, smarter model list & recording-pill fixes",
+    summary:
+      "Save your Remote server configs as named presets (API key included, stored in the Keychain) and switch in one click. The model list now shows speech-to-text models by default with a search box for big catalogs. Plus the recording pill starts compact, fits the optional Stop/Cancel buttons, and centers its live caption.",
+  },
+  {
     version: "0.9.4-beta.1",
     date: "2026-07-02",
     title: "Remote engine, App Context & the community batch",

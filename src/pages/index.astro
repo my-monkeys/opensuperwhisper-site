@@ -9,58 +9,77 @@ const latestChange = CHANGELOG[0];
 const fmtDate = (d: string) =>
   new Date(d).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
 
-const engines = [
-  { name: "Whisper", desc: "The reference. ~99 languages, six sizes, can translate to English.", tag: "on-device" },
-  { name: "Parakeet", desc: "Fast, with a live preview as you speak. 25 European languages.", tag: "on-device" },
-  { name: "SenseVoice", desc: "Non-autoregressive and quick — Chinese, Cantonese, English, Japanese, Korean.", tag: "on-device" },
-  { name: "Remote", desc: "Any OpenAI-compatible server — Groq preset, LiteLLM, or your own box. Optional, with a local fallback if it's unreachable.", tag: "cloud" },
-];
 const wave = Array.from({ length: 42 });
 const stats = [
   { n: "4", l: "engines" }, { n: "99", l: "languages" },
-  { n: "0", l: "telemetry" }, { n: "$0", l: "forever" },
+  { n: "0", l: "accounts" }, { n: "$0", l: "forever" },
 ];
-const I = {
-  wand: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M263.4-27L278.2 9.8 315 24.6c3 1.2 5 4.2 5 7.4s-2 6.2-5 7.4L278.2 54.2 263.4 91c-1.2 3-4.2 5-7.4 5s-6.2-2-7.4-5L233.8 54.2 197 39.4c-3-1.2-5-4.2-5-7.4s2-6.2 5-7.4L233.8 9.8 248.6-27c1.2-3 4.2-5 7.4-5s6.2 2 7.4 5zM110.7 41.7l21.5 50.1 50.1 21.5c5.9 2.5 9.7 8.3 9.7 14.7s-3.8 12.2-9.7 14.7l-50.1 21.5-21.5 50.1c-2.5 5.9-8.3 9.7-14.7 9.7s-12.2-3.8-14.7-9.7L59.8 164.2 9.7 142.7C3.8 140.2 0 134.4 0 128s3.8-12.2 9.7-14.7L59.8 91.8 81.3 41.7C83.8 35.8 89.6 32 96 32s12.2 3.8 14.7 9.7zM464 304c6.4 0 12.2 3.8 14.7 9.7l21.5 50.1 50.1 21.5c5.9 2.5 9.7 8.3 9.7 14.7s-3.8 12.2-9.7 14.7l-50.1 21.5-21.5 50.1c-2.5 5.9-8.3 9.7-14.7 9.7s-12.2-3.8-14.7-9.7l-21.5-50.1-50.1-21.5c-5.9-2.5-9.7-8.3-9.7-14.7s3.8-12.2 9.7-14.7l50.1-21.5 21.5-50.1c2.5-5.9 8.3-9.7 14.7-9.7zM460 0c11 0 21.6 4.4 29.5 12.2l42.3 42.3C539.6 62.4 544 73 544 84s-4.4 21.6-12.2 29.5l-88.2 88.2-101.3-101.3 88.2-88.2C438.4 4.4 449 0 460 0zM44.2 398.5L308.4 134.3 409.7 235.6 145.5 499.8C137.6 507.6 127 512 116 512s-21.6-4.4-29.5-12.2L44.2 457.5C36.4 449.6 32 439 32 428s4.4-21.6 12.2-29.5z"/></svg>`,
-  mic: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M96 96c0-53 43-96 96-96 50.3 0 91.6 38.7 95.7 88L232 88c-13.3 0-24 10.7-24 24s10.7 24 24 24l56 0 0 48-56 0c-13.3 0-24 10.7-24 24s10.7 24 24 24l55.7 0c-4.1 49.3-45.3 88-95.7 88-53 0-96-43-96-96L96 96zM24 160c13.3 0 24 10.7 24 24l0 40c0 79.5 64.5 144 144 144s144-64.5 144-144l0-40c0-13.3 10.7-24 24-24s24 10.7 24 24l0 40c0 97.9-73.3 178.7-168 190.5l0 49.5 48 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-144 0c-13.3 0-24-10.7-24-24s10.7-24 24-24l48 0 0-49.5C73.3 402.7 0 321.9 0 224l0-40c0-13.3 10.7-24 24-24z"/></svg>`,
-  language: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M160 0c17.7 0 32 14.3 32 32l0 32 128 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-9.6 0-8.4 23.1c-16.4 45.2-41.1 86.5-72.2 122 14.2 8.8 29 16.6 44.4 23.5l50.4 22.4 62.2-140c5.1-11.6 16.6-19 29.2-19s24.1 7.4 29.2 19l128 288c7.2 16.2-.1 35.1-16.2 42.2s-35.1-.1-42.2-16.2l-20-45-157.5 0-20 45c-7.2 16.2-26.1 23.4-42.2 16.2s-23.4-26.1-16.2-42.2l39.8-89.5-50.4-22.4c-23-10.2-45-22.4-65.8-36.4-21.3 17.2-44.6 32.2-69.5 44.7L78.3 380.6c-15.8 7.9-35 1.5-42.9-14.3s-1.5-35 14.3-42.9l34.5-17.3c16.3-8.2 31.8-17.7 46.4-28.3-13.8-12.7-26.8-26.4-38.9-40.9L81.6 224.7c-11.3-13.6-9.5-33.8 4.1-45.1s33.8-9.5 45.1 4.1l10.2 12.2c11.5 13.9 24.1 26.8 37.4 38.7 27.5-30.4 49.2-66.1 63.5-105.4l.5-1.2-210.3 0C14.3 128 0 113.7 0 96S14.3 64 32 64l96 0 0-32c0-17.7 14.3-32 32-32zM416 270.8L365.7 384 466.3 384 416 270.8z"/></svg>`,
-  book: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M384 512L96 512c-53 0-96-43-96-96L0 96C0 43 43 0 96 0L400 0c26.5 0 48 21.5 48 48l0 288c0 20.9-13.4 38.7-32 45.3l0 66.7c17.7 0 32 14.3 32 32s-14.3 32-32 32l-32 0zM96 384c-17.7 0-32 14.3-32 32s14.3 32 32 32l256 0 0-64-256 0zm32-232c0 13.3 10.7 24 24 24l176 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-176 0c-13.3 0-24 10.7-24 24zm24 72c-13.3 0-24 10.7-24 24s10.7 24 24 24l176 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-176 0z"/></svg>`,
-  broom: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M566.6 54.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192-34.7-34.7c-4.2-4.2-10-6.6-16-6.6-12.5 0-22.6 10.1-22.6 22.6l0 29.1 108.3 108.3 29.1 0c12.5 0 22.6-10.1 22.6-22.6 0-6-2.4-11.8-6.6-16l-34.7-34.7 192-192zM341.1 353.4L222.6 234.9c-42.7-3.7-85.2 11.7-115.8 42.3l-8 8c-22.3 22.3-34.8 52.5-34.8 84 0 6.8 7.1 11.2 13.2 8.2l51.1-25.5c5-2.5 9.5 4.1 5.4 7.9L7.3 473.4C2.7 477.6 0 483.6 0 489.9 0 502.1 9.9 512 22.1 512l173.3 0c38.8 0 75.9-15.4 103.4-42.8 30.6-30.6 45.9-73.1 42.3-115.8z"/></svg>`,
-  dot: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 512a256 256 0 1 0 0-512 256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z"/></svg>`,
-  shield: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 0c4.6 0 9.2 1 13.4 2.9L457.8 82.8c22 9.3 38.4 31 38.3 57.2-.5 99.2-41.3 280.7-213.6 363.2-16.7 8-36.1 8-52.8 0-172.4-82.5-213.1-264-213.6-363.2-.1-26.2 16.3-47.9 38.3-57.2L242.7 2.9C246.9 1 251.4 0 256 0zm0 66.8l0 378.1c138-66.8 175.1-214.8 176-303.4l-176-74.6 0 0z"/></svg>`,
-  terminal: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M9.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L146.7 256 9.4 118.6zM224 384l256 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-256 0c-17.7 0-32-14.3-32-32s14.3-32 32-32z"/></svg>`,
-};
+
+// The capabilities carousel (design: Home.dc.html). One pane per feature; the rail
+// below mirrors the same list as clickable cards with an auto-advance progress bar.
 const features = [
-  { icon: I.mic, k: "Live transcript",
-    long: "Watch the words build up in the indicator as you speak — Parakeet streams the transcript in real time, so you're never staring at a spinner waiting for the result.",
-    viz: `<div class="vz vz-type">Send the quarterly report to the team<span class="dc-caret"></span></div><span class="vz-cap">streaming · ~200 ms behind your voice</span>` },
-  { icon: I.language, k: "Translate as you speak",
-    long: "Dictate in any of ~99 languages and get clean English out in a single shortcut — Whisper handles the recognition and the translation in one pass.",
+  { num: "01", name: "Live transcript", title: "Live transcript",
+    body: "Watch the words build up in the indicator as you speak — Parakeet streams the transcript in real time, so you're never staring at a spinner waiting for the result.",
+    cap: "streaming · ~200 ms behind your voice",
+    viz: `<div class="vz vz-type">Send the quarterly report to the team<span class="dc-caret"></span></div>` },
+  { num: "02", name: "Record your way", title: "Record your way",
+    body: "A key combo or a single modifier — hold to speak, release to insert. The indicator lives where you want it: near the cursor, at a screen edge, or docked in the notch / Dynamic Island, with optional Stop / Cancel buttons on the bubble.",
+    cap: "media pauses while you speak · any mic from the menu bar",
+    viz: `<div class="nb"><div class="nb-bar"><span class="nb-island"><span class="dc-dot"></span><span class="nb-wave"><span></span><span></span><span></span><span></span><span></span><span></span></span>Listening</span></div><div class="nb-desk"></div></div>` },
+  { num: "03", name: "Translate", title: "Translate as you speak",
+    body: "Dictate in any of ~99 languages and get clean English out in a single shortcut — Whisper handles the recognition and the translation in one pass.",
+    cap: "",
     viz: `<div class="vz vz-tr"><span class="vz-from">« Envoyez le rapport avant ce soir »</span><span class="vz-arrow">→</span><span class="vz-to">“Send the report by tonight.”</span></div>` },
-  { icon: I.wand, k: "AI cleanup via Ollama",
-    long: "Punctuation, casing and rambling, tidied by a local Ollama model running on your own machine. Fully on-device and opt-in — your words never leave your Mac.",
-    viz: `<div class="vz vz-clean"><span class="cd-before">um so like send the the report to alex ok</span><span class="vz-arrow">↓ Ollama</span><span class="cd-after">Send the report to Alex.</span></div>` },
-  { icon: I.book, k: "Custom dictionary",
-    long: "Teach it your proper nouns and jargon — names, acronyms, product names — and they come out verbatim every time instead of being mangled into something close.",
-    viz: `<div class="vz vz-chips"><span>Kubernetes</span><span>OAuth2</span><span>Saanvi</span><span>GraphQL</span><span>My-Monkey</span></div><span class="vz-cap">recognised exactly as you spell them</span>` },
-  { icon: I.broom, k: "Drop the filler",
-    long: "Strips “um”, “uh” and the other verbal tics automatically, and never pastes “No speech detected” into your document when you pause.",
+  { num: "04", name: "Dictionary", title: "Custom dictionary",
+    body: "Teach it your proper nouns and jargon — names, acronyms, product names — and they come out verbatim every time instead of being mangled into something close.",
+    cap: "boosts recognition + applies replacements",
+    viz: `<div class="vz vz-chips"><span>Kubernetes</span><span>OAuth2</span><span>Saanvi</span><span>GraphQL</span><span>My-Monkey</span></div>` },
+  { num: "05", name: "Drop the filler", title: "Drop the filler",
+    body: "Strips “um”, “uh” and the other verbal tics automatically, fixes sentence spacing, and never pastes “No speech detected” into your document when you pause.",
+    cap: "",
     viz: `<div class="vz vz-filler"><span class="vz-strike">um,</span> <span class="vz-strike">so like,</span> just send it <span class="vz-strike">you know</span> <span class="vz-arrow">→</span> <b>Just send it.</b></div>` },
-  { icon: I.shield, k: "Private by default",
-    long: "No account, no telemetry, no cloud unless you explicitly pick the Groq engine. Turn transcription history off entirely, or cap how long it's kept.",
-    viz: `<div class="vz vz-badges"><span class="badge">● On-device</span><span class="badge">0 telemetry</span><span class="badge">No account</span></div>` },
-  { icon: I.dot, k: "Model per app",
-    long: "Bind a model to an app — or a website in supported browsers — and it switches automatically when you dictate there. A fast model for chat, an accurate one for email, a specialized one for your editor.",
-    viz: `<div class="vz vz-chips"><span>Mail → Whisper large</span><span>Slack → Parakeet</span><span>docs.google.com → Remote</span></div><span class="vz-cap">switches at record-start, from the menu bar</span>` },
-  { icon: I.wand, k: "Bring your own server",
-    long: "Point the Remote engine at any OpenAI-compatible endpoint — Groq, LiteLLM, speaches, a box on your LAN. If your server is unreachable, an optional on-device fallback transcribes anyway.",
-    viz: `<div class="vz vz-cli"><span class="prompt">›</span> http://litellm.docker.lan · whisper-large-v3</div><span class="vz-cap">your audio goes to <b>your</b> server — or nowhere</span>` },
-  { icon: I.book, k: "History that remembers",
-    long: "Every dictation records where it happened — app, window, site — and which model transcribed it. Rerun any entry with a different model, and failed dictations keep their audio with a retry button.",
-    viz: `<div class="vz vz-chips"><span>Mail · 12s · Parakeet v3</span><span>github.com · 31s · Whisper</span></div><span class="vz-cap">rerun ↻ with any model, nothing lost</span>` },
-  { icon: I.terminal, k: "Scriptable CLI",
-    long: "A real command-line tool ships in the app bundle. Transcribe files from the terminal and pipe the text into anything — scripts, notes, your own tooling.",
+  { num: "06", name: "AI cleanup", title: "AI cleanup via Ollama",
+    body: "Punctuation, casing and rambling, tidied by a local Ollama model running on your own machine. Your words never leave your Mac.",
+    cap: "opt-in · fully on-device",
+    viz: `<div class="vz vz-clean"><span class="cd-before">um so like send the the report to alex ok</span><span class="vz-arrow">↓ Ollama</span><span class="cd-after">Send the report to Alex.</span></div>` },
+  { num: "07", name: "Model per app", title: "Model per app",
+    body: "Bind a model to an app — or a website in supported browsers — and it switches automatically when you dictate there. A fast model for chat, an accurate one for email, a specialized one for your editor.",
+    cap: "App Context · switches at record-start, from the menu bar",
+    viz: `<div class="vz vz-chips"><span>Mail → Whisper large</span><span>Slack → Parakeet</span><span>docs.google.com → Remote</span></div>` },
+  { num: "08", name: "History", title: "History that remembers",
+    body: "Every dictation records where it happened — app, window, site — and which model transcribed it. Failed dictations keep their audio with a retry button instead of vanishing.",
+    cap: "rerun ↻ with any model · or turn history off entirely",
+    viz: `<div class="vz vz-chips"><span>Mail · 12s · Parakeet v3</span><span>github.com · 31s · Whisper</span></div>` },
+  { num: "09", name: "Your server", title: "Bring your own server",
+    body: "Point the Remote engine at any OpenAI-compatible endpoint — Groq, LiteLLM, speaches, a box on your LAN. If your server is unreachable, an optional on-device fallback transcribes anyway.",
+    cap: "Groq preset + your own presets · local fallback",
+    viz: `<div class="vz vz-cli"><span class="prompt">›</span> http://litellm.docker.lan · whisper-large-v3</div>` },
+  { num: "10", name: "CLI & hooks", title: "Scriptable CLI",
+    body: "A real command-line tool ships in the app bundle. Transcribe files from the terminal, pipe the text anywhere, and run your own command after each dictation with the post-record hook.",
+    cap: "text + audio path via env vars · JSON on stdin",
     viz: `<div class="vz vz-cli"><span class="prompt">$</span> opensuperwhisper transcribe note.m4a &gt; note.txt</div>` },
+];
+
+const engines = [
+  { name: "Whisper", desc: "The reference. ~99 languages, six sizes, can translate to English.", cloud: false },
+  { name: "Parakeet", desc: "Fast, with a live preview as you speak. 25 European languages.", cloud: false },
+  { name: "SenseVoice", desc: "Non-autoregressive and quick — Chinese, Cantonese, English, Japanese, Korean.", cloud: false },
+  { name: "Remote", desc: "Any OpenAI-compatible server — Groq preset, LiteLLM, or your own box. With a local fallback if it's unreachable.", cloud: true },
+];
+
+const shots = [
+  { img: "/screenshots/history.png", alt: "Transcription history", cap: "History", g: "",
+    title: "A history that remembers",
+    body: "Every dictation with its source app, site, duration and the model that transcribed it. Rerun any entry with a different model — or turn history off entirely." },
+  { img: "/screenshots/remote-engine.png", alt: "Remote engine settings", cap: "Remote engine", g: "g2",
+    title: "Any server, your rules",
+    body: "Point it at any OpenAI-compatible endpoint, test the connection, pick from the server's speech-to-text models. Save your own presets; fall back to a local model if the server is down." },
+  { img: "/screenshots/app-context.png", alt: "App Context settings", cap: "App Context", g: "g3",
+    title: "The right model, per app",
+    body: "Bind a model to an app or a website and it switches automatically when you dictate there — managed here or from the menu-bar picker." },
+  { img: "/screenshots/recording-settings.png", alt: "Recording settings", cap: "Recording", g: "g4",
+    title: "Tune how you record",
+    body: "Combo or single-modifier shortcut, hold-to-record, indicator position — cursor, screen edge or notch — and optional Stop / Cancel buttons on the bubble." },
 ];
 ---
 
@@ -89,39 +108,45 @@ const features = [
     <nav class="nav">
       <a class="brand" href="/"><img src="/icon.png" alt="" class="brand-icon" />OpenSuperWhisper</a>
       <div class="nav-links">
-        <a href="#compare">Compare models</a>
+        <a href="#features">Features</a>
+        <a href="#compare">Compare</a>
         <a href="#engines">Engines</a>
+        <a href="#screenshots">Screenshots</a>
         <a href="/changelog">Changelog</a>
         <a href="https://github.com/my-monkeys/OpenSuperWhisper" data-umami-event="github" data-umami-event-loc="nav">GitHub</a>
         <a class="btn btn-primary nav-cta" href="#get" data-umami-event="download-cta" data-umami-event-loc="nav">Download</a>
       </div>
     </nav>
 
-    <section class="nx-hero">
-      <div class="nx-hero-sticky">
-      <div class="nx-stage">
-        <div class="nx-intro">
-          <p class="eyebrow">Free · Open-source · 100% on-device</p>
-          <h1 class="display">Speak. It types.<br />On your Mac, for free.</h1>
-          <p class="lead">Your voice into text in any app — four transcription engines, running on your machine. No subscription, no account, nothing leaves your Mac unless you choose the cloud.</p>
-          <div class="hero-actions">
-            <div class="cmd"><span class="prompt">$</span> brew install --cask my-monkeys/tap/opensuperwhisper</div>
-            <a class="btn btn-ghost" href="https://github.com/my-monkeys/OpenSuperWhisper/releases" data-umami-event="download" data-umami-event-loc="hero">Download the .dmg</a>
+    <section class="hero">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="wrap">
+        <div class="hero-grid">
+          <div class="nx-intro">
+            <p class="eyebrow">Free · Open-source · 100% on-device</p>
+            <h1 class="display">Speak. It types.<br />On your Mac, for free.</h1>
+            <p class="lead hero-lead">Your voice into text in any app — four transcription engines, running on your machine. No subscription, no account, nothing leaves your Mac unless you point it at your own server.</p>
+            <div class="hero-actions">
+              <div class="cmd"><span class="prompt">$</span> brew install --cask my-monkeys/tap/opensuperwhisper</div>
+              <a class="btn btn-ghost" href="https://github.com/my-monkeys/OpenSuperWhisper/releases" data-umami-event="download" data-umami-event-loc="hero">Download the .dmg</a>
+            </div>
+            <p class="hero-sub">Apple Silicon &amp; Intel · macOS 14+ · MIT licensed</p>
+            <p class="hero-alt">The free, open-source <strong>SuperWhisper alternative</strong> — <a href="/superwhisper-alternative" data-umami-event="vs-superwhisper" data-umami-event-loc="hero">see how they compare →</a></p>
           </div>
-          <p class="hero-sub">Apple Silicon &amp; Intel · macOS 14+ · MIT licensed</p>
-          <p class="hero-alt">The free, open-source <strong>SuperWhisper alternative</strong> — <a href="/superwhisper-alternative" data-umami-event="vs-superwhisper" data-umami-event-loc="hero">see how they compare →</a></p>
-        </div>
-        <div class="nx-recorder" id="recorder">
-          <div class="nx-rec-head">
-            <span class="dc-rec"><span class="dc-dot"></span> Listening…</span>
-            <span class="badge">● Parakeet · on-device</span>
+          <div class="hero-visual">
+            <span class="float-chip chip-1">Docks in the notch · Dynamic Island</span>
+            <div class="nx-recorder">
+              <div class="nx-rec-head">
+                <span class="dc-rec"><span class="dc-dot"></span> Listening…</span>
+                <span class="badge">● Parakeet · on-device</span>
+              </div>
+              <div class="nx-wave">{wave.map((_, i) => <span style={`animation-delay:${(i % 11) * 0.07}s;animation-duration:${0.9 + (i % 5) * 0.13}s`}></span>)}</div>
+              <p class="nx-rec-text">Send the quarterly report to the team before <span class="dc-type">end of day</span><span class="dc-caret"></span></p>
+              <div class="nx-rec-foot"><span>⌘V — pasted into Slack</span><span class="dc-check">✓</span></div>
+            </div>
+            <span class="float-chip chip-2">Hold ⌥ — release to paste</span>
           </div>
-          <div class="nx-wave">{wave.map((_, i) => <span style={`animation-delay:${(i % 11) * 0.07}s;animation-duration:${0.9 + (i % 5) * 0.13}s`}></span>)}</div>
-          <p class="nx-rec-text">Send the quarterly report to the team before <span class="dc-type">end of day</span><span class="dc-caret"></span></p>
-          <div class="nx-rec-foot"><span>⌘V — pasted into Slack</span><span class="dc-check">✓</span></div>
         </div>
-      </div>
-      <div class="nx-scrollhint">scroll ↓</div>
       </div>
     </section>
 
@@ -133,49 +158,57 @@ const features = [
       </div>
     </section>
 
+    <section id="features" class="crsec">
+      <div class="section-glow sg-tr" aria-hidden="true"></div>
+      <div class="wrap">
+        <p class="eyebrow">More than a transcriber</p>
+        <div class="cr-head">
+          <div>
+            <h2 class="h2">It doesn't just type. It polishes.</h2>
+            <p class="lead cr-lead">Everything runs on your Mac — even the LLM cleanup, through your own <a href="https://ollama.com">Ollama</a>. The cloud is one optional engine, never a requirement.</p>
+          </div>
+          <div class="cr-arrows">
+            <button class="cr-arrow" id="cr-prev" aria-label="Previous feature">←</button>
+            <button class="cr-arrow" id="cr-next" aria-label="Next feature">→</button>
+          </div>
+        </div>
+
+        <div class="cr-panes" id="cr-panes" data-on="0">
+          {features.map((f, i) => (
+            <div class={`crp p${i}`}>
+              <div>
+                <span class="crp-num">{f.num} / 10</span>
+                <h3>{f.title}</h3>
+                <p>{f.body}</p>
+                {f.cap && <span class="crp-cap">{f.cap}</span>}
+              </div>
+              <div set:html={f.viz} />
+            </div>
+          ))}
+        </div>
+
+        <div class="cr-rail" id="cr-rail">
+          {features.map((f, i) => (
+            <button class={`cr-card ${i === 0 ? "on" : ""}`} data-i={i}>
+              <span class="cr-num">{f.num}</span>
+              <span class="cr-name">{f.name}</span>
+              <span class="cr-prog"></span>
+            </button>
+          ))}
+        </div>
+      </div>
+    </section>
+
     <section id="compare" class="compare">
       <div class="section-glow sg-bl" aria-hidden="true"></div>
       <div class="wrap">
         <p class="eyebrow">The part nobody else shows you</p>
         <h2 class="h2">Which model should you use?</h2>
         <p class="lead section-lead">
-          Faster or more accurate? On-device or cloud? Does it even speak your language? Pick a
+          Faster or more accurate? On-device or your server? Does it even speak your language? Pick a
           language and compare every engine head-to-head.
         </p>
         <Comparator client:load />
-      </div>
-    </section>
-
-    <section id="features" class="nx-feat">
-      <div class="section-glow sg-tr" aria-hidden="true"></div>
-      <div class="wrap">
-        <p class="eyebrow">More than a transcriber</p>
-        <h2 class="h2">It doesn't just type. It polishes.</h2>
-        <p class="lead nx-feat-lead">
-          Everything runs on your Mac — even the LLM cleanup, through your own
-          <a href="https://ollama.com">Ollama</a>. The cloud is one optional engine, never a requirement.
-        </p>
-        <div class="nx-tabs-grid">
-          <div class="nx-tablist">
-            {features.map((f, i) => (
-              <button class={`nx-tab ${i === 0 ? "on" : ""}`} data-i={i}>
-                <span class="feat-icon" set:html={f.icon} />
-                <span class="nx-tab-k">{f.k}</span>
-                <span class="nx-tab-prog"></span>
-              </button>
-            ))}
-          </div>
-          <div class="nx-panes">
-            {features.map((f, i) => (
-              <div class={`nx-pane ${i === 0 ? "on" : ""}`} data-i={i}>
-                <div class="nx-pane-icon" set:html={f.icon} />
-                <h3>{f.k}</h3>
-                <p>{f.long}</p>
-                <div class="nx-pane-viz" set:html={f.viz} />
-              </div>
-            ))}
-          </div>
-        </div>
       </div>
     </section>
 
@@ -188,11 +221,61 @@ const features = [
             <div class="engine-card">
               <div class="engine-top">
                 <h3>{e.name}</h3>
-                <span class="badge" data-cloud={e.tag === "cloud"}>{e.tag === "cloud" ? "☁ Cloud" : "● On-device"}</span>
+                <span class="badge" data-cloud={e.cloud}>{e.cloud ? "☁ Your server" : "● On-device"}</span>
               </div>
               <p>{e.desc}</p>
             </div>
           ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="screenshots" class="shots">
+      <div class="wrap">
+        <p class="eyebrow">See it for real</p>
+        <h2 class="h2">Not mockups. The actual app.</h2>
+        {shots.map((s, i) => (
+          <div class={`shot-row ${i % 2 ? "rev" : ""}`}>
+            <div class={`shot-fig ${s.g}`}><img src={s.img} alt={s.alt} loading="lazy" width="780" height="656" /></div>
+            <div class="shot-txt">
+              <span class="shot-cap">{s.cap}</span>
+              <h3>{s.title}</h3>
+              <p>{s.body}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section id="privacy" class="privacy">
+      <div class="wrap">
+        <p class="eyebrow">Private by default</p>
+        <h2 class="h2">Your voice stays on your Mac.</h2>
+        <div class="pv-grid">
+          <div class="pv"><span class="pv-k">01 — ON-DEVICE</span><h3>Nothing leaves by default</h3><p>Three of the four engines run entirely on your machine. No account, no telemetry, no analytics in the app.</p></div>
+          <div class="pv"><span class="pv-k">02 — EXPLICIT</span><h3>The cloud is opt-in, and labeled</h3><p>The only network path is the Remote engine — which you configure yourself, and which says plainly where your audio goes.</p></div>
+          <div class="pv"><span class="pv-k">03 — YOURS</span><h3>History you control</h3><p>Keep everything, cap it by count or age, or turn it off entirely — nothing is persisted.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="selfhost">
+      <div class="wrap">
+        <p class="eyebrow">For power users</p>
+        <h2 class="h2">Self-host it. Script it.</h2>
+        <div class="sh-grid">
+          <div class="sh-card">
+            <h3>Bring your own server</h3>
+            <p>LiteLLM, speaches, or a GPU box on your LAN — any OpenAI-compatible endpoint works, with saved presets and an on-device fallback.</p>
+            <div class="vz vz-cli"><span class="prompt">›</span> http://litellm.docker.lan/v1 · whisper-large-v3</div>
+            <span class="crp-cap">test connection · filtered model list · local fallback</span>
+          </div>
+          <div class="sh-card">
+            <h3>Pipe it anywhere</h3>
+            <p>The CLI ships in the app bundle — transcribe files from the terminal, get JSON, or run your own command after each dictation.</p>
+            <div class="vz vz-cli"><span class="prompt">$</span> opensuperwhisper transcribe note.m4a &gt; note.txt</div>
+            <span class="crp-cap">--json output · post-record hook · logs on stderr</span>
+          </div>
         </div>
       </div>
     </section>
@@ -216,7 +299,7 @@ const features = [
       <div class="section-glow sg-c" aria-hidden="true"></div>
       <div class="wrap get-inner">
         <h2 class="h2">Open. Yours. On your Mac.</h2>
-        <p class="lead">A maintained, open-source successor — six interface languages, a command-line tool, auto-updates. Free, forever.</p>
+        <p class="lead">A maintained, open-source successor — seven interface languages, a command-line tool, auto-updates. Free, forever.</p>
         <div class="hero-actions">
           <div class="cmd"><span class="prompt">$</span> brew install --cask my-monkeys/tap/opensuperwhisper</div>
           <a class="btn btn-primary" href="https://github.com/my-monkeys/OpenSuperWhisper/releases" data-umami-event="download" data-umami-event-loc="get">Download for macOS</a>
@@ -241,7 +324,100 @@ const features = [
       </div>
     </section>
 
+    <footer class="fe">
+      <div class="wrap">
+        <div class="fe-head">
+          <div class="fe-brand">🐵 My-Monkey</div>
+          <a class="fe-univ" href="https://my-monkey.fr/projets/" data-umami-event="my-monkey-universe">Tout l'univers →</a>
+        </div>
+        <p class="fe-about">OpenSuperWhisper was an abandoned project — <strong>My-Monkey</strong> picked up the fork and keeps it alive. We're a collective shipping free, open-source software: sometimes a little absurd, always ours.</p>
+        <Support />
+        <div class="fe-foot">
+          <span>OpenSuperWhisper · MIT licensed</span>
+          <a href="https://github.com/my-monkeys/OpenSuperWhisper" data-umami-event="github" data-umami-event-loc="footer">github.com/my-monkeys/OpenSuperWhisper</a>
+        </div>
+      </div>
+    </footer>
+
     <script>
+      // ── Capabilities carousel (design: Home.dc.html) ─────────────────────────
+      const N = 10;
+      const HOLD = 5000;
+      const sec = document.getElementById("features");
+      const panes = document.getElementById("cr-panes");
+      const rail = document.getElementById("cr-rail");
+      const cards = Array.from(rail.querySelectorAll(".cr-card"));
+      const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      let cur = 0, timer = null, armedAt = 0, remaining = HOLD, paused = false;
+
+      function arm(ms) {
+        clearTimeout(timer);
+        if (reduced) return;
+        armedAt = Date.now();
+        remaining = ms;
+        timer = setTimeout(() => show((cur + 1) % N), ms);
+      }
+
+      function progress(n) {
+        cards.forEach((c) => { c.querySelector(".cr-prog").style.animation = "none"; });
+        if (reduced) return;
+        const p = cards[n].querySelector(".cr-prog");
+        void p.offsetWidth; // reflow so the animation restarts from zero
+        p.style.animation = `crProg ${HOLD}ms linear forwards`;
+        p.style.animationPlayState = paused ? "paused" : "running";
+      }
+
+      function show(n, scroll = true) {
+        cur = n;
+        panes.dataset.on = String(n);
+        cards.forEach((c, k) => c.classList.toggle("on", k === n));
+        progress(n);
+        if (scroll) {
+          const c = cards[n];
+          rail.scrollTo({ left: c.offsetLeft - rail.offsetWidth / 2 + c.offsetWidth / 2, behavior: "smooth" });
+        }
+        arm(HOLD);
+      }
+
+      document.getElementById("cr-prev").addEventListener("click", () => show((cur + N - 1) % N));
+      document.getElementById("cr-next").addEventListener("click", () => show((cur + 1) % N));
+
+      // Hover anywhere on the section pauses the auto-advance (and the progress bar).
+      sec.addEventListener("mouseenter", () => {
+        if (paused || reduced) return;
+        paused = true;
+        remaining -= Date.now() - armedAt;
+        clearTimeout(timer);
+        cards[cur].querySelector(".cr-prog").style.animationPlayState = "paused";
+      });
+      sec.addEventListener("mouseleave", () => {
+        if (!paused) return;
+        paused = false;
+        cards[cur].querySelector(".cr-prog").style.animationPlayState = "running";
+        arm(Math.max(400, remaining));
+      });
+
+      // Drag-to-scroll on the rail, without turning drags into card clicks.
+      let drag = null, suppressClick = false;
+      rail.addEventListener("pointerdown", (e) => { drag = { x: e.clientX, sl: rail.scrollLeft, moved: 0 }; });
+      rail.addEventListener("pointermove", (e) => {
+        if (!drag) return;
+        const dx = e.clientX - drag.x;
+        drag.moved = Math.max(drag.moved, Math.abs(dx));
+        rail.scrollLeft = drag.sl - dx;
+      });
+      ["pointerup", "pointercancel"].forEach((ev) =>
+        rail.addEventListener(ev, () => {
+          suppressClick = !!drag && drag.moved > 6;
+          drag = null;
+          if (suppressClick) setTimeout(() => { suppressClick = false; }, 0);
+        }));
+      cards.forEach((c, k) => c.addEventListener("click", () => { if (!suppressClick) show(k); }));
+
+      show(0, false);
+
+      // ── Feedback form ────────────────────────────────────────────────────────
       const fbForm = document.getElementById("fb-form");
       if (fbForm) {
         const fbStatus = document.getElementById("fb-status");
@@ -267,63 +443,95 @@ const features = [
       }
     </script>
 
-    <footer class="fe">
-      <div class="wrap">
-        <div class="fe-head">
-          <div class="fe-brand">🐵 My-Monkey</div>
-          <a class="fe-univ" href="https://my-monkey.fr/projets/" data-umami-event="my-monkey-universe">Tout l'univers →</a>
-        </div>
-        <p class="fe-about">OpenSuperWhisper was an abandoned project — <strong>My-Monkey</strong> picked up the fork and keeps it alive. We're a collective shipping free, open-source software: sometimes a little absurd, always ours.</p>
-        <Support />
-        <div class="fe-foot">
-          <span>OpenSuperWhisper · MIT licensed</span>
-          <a href="https://github.com/my-monkeys/OpenSuperWhisper" data-umami-event="github" data-umami-event-loc="footer">github.com/my-monkeys/OpenSuperWhisper</a>
-        </div>
-      </div>
-    </footer>
-
-    <script>
-      import gsap from "gsap";
-      import ScrollTrigger from "gsap/ScrollTrigger";
-      gsap.registerPlugin(ScrollTrigger);
-
-      // scroll-driven hero: recorder shrinks & docks right as the headline reveals
-      if (window.matchMedia("(min-width: 900px)").matches) {
-        const tl = gsap.timeline({
-          scrollTrigger: { trigger: ".nx-hero", start: "top top", end: "bottom bottom", scrub: 0.7 },
-        });
-        tl.fromTo("#recorder", { scale: 1.34, xPercent: -64 }, { scale: 1, xPercent: 0, ease: "none" }, 0);
-        tl.fromTo(".nx-intro", { autoAlpha: 0, x: -40 }, { autoAlpha: 1, x: 0, ease: "none" }, 0.34);
-        tl.to(".nx-scrollhint", { autoAlpha: 0, ease: "none" }, 0.05);
-      } else {
-        gsap.set(".nx-intro", { autoAlpha: 1 });
-      }
-
-      // features: auto-sliding tabs. Progress bar drives the advance; hover pauses, click jumps.
-      const tabs = Array.from(document.querySelectorAll(".nx-tab"));
-      const panes = Array.from(document.querySelectorAll(".nx-pane"));
-      let prog;
-      const HOLD = 5;
-      function show(n) {
-        tabs.forEach((t, k) => t.classList.toggle("on", k === n));
-        panes.forEach((p, k) => p.classList.toggle("on", k === n));
-        gsap.fromTo(panes[n], { autoAlpha: 0.2, y: 16 }, { autoAlpha: 1, y: 0, duration: 0.45, ease: "power2.out" });
-        if (prog) prog.kill();
-        tabs.forEach((t) => gsap.set(t.querySelector(".nx-tab-prog"), { scaleX: 0 }));
-        prog = gsap.fromTo(tabs[n].querySelector(".nx-tab-prog"),
-          { scaleX: 0 }, { scaleX: 1, duration: HOLD, ease: "none", onComplete: () => show((n + 1) % tabs.length) });
-      }
-      tabs.forEach((t, k) => t.addEventListener("click", () => show(k)));
-      const featSec = document.querySelector(".nx-feat");
-      featSec.addEventListener("mouseenter", () => prog && prog.pause());
-      featSec.addEventListener("mouseleave", () => prog && prog.resume());
-      ScrollTrigger.create({ trigger: ".nx-feat", start: "top 75%", once: true, onEnter: () => show(0) });
-    </script>
-    <style>
-      .hero-alt { margin-top: 12px; font-size: 0.92rem; color: var(--ink-2); }
+    <style is:global>
+      /* ── Hero (static, per Home.dc.html) ── */
+      .hero { padding-top: clamp(56px, 7vw, 96px); padding-bottom: clamp(30px, 4vw, 48px); }
+      .hero-alt { margin-top: 12px; font-size: .92rem; color: var(--ink-2); }
       .hero-alt strong { color: var(--ink); font-weight: 600; }
-      .hero-alt a { color: var(--accent); text-decoration: none; font-weight: 500; white-space: nowrap; }
+      .hero-alt a { color: var(--accent); font-weight: 500; white-space: nowrap; text-decoration: none; }
       .hero-alt a:hover { text-decoration: underline; }
+
+      /* ── Capabilities carousel ── */
+      .crsec { position: relative; overflow: hidden; padding: clamp(70px, 10vw, 120px) 0; }
+      .crsec > .wrap { position: relative; z-index: 1; }
+      .cr-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; margin: 14px 0 34px; }
+      .cr-lead { max-width: 58ch; margin-top: 12px; }
+      .cr-arrows { display: flex; gap: 8px; flex: none; }
+      .cr-arrow { width: 44px; height: 44px; border-radius: 999px; border: 1px solid var(--line); background: #fff; cursor: pointer;
+        font: inherit; font-size: 1.05rem; color: var(--ink-2); transition: border-color .15s, color .15s, transform .15s; }
+      .cr-arrow:hover { border-color: var(--ink); color: var(--ink); transform: translateY(-1px); }
+      .cr-panes { display: grid; position: relative; }
+      .crp { grid-area: 1 / 1; opacity: 0; visibility: hidden; transform: translateY(14px);
+        transition: opacity .45s ease, transform .45s ease, visibility .45s;
+        display: grid; grid-template-columns: 1.02fr .98fr; gap: 46px; align-items: center;
+        background: #fff; border: 1px solid var(--line); border-radius: 22px; padding: clamp(26px, 4vw, 48px);
+        box-shadow: 0 24px 60px -28px rgba(20,18,16,.14); }
+      .cr-panes[data-on="0"] .p0, .cr-panes[data-on="1"] .p1, .cr-panes[data-on="2"] .p2, .cr-panes[data-on="3"] .p3,
+      .cr-panes[data-on="4"] .p4, .cr-panes[data-on="5"] .p5, .cr-panes[data-on="6"] .p6, .cr-panes[data-on="7"] .p7,
+      .cr-panes[data-on="8"] .p8, .cr-panes[data-on="9"] .p9 { opacity: 1; visibility: visible; transform: none; }
+      .crp-num { font-family: var(--mono); font-size: .82rem; color: var(--accent-ink); letter-spacing: .1em; }
+      .crp h3 { font-size: clamp(1.35rem, 2.4vw, 1.8rem); font-weight: 640; letter-spacing: -.03em; margin: 10px 0 12px; }
+      .crp p { color: var(--ink-2); font-size: 1.06rem; line-height: 1.55; max-width: 46ch; }
+      .crp-cap { display: block; margin-top: 14px; font-family: var(--mono); font-size: .78rem; color: var(--ink-3); }
+      .cr-rail { display: flex; gap: 10px; overflow-x: auto; scroll-snap-type: x mandatory; margin-top: 22px; padding: 4px 2px 10px;
+        scrollbar-width: none; cursor: grab; user-select: none; -webkit-user-select: none; }
+      .cr-rail::-webkit-scrollbar { display: none; }
+      .cr-rail:active { cursor: grabbing; }
+      .cr-card { position: relative; overflow: hidden; scroll-snap-align: start; flex: 0 0 auto; display: flex; flex-direction: column;
+        gap: 5px; align-items: flex-start; text-align: left; padding: 13px 18px 16px; border-radius: 14px; border: 1px solid var(--line);
+        background: transparent; cursor: pointer; font: inherit; color: var(--ink-2); transition: background .18s, color .18s, box-shadow .18s; }
+      .cr-card:hover { background: #fff; color: var(--ink); }
+      .cr-card.on { background: #fff; color: var(--ink); box-shadow: 0 8px 22px -10px rgba(20,18,16,.18); }
+      .cr-num { font-family: var(--mono); font-size: .7rem; color: var(--ink-3); letter-spacing: .08em; }
+      .cr-card.on .cr-num { color: var(--accent-ink); }
+      .cr-name { font-size: .92rem; font-weight: 560; white-space: nowrap; }
+      .cr-prog { position: absolute; left: 0; bottom: 0; height: 2.5px; width: 100%; background: var(--accent);
+        transform: scaleX(0); transform-origin: left; border-radius: 2px; }
+      @keyframes crProg { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+      /* notch mini-demo (pane 02) */
+      .nb { background: #0c0c10; border-radius: 16px; padding: 10px 14px 14px; box-shadow: 0 20px 44px -18px rgba(0,0,0,.45); }
+      .nb-bar { display: flex; justify-content: center; }
+      .nb-island { display: inline-flex; align-items: center; gap: 9px; background: #000; border-radius: 999px; padding: 8px 16px;
+        font-size: .78rem; color: #ddd; border: 1px solid #26262c; }
+      .nb-wave { display: flex; align-items: center; gap: 2.5px; height: 14px; width: 44px; }
+      .nb-wave span { flex: 1; background: linear-gradient(var(--accent), #6f82ff); border-radius: 2px; height: 20%; animation: eq 1.1s ease-in-out infinite; }
+      .nb-desk { height: 52px; margin-top: 12px; border-radius: 9px; background: linear-gradient(180deg, #17171c, #101014); }
+
+      /* ── Screenshots ── */
+      .shots { border-top: 1px solid var(--line); padding: clamp(70px, 10vw, 120px) 0; }
+      .shot-row { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 5vw, 60px); align-items: center; margin-top: clamp(44px, 6vw, 72px); }
+      .shot-row.rev .shot-fig { order: 2; }
+      .shot-fig { border-radius: 20px; padding: clamp(18px, 3vw, 38px); border: 1px solid var(--line);
+        background: linear-gradient(135deg, rgba(31,59,255,.08), rgba(31,59,255,.015) 62%, rgba(200,99,26,.045)); }
+      .shot-fig.g2 { background: linear-gradient(315deg, rgba(31,59,255,.07), rgba(31,59,255,.01) 58%, rgba(10,143,87,.05)); }
+      .shot-fig.g3 { background: linear-gradient(160deg, rgba(10,143,87,.06), rgba(31,59,255,.015) 55%, rgba(31,59,255,.07)); }
+      .shot-fig.g4 { background: linear-gradient(200deg, rgba(200,99,26,.05), rgba(31,59,255,.02) 50%, rgba(31,59,255,.08)); }
+      .shot-fig img { width: 100%; height: auto; display: block; border-radius: 10px; box-shadow: 0 26px 54px -22px rgba(20,18,16,.38); }
+      .shot-txt h3 { font-size: clamp(1.3rem, 2.2vw, 1.65rem); font-weight: 640; letter-spacing: -.025em; margin: 10px 0 10px; }
+      .shot-txt p { color: var(--ink-2); line-height: 1.55; max-width: 46ch; }
+      .shot-cap { font-family: var(--mono); font-size: .76rem; color: var(--ink-3); letter-spacing: .06em; text-transform: uppercase; }
+      @supports (animation-timeline: view()) {
+        .shot-row { animation: rise both; animation-timeline: view(); animation-range: entry 0% entry 42%; }
+      }
+      @keyframes rise { from { opacity: 0; transform: translateY(36px); } }
+
+      /* ── Privacy ── */
+      .privacy { background: var(--paper-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: clamp(70px, 10vw, 110px) 0; }
+      .pv-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(22px, 3vw, 40px); margin-top: 40px; }
+      .pv h3 { font-size: 1.16rem; font-weight: 630; letter-spacing: -.015em; margin-bottom: 8px; }
+      .pv p { color: var(--ink-2); font-size: .98rem; line-height: 1.55; }
+      .pv-k { font-family: var(--mono); font-size: .76rem; color: var(--accent-ink); letter-spacing: .1em; display: block; margin-bottom: 12px; }
+
+      /* ── Self-host ── */
+      #selfhost { padding: clamp(70px, 10vw, 110px) 0; }
+      .sh-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 36px; }
+      .sh-card { background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 30px; }
+      .sh-card h3 { font-size: 1.22rem; font-weight: 630; letter-spacing: -.02em; margin-bottom: 10px; }
+      .sh-card > p { color: var(--ink-2); font-size: .98rem; line-height: 1.55; margin-bottom: 18px; }
+      .sh-card .vz-cli { margin-bottom: 10px; }
+
+      /* ── Feedback ── */
       .feedback { padding: 96px 0; position: relative; }
       .fb-inner { max-width: 720px; position: relative; }
       .fb-form { margin-top: 28px; display: grid; gap: 12px; }
@@ -346,6 +554,17 @@ const features = [
       .fb-alt { margin-top: 20px; font-size: .92rem; color: var(--ink-3); }
       .fb-alt a { color: var(--accent); text-decoration: none; }
       .fb-alt a:hover { text-decoration: underline; }
+
+      @media (max-width: 860px) {
+        .crp { grid-template-columns: 1fr; gap: 26px; }
+        .crp p { font-size: 1rem; }
+        .cr-head { flex-direction: column; align-items: flex-start; }
+        .shot-row { grid-template-columns: 1fr; gap: 22px; margin-top: 48px; }
+        .shot-row.rev .shot-fig { order: 0; }
+        .pv-grid { grid-template-columns: 1fr; }
+        .sh-grid { grid-template-columns: 1fr; }
+        .feedback { padding: 72px 0; }
+      }
       @media (max-width: 560px) { .fb-row .btn { width: 100%; } }
     </style>
   </body>
