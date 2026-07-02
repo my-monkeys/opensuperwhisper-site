@@ -687,59 +687,6 @@
    }
   }
  },
- "apple-speech": {
-  "overall": {
-   "xrt": 25.5,
-   "err": 6.1
-  },
-  "byLang": {
-   "en": {
-    "xrt": 10.3,
-    "err": 7.0,
-    "metric": "wer"
-   },
-   "fr": {
-    "xrt": 27.6,
-    "err": 6.5,
-    "metric": "wer"
-   },
-   "de": {
-    "xrt": 19.2,
-    "err": 7.9,
-    "metric": "wer"
-   },
-   "es": {
-    "xrt": 28.3,
-    "err": 4.1,
-    "metric": "wer"
-   },
-   "it": {
-    "xrt": 27.5,
-    "err": 3.1,
-    "metric": "wer"
-   },
-   "pt": {
-    "xrt": 28.5,
-    "err": 17.4,
-    "metric": "wer"
-   },
-   "zh": {
-    "xrt": 24.9,
-    "err": 2.5,
-    "metric": "cer"
-   },
-   "ja": {
-    "xrt": 28.7,
-    "err": 4.2,
-    "metric": "cer"
-   },
-   "ko": {
-    "xrt": 34.1,
-    "err": 2.1,
-    "metric": "cer"
-   }
-  }
- },
  "distil-large-v3": {
   "overall": {
    "xrt": 4.5,
@@ -750,6 +697,59 @@
     "xrt": 4.5,
     "err": 8.0,
     "metric": "wer"
+   }
+  }
+ },
+ "apple-speech": {
+  "overall": {
+   "xrt": 38.7,
+   "err": 6.1
+  },
+  "byLang": {
+   "en": {
+    "xrt": 25.8,
+    "err": 7.0,
+    "metric": "wer"
+   },
+   "fr": {
+    "xrt": 32.8,
+    "err": 6.5,
+    "metric": "wer"
+   },
+   "de": {
+    "xrt": 43.5,
+    "err": 7.9,
+    "metric": "wer"
+   },
+   "es": {
+    "xrt": 39.0,
+    "err": 4.1,
+    "metric": "wer"
+   },
+   "it": {
+    "xrt": 41.4,
+    "err": 3.1,
+    "metric": "wer"
+   },
+   "pt": {
+    "xrt": 47.1,
+    "err": 17.4,
+    "metric": "wer"
+   },
+   "zh": {
+    "xrt": 33.8,
+    "err": 2.5,
+    "metric": "cer"
+   },
+   "ja": {
+    "xrt": 37.8,
+    "err": 4.2,
+    "metric": "cer"
+   },
+   "ko": {
+    "xrt": 47.2,
+    "err": 2.1,
+    "metric": "cer"
    }
   }
  }
