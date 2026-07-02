@@ -1,0 +1,51 @@
+---
+// Ko-fi floating widget + a one-line support blurb for the footer.
+// The app is free forever with no paid tier, so donations are the only thing
+// funding the nonprofit (association loi 1901) behind it — say it plainly, once.
+interface Props { lang?: "en" | "fr" }
+const { lang = "en" } = Astro.props;
+
+const blurb = {
+  en: {
+    text: "OpenSuperWhisper is free, forever — no Pro tier, no paywall, and it stays that way. If it saves you time, you can",
+    cta: "buy the monkeys a banana",
+    tail: ": donations keep the nonprofit running and the open-source work alive. 🍌",
+  },
+  fr: {
+    text: "OpenSuperWhisper est gratuit, pour toujours — sans palier Pro, sans paywall, et ça ne changera pas. S'il vous fait gagner du temps, vous pouvez",
+    cta: "offrir une banane aux singes",
+    tail: " : les dons font vivre l’asso et le travail open-source. 🍌",
+  },
+}[lang];
+---
+
+<p class="support-blurb">
+  {blurb.text}
+  <a href="https://ko-fi.com/mymonkey" data-umami-event="kofi" data-umami-event-loc="footer">{blurb.cta}</a>{blurb.tail}
+</p>
+
+<script is:inline src="https://storage.ko-fi.com/cdn/scripts/overlay-widget.js"></script>
+<script is:inline>
+  kofiWidgetOverlay.draw('mymonkey', {
+    'type': 'floating-chat',
+    'floating-chat.donateButton.text': 'Support Us',
+    'floating-chat.donateButton.background-color': '#fcbf47',
+    'floating-chat.donateButton.text-color': '#323842'
+  });
+</script>
+
+<style>
+  .support-blurb {
+    margin: 18px 0 0;
+    font-size: 0.92rem;
+    color: var(--ink-2);
+    line-height: 1.6;
+    max-width: 72ch;
+  }
+  .support-blurb a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 540;
+  }
+  .support-blurb a:hover { text-decoration: underline; }
+</style>

@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import "../styles/next.css";
 import { CHANGELOG } from "../data/changelog";
+import Support from "../components/Support.astro";
 
 const fmt = (d: string) =>
   new Date(d).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
@@ -87,6 +88,7 @@ const fmt = (d: string) =>
           OpenSuperWhisper was an abandoned project — <strong>My-Monkey</strong> picked up the fork and keeps it alive.
           We're a collective shipping free, open-source software: sometimes a little absurd, always ours.
         </p>
+        <Support />
         <div class="fe-foot">
           <span>OpenSuperWhisper · MIT licensed</span>
           <a href="https://github.com/my-monkeys/OpenSuperWhisper" data-umami-event="github" data-umami-event-loc="footer">github.com/my-monkeys/OpenSuperWhisper</a>

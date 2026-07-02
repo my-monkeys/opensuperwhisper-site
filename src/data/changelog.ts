@@ -9,6 +9,13 @@ export interface ChangeEntry {
 
 export const CHANGELOG: ChangeEntry[] = [
   {
+    version: "0.9.4-beta.1",
+    date: "2026-07-02",
+    title: "Remote engine, App Context & the community batch",
+    summary:
+      "The biggest update yet, largely contributed by the community: a Remote engine for any OpenAI-compatible server (Groq becomes a preset; optional local fallback when your server is unreachable), per-app/per-site model rules with a menu-bar picker, richer history (source app, site, model, rerun with another model), failed dictations kept with a retry button, lazy model loading, reliable media pause/resume — and the definitive fix for the macOS 26 crash after the first transcription. Beta: grab it from GitHub Releases.",
+  },
+  {
     version: "0.9.2",
     date: "2026-06-26",
     title: "Universal paste insertion",

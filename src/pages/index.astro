@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import "../styles/next.css";
 import Comparator from "../components/Comparator.tsx";
+import Support from "../components/Support.astro";
 import { CHANGELOG } from "../data/changelog";
 
 const latestChange = CHANGELOG[0];
@@ -12,7 +13,7 @@ const engines = [
   { name: "Whisper", desc: "The reference. ~99 languages, six sizes, can translate to English.", tag: "on-device" },
   { name: "Parakeet", desc: "Fast, with a live preview as you speak. 25 European languages.", tag: "on-device" },
   { name: "SenseVoice", desc: "Non-autoregressive and quick — Chinese, Cantonese, English, Japanese, Korean.", tag: "on-device" },
-  { name: "Groq", desc: "Server-side whisper-large-v3, absurdly fast. Optional — audio leaves your Mac.", tag: "cloud" },
+  { name: "Remote", desc: "Any OpenAI-compatible server — Groq preset, LiteLLM, or your own box. Optional, with a local fallback if it's unreachable.", tag: "cloud" },
 ];
 const wave = Array.from({ length: 42 });
 const stats = [
@@ -48,6 +49,15 @@ const features = [
   { icon: I.shield, k: "Private by default",
     long: "No account, no telemetry, no cloud unless you explicitly pick the Groq engine. Turn transcription history off entirely, or cap how long it's kept.",
     viz: `<div class="vz vz-badges"><span class="badge">● On-device</span><span class="badge">0 telemetry</span><span class="badge">No account</span></div>` },
+  { icon: I.dot, k: "Model per app",
+    long: "Bind a model to an app — or a website in supported browsers — and it switches automatically when you dictate there. A fast model for chat, an accurate one for email, a specialized one for your editor.",
+    viz: `<div class="vz vz-chips"><span>Mail → Whisper large</span><span>Slack → Parakeet</span><span>docs.google.com → Remote</span></div><span class="vz-cap">switches at record-start, from the menu bar</span>` },
+  { icon: I.wand, k: "Bring your own server",
+    long: "Point the Remote engine at any OpenAI-compatible endpoint — Groq, LiteLLM, speaches, a box on your LAN. If your server is unreachable, an optional on-device fallback transcribes anyway.",
+    viz: `<div class="vz vz-cli"><span class="prompt">›</span> http://litellm.docker.lan · whisper-large-v3</div><span class="vz-cap">your audio goes to <b>your</b> server — or nowhere</span>` },
+  { icon: I.book, k: "History that remembers",
+    long: "Every dictation records where it happened — app, window, site — and which model transcribed it. Rerun any entry with a different model, and failed dictations keep their audio with a retry button.",
+    viz: `<div class="vz vz-chips"><span>Mail · 12s · Parakeet v3</span><span>github.com · 31s · Whisper</span></div><span class="vz-cap">rerun ↻ with any model, nothing lost</span>` },
   { icon: I.terminal, k: "Scriptable CLI",
     long: "A real command-line tool ships in the app bundle. Transcribe files from the terminal and pipe the text into anything — scripts, notes, your own tooling.",
     viz: `<div class="vz vz-cli"><span class="prompt">$</span> opensuperwhisper transcribe note.m4a &gt; note.txt</div>` },
@@ -264,6 +274,7 @@ const features = [
           <a class="fe-univ" href="https://my-monkey.fr/projets/" data-umami-event="my-monkey-universe">Tout l'univers →</a>
         </div>
         <p class="fe-about">OpenSuperWhisper was an abandoned project — <strong>My-Monkey</strong> picked up the fork and keeps it alive. We're a collective shipping free, open-source software: sometimes a little absurd, always ours.</p>
+        <Support />
         <div class="fe-foot">
           <span>OpenSuperWhisper · MIT licensed</span>
           <a href="https://github.com/my-monkeys/OpenSuperWhisper" data-umami-event="github" data-umami-event-loc="footer">github.com/my-monkeys/OpenSuperWhisper</a>

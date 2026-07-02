@@ -1,4 +1,5 @@
 ---
+import Support from "./Support.astro";
 // Bilingual "free, open-source SuperWhisper alternative" comparison page body.
 // The page (.astro) owns <head> (title/meta/hreflang); this owns nav + content + footer + JSON-LD.
 // Competitor facts are accurate as of June 2026 (superwhisper.com/pricing) — keep the date + source
@@ -84,7 +85,7 @@ const T = {
       { q: "Is OpenSuperWhisper really completely free?",
         a: "Yes — free forever, with no premium upgrade to buy. It’s maintained by the My-Monkey collective and the full source is on GitHub under the MIT licence." },
       { q: "Does it work offline / on-device?",
-        a: "Yes. The Whisper, Parakeet and SenseVoice engines run entirely on your Mac, so your audio never leaves the device. Only the optional Groq engine uses the cloud, and only if you pick it." },
+        a: "Yes. The Whisper, Parakeet and SenseVoice engines run entirely on your Mac, so your audio never leaves the device. Only the optional Remote engine talks to a server (Groq, or one you host yourself), and only if you pick it." },
       { q: "Can I transcribe audio files and translate for free?",
         a: "Yes. File transcription works from the app and a command-line tool, and Whisper translates ~99 languages into English in one shortcut — both free, where SuperWhisper gates them behind Pro." },
       { q: "Does it run on Intel Macs?",
@@ -128,7 +129,7 @@ const T = {
       { q: "OpenSuperWhisper est-il vraiment 100 % gratuit ?",
         a: "Oui — gratuit à vie, sans aucune version premium à acheter. Il est maintenu par le collectif My-Monkey et tout le code source est sur GitHub sous licence MIT." },
       { q: "Fonctionne-t-il hors ligne / en local ?",
-        a: "Oui. Les moteurs Whisper, Parakeet et SenseVoice tournent entièrement sur votre Mac : votre audio ne quitte jamais l’appareil. Seul le moteur Groq, optionnel, utilise le cloud — et uniquement si vous le choisissez." },
+        a: "Oui. Les moteurs Whisper, Parakeet et SenseVoice tournent entièrement sur votre Mac : votre audio ne quitte jamais l’appareil. Seul le moteur Remote, optionnel, parle à un serveur (Groq, ou le vôtre) — et uniquement si vous le choisissez." },
       { q: "Puis-je transcrire des fichiers et traduire gratuitement ?",
         a: "Oui. La transcription de fichiers marche depuis l’app et un outil en ligne de commande, et Whisper traduit ~99 langues vers l’anglais en un raccourci — gratuitement, là où SuperWhisper les verrouille derrière le Pro." },
       { q: "Fonctionne-t-il sur les Mac Intel ?",
@@ -280,6 +281,7 @@ const breadcrumbSchema = {
       <a class="fe-univ" href="https://my-monkey.fr/projets/" data-umami-event="my-monkey-universe">{t.footUniverse}</a>
     </div>
     <p class="fe-about">{t.footAbout}</p>
+    <Support lang={lang} />
     <div class="fe-foot">
       <span>OpenSuperWhisper · MIT licensed</span>
       <a href={GH} data-umami-event="github" data-umami-event-loc="footer">github.com/my-monkeys/OpenSuperWhisper</a>
