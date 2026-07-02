@@ -20,6 +20,8 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+/* the decorative glow spheres overflow the viewport on small screens — never let them create a side scroll */
+html, body { overflow-x: clip; }
 body {
   background: var(--paper);
   color: var(--ink);
@@ -123,11 +125,16 @@ section { padding: clamp(72px, 11vw, 130px) 0; }
 .chip-2 { bottom: -16px; right: -12px; animation: floaty 6s ease-in-out infinite reverse; }
 @keyframes floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
 
-/* stat strip */
-.stat-strip { position: relative; z-index: 1; display: flex; flex-wrap: wrap; gap: 14px; margin-top: clamp(44px, 7vw, 84px); border-top: 1px solid var(--line); padding-top: 28px; }
-.stat { flex: 1; min-width: 110px; display: flex; flex-direction: column; gap: 1px; }
-.stat strong { font-size: clamp(1.7rem, 3vw, 2.5rem); font-weight: 660; letter-spacing: -0.03em; }
-.stat span { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-3); }
+/* stat cards */
+.stat-strip { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin-top: clamp(44px, 7vw, 84px); }
+.stat { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 22px 22px 18px; display: flex; flex-direction: column;
+  box-shadow: 0 1px 2px rgba(22, 21, 26, .04); transition: transform .25s ease, box-shadow .25s ease; }
+.stat:hover { transform: translateY(-2px); box-shadow: 0 12px 28px -16px rgba(22, 21, 26, .22); }
+.stat strong { font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 660; letter-spacing: -0.03em; line-height: 1; }
+.stat-plus { font-style: normal; font-size: 0.56em; font-weight: 700; color: var(--accent); margin-left: 3px; vertical-align: 0.45em; }
+.stat span { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.09em; color: var(--ink-2); margin-top: 7px; }
+.stat small { font-size: 0.82rem; color: var(--ink-3); line-height: 1.35; margin-top: 2px; }
+@media (max-width: 720px) { .stat-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
 @media (max-width: 900px) {
   .hero-grid { grid-template-columns: 1fr; gap: 42px; }

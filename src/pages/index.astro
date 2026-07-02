@@ -11,8 +11,10 @@ const fmtDate = (d: string) =>
 
 const wave = Array.from({ length: 42 });
 const stats = [
-  { n: "4", l: "engines" }, { n: "99", l: "languages" },
-  { n: "0", l: "accounts" }, { n: "$0", l: "forever" },
+  { n: "3", plus: "+1", l: "engines", sub: "on-device, plus your own server" },
+  { n: "99", l: "languages", sub: "auto-detected as you speak" },
+  { n: "0", l: "accounts", sub: "no sign-up, no telemetry" },
+  { n: "$0", l: "forever", sub: "free & MIT-licensed" },
 ];
 
 // The capabilities carousel (design: Home.dc.html). One pane per feature; the rail
@@ -153,7 +155,11 @@ const shots = [
     <section class="stats-band">
       <div class="wrap stat-strip">
         {stats.map((s) => (
-          <div class="stat"><strong>{s.n}</strong><span>{s.l}</span></div>
+          <div class="stat">
+            <strong>{s.n}{s.plus && <em class="stat-plus">{s.plus}</em>}</strong>
+            <span>{s.l}</span>
+            <small>{s.sub}</small>
+          </div>
         ))}
       </div>
     </section>
@@ -236,7 +242,11 @@ const shots = [
         <h2 class="h2">Not mockups. The actual app.</h2>
         {shots.map((s, i) => (
           <div class={`shot-row ${i % 2 ? "rev" : ""}`}>
-            <div class={`shot-fig ${s.g}`}><img src={s.img} alt={s.alt} loading="lazy" width="780" height="656" /></div>
+            <div class={`shot-fig ${s.g}`}>
+              <button class="shot-zoom" type="button" aria-label={`View ${s.cap} full size`}>
+                <img src={s.img} alt={s.alt} loading="lazy" width="780" height="656" />
+              </button>
+            </div>
             <div class="shot-txt">
               <span class="shot-cap">{s.cap}</span>
               <h3>{s.title}</h3>
@@ -244,6 +254,10 @@ const shots = [
             </div>
           </div>
         ))}
+      </div>
+      <div class="lb" id="lightbox" hidden>
+        <button class="lb-x" type="button" aria-label="Close">✕</button>
+        <img alt="" />
       </div>
     </section>
 
@@ -340,6 +354,29 @@ const shots = [
     </footer>
 
     <script>
+      // ── Screenshot lightbox — click any shot to see it full size ─────────────
+      const lb = document.getElementById("lightbox");
+      if (lb) {
+        const lbImg = lb.querySelector("img");
+        const openLb = (img) => {
+          lbImg.src = img.currentSrc || img.src;
+          lbImg.alt = img.alt;
+          lb.hidden = false;
+          document.documentElement.style.overflow = "hidden";
+        };
+        const closeLb = () => {
+          lb.hidden = true;
+          document.documentElement.style.overflow = "";
+        };
+        document.querySelectorAll(".shot-zoom").forEach((btn) => {
+          btn.addEventListener("click", () => openLb(btn.querySelector("img")));
+        });
+        lb.addEventListener("click", closeLb);
+        window.addEventListener("keydown", (e) => {
+          if (e.key === "Escape" && !lb.hidden) closeLb();
+        });
+      }
+
       // ── Capabilities carousel (design: Home.dc.html) ─────────────────────────
       const N = 10;
       const HOLD = 5000;
@@ -534,6 +571,21 @@ const shots = [
       .shot-fig.g3 { background: linear-gradient(160deg, rgba(10,143,87,.06), rgba(232,115,74,.015) 55%, rgba(232,115,74,.07)); }
       .shot-fig.g4 { background: linear-gradient(200deg, rgba(200,99,26,.05), rgba(232,115,74,.02) 50%, rgba(232,115,74,.08)); }
       .shot-fig img { width: 100%; height: auto; display: block; border-radius: 10px; box-shadow: 0 26px 54px -22px rgba(20,18,16,.38); }
+      .shot-zoom { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; border-radius: 10px;
+        transition: transform .25s ease; }
+      .shot-zoom:hover { transform: scale(1.012); }
+      .shot-zoom:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+
+      /* full-size overlay */
+      /* z-index above the Ko-fi floating widget, which sits in the millions */
+      .lb { position: fixed; inset: 0; z-index: 2147483000; display: flex; align-items: center; justify-content: center;
+        padding: clamp(14px, 4vw, 56px); background: rgba(22,21,26,.84); backdrop-filter: blur(10px); cursor: zoom-out; }
+      .lb[hidden] { display: none; }
+      .lb img { max-width: min(1160px, 100%); max-height: 100%; width: auto; height: auto; border-radius: 12px;
+        box-shadow: 0 48px 110px -34px rgba(0,0,0,.65); }
+      .lb-x { position: absolute; top: 16px; right: 18px; width: 42px; height: 42px; border: 0; border-radius: 50%;
+        background: rgba(255,255,255,.14); color: #fff; font-size: 1.05rem; line-height: 1; cursor: pointer; }
+      .lb-x:hover { background: rgba(255,255,255,.26); }
       .shot-txt h3 { font-size: clamp(1.3rem, 2.2vw, 1.65rem); font-weight: 640; letter-spacing: -.025em; margin: 10px 0 10px; }
       .shot-txt p { color: var(--ink-2); line-height: 1.55; max-width: 46ch; }
       .shot-cap { font-family: var(--mono); font-size: .76rem; color: var(--ink-3); letter-spacing: .06em; text-transform: uppercase; }
