@@ -859,13 +859,6 @@
    "xrealtime": 4.4,
    "n": 5
   },
-  "distil-large-v3::en": {
-   "err": 0.0796,
-   "metric": "wer",
-   "rtf": 0.2456,
-   "xrealtime": 4.1,
-   "n": 3
-  },
   "apple-speech::zh": {
    "err": 0.0249,
    "metric": "cer",
@@ -1054,6 +1047,13 @@
    "rtf": 0.0357,
    "xrealtime": 28.0,
    "n": 5
+  },
+  "distil-large-v3::en": {
+   "err": 0.0796,
+   "metric": "wer",
+   "rtf": 0.2239,
+   "xrealtime": 4.5,
+   "n": 3
   }
  }
 }

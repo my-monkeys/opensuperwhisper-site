@@ -742,12 +742,12 @@
  },
  "distil-large-v3": {
   "overall": {
-   "xrt": 4.1,
+   "xrt": 4.5,
    "err": 8.0
   },
   "byLang": {
    "en": {
-    "xrt": 4.1,
+    "xrt": 4.5,
     "err": 8.0,
     "metric": "wer"
    }
