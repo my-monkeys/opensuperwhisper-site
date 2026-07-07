@@ -9,6 +9,13 @@ export interface ChangeEntry {
 
 export const CHANGELOG: ChangeEntry[] = [
   {
+    version: "0.9.8",
+    date: "2026-07-07",
+    title: "Mouse trigger, Esc confirmation & a RAM saver",
+    summary:
+      "Trigger recording with a mouse button (middle or a thumb button), alongside the keyboard modes. Esc now asks before cancelling a recording longer than ~10s, so an accidental tap won't lose a long dictation. New opt-in 'unload the Whisper model when idle' frees ~1GB of RAM between dictations. And files you drop to transcribe now show elapsed time next to the progress.",
+  },
+  {
     version: "0.9.7",
     date: "2026-07-07",
     title: "Recording indicator over full-screen apps",
