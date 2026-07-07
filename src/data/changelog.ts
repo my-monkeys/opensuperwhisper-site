@@ -9,6 +9,27 @@ export interface ChangeEntry {
 
 export const CHANGELOG: ChangeEntry[] = [
   {
+    version: "0.9.7",
+    date: "2026-07-07",
+    title: "Recording indicator over full-screen apps",
+    summary:
+      "The recording indicator — including the notch pill and the live caption — now shows above full-screen apps. Dictate into a full-screen browser, video or editor and you'll still see that recording is live.",
+  },
+  {
+    version: "0.9.6",
+    date: "2026-07-06",
+    title: "Esc cancels a recording",
+    summary:
+      "Press Esc to cancel a recording you started from the main window — it's discarded without transcribing, matching the floating bubble. And if the cancel shortcut ever got cleared, the app rebinds Esc automatically on launch.",
+  },
+  {
+    version: "0.9.5",
+    date: "2026-07-04",
+    title: "Remote AI cleanup + short-dictation fixes",
+    summary:
+      "Optional AI cleanup of your transcriptions now works with any OpenAI-compatible server, not just Ollama — with the same Test Connection button and fetched model picker as the Remote transcription engine. Plus: very short dictations no longer come back empty (the live preview is kept as a fallback), and the notch no longer shows leftover text from the previous recording.",
+  },
+  {
     version: "0.9.4-beta.3",
     date: "2026-07-02",
     title: "Remote presets, smarter model list & recording-pill fixes",
