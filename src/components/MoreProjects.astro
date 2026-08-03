@@ -1,0 +1,92 @@
+---
+// Cross-links to the collective's other open-source apps, in the footer.
+// Same list lives in the READMEs and on desktop-monkey.my-monkey.fr.
+const projects = [
+  {
+    name: "Desktop Monkey",
+    href: "https://desktop-monkey.my-monkey.fr",
+    slug: "desktop-monkey",
+    desc: "A pixel-art monkey that lives on your desktop — he follows your cursor, hunts it, and throws bananas at it.",
+    meta: "Windows & macOS · 6 MB · MIT",
+  },
+  {
+    name: "Claude Monitor",
+    href: "https://github.com/my-monkeys/claude-monitor",
+    slug: "claude-monitor",
+    desc: "A menu-bar app that counts your Claude Code instances and MCP servers, and kills a runaway swarm before it takes the Mac down.",
+    meta: "macOS · menu bar · MIT",
+  },
+];
+---
+
+<div class="more">
+  <p class="more-k">More free software from the monkeys</p>
+  <div class="more-grid">
+    {projects.map((p) => (
+      <a
+        class="more-card"
+        href={p.href}
+        data-umami-event="cross-project"
+        data-umami-event-project={p.slug}
+      >
+        <span class="more-name">{p.name}<span class="more-arrow">→</span></span>
+        <span class="more-desc">{p.desc}</span>
+        <span class="more-meta">{p.meta}</span>
+      </a>
+    ))}
+  </div>
+</div>
+
+<style>
+  .more { margin: 26px 0 0; }
+  .more-k {
+    font-family: var(--mono);
+    font-size: 0.76rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin-bottom: 14px;
+  }
+  .more-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .more-card {
+    display: block;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 20px 22px;
+    transition: border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .more-card:hover {
+    border-color: var(--ink);
+    transform: translateY(-1px);
+    box-shadow: 0 10px 26px -16px rgba(20, 18, 16, 0.35);
+  }
+  .more-name {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    font-weight: 620;
+    font-size: 1.02rem;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .more-arrow { color: var(--accent); font-size: 0.92rem; transition: transform 0.15s ease; }
+  .more-card:hover .more-arrow { transform: translateX(3px); }
+  .more-desc {
+    display: block;
+    margin: 7px 0 12px;
+    font-size: 0.93rem;
+    line-height: 1.5;
+    color: var(--ink-2);
+  }
+  .more-meta {
+    display: block;
+    font-family: var(--mono);
+    font-size: 0.74rem;
+    letter-spacing: 0.04em;
+    color: var(--ink-3);
+  }
+  @media (max-width: 720px) {
+    .more-grid { grid-template-columns: 1fr; }
+  }
+</style>

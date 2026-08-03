@@ -3,6 +3,7 @@ import "../styles/global.css";
 import "../styles/next.css";
 import Comparator from "../components/Comparator.tsx";
 import Support from "../components/Support.astro";
+import MoreProjects from "../components/MoreProjects.astro";
 import { CHANGELOG } from "../data/changelog";
 
 const latestChange = CHANGELOG[0];
@@ -348,6 +349,7 @@ const shots = [
           <a class="fe-univ" href="https://my-monkey.fr/projets/" data-umami-event="my-monkey-universe">Tout l'univers →</a>
         </div>
         <p class="fe-about">OpenSuperWhisper was an abandoned project — <strong>My-Monkey</strong> picked up the fork and keeps it alive. We're a collective shipping free, open-source software: sometimes a little absurd, always ours.</p>
+        <MoreProjects />
         <Support />
         <div class="fe-foot">
           <span>OpenSuperWhisper · MIT licensed</span>
