@@ -6,9 +6,9 @@ open-source voice-dictation app for macOS. Astro + a React island for the model 
 ## Develop
 
 ```sh
-npm install
-npm run dev      # http://localhost:4321
-npm run build    # → dist/
+pnpm install
+pnpm run dev      # http://localhost:4321
+pnpm run build    # → dist/
 ```
 
 ## Model comparator
