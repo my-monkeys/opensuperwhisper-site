@@ -9,6 +9,41 @@ export interface ChangeEntry {
 
 export const CHANGELOG: ChangeEntry[] = [
   {
+    version: "0.11.0",
+    date: "2026-08-10",
+    title: "Silence trimmed, every Whisper language, and punctuation it learns from you",
+    summary:
+      "Silence is cut out before Whisper sees the audio, so long pauses aren't transcribed and quiet stretches can't be turned into invented text. The language list held 22 of the 99 Whisper handles — Czech, Ukrainian and Vietnamese among the missing — and is now read from the transcriber itself. Text size finally reaches the dictation window, which is mostly graphics and so ignored a font-only setting. Translation is greyed out where it cannot work: turbo models return the source language unchanged, and every Whisper model on the setup screen is one. Also: recent transcriptions in the menu bar, a dictionary of badges, a prompt file, and a screen that learns how you say punctuation by having you read a few lines aloud.",
+  },
+  {
+    version: "0.10.2",
+    date: "2026-08-05",
+    title: "The text size slider actually applies",
+    summary:
+      "One fix, for something 0.10.1 shipped broken. The slider wrote its value but nothing re-read it until the app was relaunched, so the control looked dead. Following the macOS text size always worked; only the app's own slider was affected.",
+  },
+  {
+    version: "0.10.1",
+    date: "2026-08-05",
+    title: "Readable text, unlimited triggers, Space latch",
+    summary:
+      "Every text size in the app was fixed in code, so the size set in macOS did nothing here and the settings window was unreadable for anyone who needs it bigger. It now follows System Settings → Accessibility → Display, with its own slider on top. Recording triggers became unlimited and mixable: keyboard shortcuts, single modifiers and mouse buttons all at once. Reported by a user who wrote in to say she could barely read the settings window.",
+  },
+  {
+    version: "0.10.0",
+    date: "2026-07-31",
+    title: "Local LLM cleanup, parallel recordings, composable indicator",
+    summary:
+      "The largest release since the fork. Recording and transcription are now independent: start the next dictation while the previous one is still working, and the text lands in the order you recorded. A small LLM runs in-process via llama.cpp, so cleanup and app-aware formatting need nothing installed and no server configured. The recording indicator is composable, built from the elements you choose.",
+  },
+  {
+    version: "0.9.9",
+    date: "2026-07-09",
+    title: "The recording indicator is visible again on macOS 26",
+    summary:
+      "On macOS 26 the indicator and the Settings preview could stop appearing entirely. Dictation still worked, but nothing on screen said recording was live. The window was being created at zero size; it is sized correctly again in every position mode. Nothing changes on macOS 15 or earlier.",
+  },
+  {
     version: "0.9.8",
     date: "2026-07-07",
     title: "Mouse trigger, Esc confirmation & a RAM saver",
