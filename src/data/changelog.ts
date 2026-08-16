@@ -9,6 +9,20 @@ export interface ChangeEntry {
 
 export const CHANGELOG: ChangeEntry[] = [
   {
+    version: "0.12.0",
+    date: "2026-08-16",
+    title: "Dictionary rules that match a shape, not just a word",
+    summary:
+      "A dictionary rule can now match with a regular expression, and put what it captured back into the result with $1, $2 and friends. It came from a novelist who dictates fiction and gets her dialogue back with no quotation marks, because a quotation mark is not a sound: one rule now turns \"And the sausages? inquired Charity.\" into \"And the sausages?\" inquired Charity. Tick Regex on a rule to switch it over. Every rule you already have keeps working exactly as before, punctuation and all, and a half-typed pattern leaves your transcription untouched rather than mangling it.",
+  },
+  {
+    version: "0.11.1",
+    date: "2026-08-14",
+    title: "Text that arrives whole, and a setting that reaches the window you read",
+    summary:
+      "Typed text arrived scrambled in terminals and TUI apps: it was sent as unpaced 20-character bursts, and anything reading a line at a time saw them out of order, duplicating and misplacing characters. The bursts are now paced. The text size setting also stopped at the settings window and never reached the main window where your history is, which is the one you actually read.",
+  },
+  {
     version: "0.11.0",
     date: "2026-08-10",
     title: "Silence trimmed, every Whisper language, and punctuation it learns from you",
