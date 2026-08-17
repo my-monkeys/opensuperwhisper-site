@@ -9,6 +9,13 @@ export interface ChangeEntry {
 
 export const CHANGELOG: ChangeEntry[] = [
   {
+    version: "0.12.1",
+    date: "2026-08-17",
+    title: "Three crashes, a hit target, and somewhere to put the bubble",
+    summary:
+      "Deleting a dictionary rule killed the app, every time, and had done since 0.11.0: the open editor was pointing at a position in the list rather than at a rule, so removing the rule left it addressing something that no longer existed. Typing into a rule could do the same, which was caused by the first attempt at fixing the first one. Dictation could also quietly stop inserting and leave your words on the clipboard, because a failed accessibility query was being read as proof there was nowhere to type, and it stayed that way until Settings was opened and closed. The button that adds a rule is now the size it looks: it was a dashed outline, and an outline only takes clicks along the line. And the recording bubble can be dragged wherever you want it, remembering the spot across restarts.",
+  },
+  {
     version: "0.12.0",
     date: "2026-08-16",
     title: "Dictionary rules that match a shape, not just a word",
