@@ -9,6 +9,13 @@ export interface ChangeEntry {
 
 export const CHANGELOG: ChangeEntry[] = [
   {
+    version: "0.12.2",
+    date: "2026-08-28",
+    title: "Four fixes, and an instrument instead of a guess",
+    summary:
+      "Dictionary rules did nothing at all when transcribing through a remote server, and neither did Asian autocorrect: every local engine ran both and the remote one handed back the server's text untouched. Recording could freeze permanently after locking the Mac and switching microphone, because the wait for a microphone that has to connect had no way out, so a device delivering nothing meant waiting for ever. The command line read the wrong settings when run through the symlink Homebrew installs, since macOS resolves an app's identity from the path it was launched by. And typing mode's corruption in redraw-heavy apps is not fixed here but finally measured: the person who reported it worked out that the pause scales with the wrong quantity, so this release logs what each insertion was actually up against.",
+  },
+  {
     version: "0.12.1",
     date: "2026-08-17",
     title: "Three crashes, a hit target, and somewhere to put the bubble",
