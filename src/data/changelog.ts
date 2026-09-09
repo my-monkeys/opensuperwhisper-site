@@ -9,6 +9,13 @@ export interface ChangeEntry {
 
 export const CHANGELOG: ChangeEntry[] = [
   {
+    version: "0.12.3",
+    date: "2026-09-09",
+    title: "A recording that could not be stopped, and a notch pill behind the notch",
+    summary:
+      "Recording could get stuck with no way out: the bubble stayed up, the shortcut did nothing, and force-quitting was the only escape. macOS holds App Nap off automatically for apps playing audio but not for apps recording it, so a dictation, which by definition runs while another app has focus, was being suspended mid-take. The audio hardware carried on regardless, which is why it looked like a freeze rather than a pause. Diagnosed and fixed by carlotxra, who also showed why the previous attempt at this could not have worked. On a Mac with a notch, the recording pill was drawn into the notch, which is a hole: it now sits astride it, the waveform on one side and the buttons on the other, and drops below only when there are words to show. And Homebrew was three versions behind, because updating it was a manual step outside the release; it is part of the release now.",
+  },
+  {
     version: "0.12.2",
     date: "2026-08-28",
     title: "Four fixes, and an instrument instead of a guess",
