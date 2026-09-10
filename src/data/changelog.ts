@@ -9,6 +9,13 @@ export interface ChangeEntry {
 
 export const CHANGELOG: ChangeEntry[] = [
   {
+    version: "0.12.4",
+    date: "2026-09-11",
+    title: "Whole minutes of speech were being thrown away, silently",
+    summary:
+      "Long dictations could come back with whole stretches missing, and nothing said so: no error, no log line, and the audio file on disk complete from the first second to the last. Whisper's sliding window is advanced by timestamp tokens, and turning timestamps off, which was the default, switched off both the retry when a window decodes to nothing and the rewind that would have caught it. Three words into a thirty-second window, those three words were the window and the other twenty-seven seconds were skipped. Found and fixed by a contributor who noticed his transcripts were too short for their duration and traced it to the line. Recording could also hang on Connecting for ever with AirPods, until the app was force-quit: connecting a Bluetooth microphone reconfigures the input under the recorder, the recorder gives up, and the wait it left behind had nothing to measure and no way out. It now says the microphone dropped out instead. Two more audio fixes, the visualiser no longer racing the recorder for the input device and no longer opening it at all when nothing displays it. Plus: text insertion can be chosen per app, for editors and terminals that lose or misplace typed text, and the custom dictionary no longer opens its editor half off the screen or leaves an empty rule behind when you change your mind.",
+  },
+  {
     version: "0.12.3",
     date: "2026-09-09",
     title: "A recording that could not be stopped, and a notch pill behind the notch",
