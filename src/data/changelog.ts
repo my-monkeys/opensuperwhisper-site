@@ -9,6 +9,20 @@ export interface ChangeEntry {
 
 export const CHANGELOG: ChangeEntry[] = [
   {
+    version: "0.12.6",
+    date: "2026-09-23",
+    title: "A crash that waited for your next click",
+    summary:
+      "On macOS 27 the app could sit on Connecting when a dictation started, then crash on the next click. The waveform's microphone tap throws an exception when the input is changing format, which it often is as recording starts; macOS swallowed the exception but left the app's concurrency bookkeeping pointing at nothing, and whatever checked it next went down. A refused tap now costs a flat waveform for that take and nothing else. Settings stopped cutting itself off: with LLM cleanup on, the Output pane was wider than the window and the whole window slid sideways, sidebar included. The pane fits now, a pane can no longer push the sidebar out, and a test renders every Settings pane in all seven languages to keep it that way. Also: a dictation the recorder missed but the live preview heard is kept instead of thrown away, translation gets an instruction of its own and no longer refuses correct Japanese or Chinese, the dictionary can write a line break, and the Dock icon goes away again when the window closes.",
+  },
+  {
+    version: "0.12.5",
+    date: "2026-09-16",
+    title: "A dictation that captured nothing now says so",
+    summary:
+      "A take that recorded no audio used to end in silence, so the loss only showed later, when the words were not where you left them. It is announced now. The transcriber can read the sentence you are already writing in the field you dictate into, so names and terms on the page stop being guessed at: off by default, on-device engines only, and never saved. The transcription language can follow your keyboard layout, for people who already switch layouts between languages. The cleanup instruction is yours end to end, in two halves with your per-app rules between them, so a per-app rule never becomes the model's last word. The post-record hook gets the raw transcription and the app you dictated into.",
+  },
+  {
     version: "0.12.4",
     date: "2026-09-11",
     title: "Whole minutes of speech were being thrown away, silently",
