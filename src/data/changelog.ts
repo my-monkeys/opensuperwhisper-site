@@ -9,6 +9,13 @@ export interface ChangeEntry {
 
 export const CHANGELOG: ChangeEntry[] = [
   {
+    version: "0.12.7",
+    date: "2026-09-28",
+    title: "The recording bubble is glass now",
+    summary:
+      "On macOS 26 and later the recording bubble is a Liquid Glass pill modelled on Spotlight, with Stop and Cancel as glass circles that slide out of it. A whole dictation, from recording to transcribing to Copied, is one shape changing rather than one bubble swapped for the next. Built by a contributor. The classic bubble is still there under Settings, Appearance, Theme, and the new Appearance tab also gathers the text size and everything about the bubble. On glass, pressing Esc on a long dictation shows how long there is to confirm, as a yellow line draining around the bubble. And a microphone that is chosen but unplugged no longer leaves a blank picker: Settings says it is not connected and names the input used until it is back.",
+  },
+  {
     version: "0.12.6",
     date: "2026-09-23",
     title: "A crash that waited for your next click",
