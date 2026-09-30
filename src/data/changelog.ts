@@ -9,6 +9,13 @@ export interface ChangeEntry {
 
 export const CHANGELOG: ChangeEntry[] = [
   {
+    version: "0.12.8",
+    date: "2026-09-30",
+    title: "One window instead of two",
+    summary:
+      "The separate transcription window is gone: the history is the first tab of Settings, so the list, search, the record button and every setting live in one window. The menu bar's Transcriptions item opens the list, Settings opens the settings, and an audio file can be dropped anywhere on the window. Designed by a contributor, compact cards included. Push-to-talk and a toggle can now coexist, with a second list of triggers that record only while held. Audio interfaces with several inputs, where the voice sits on one channel of four, no longer leave Parakeet, SenseVoice and Apple Speech hearing silence. And the start chime has a partner: the recording sound can play at the end of a take too.",
+  },
+  {
     version: "0.12.7",
     date: "2026-09-28",
     title: "The recording bubble is glass now",
