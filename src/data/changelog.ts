@@ -9,6 +9,13 @@ export interface ChangeEntry {
 
 export const CHANGELOG: ChangeEntry[] = [
   {
+    version: "0.12.9",
+    date: "2026-10-07",
+    title: "Parakeet Ultra, and a live caption that keeps up",
+    summary:
+      "Parakeet Ultra joins the model list: Parakeet v3 with extra training by moondream, packaged by the FluidAudio team, with the same 25 languages and the same speed but better accuracy, the FLEURS average word error rate going from 14.8% to 11.7%. It is a 614 MB download, and new installs get it preselected unless their language is not one of the 25, in which case they get Whisper. Parakeet v3 stays available. On the Liquid Glass bubble the live caption no longer cuts off the words being spoken: it grows to two lines and always shows the latest two. Parakeet's live mode drops or doubles fewer words between stretches of audio, with FluidAudio 0.17.5. And with the bubble following the cursor, dictating into Chrome's address bar no longer sends it to the corner of another display; it sits above the field instead, a fix from a contributor. After a fresh install, the Transcriptions tab stops asking for microphone access that onboarding already granted. And the end of a recording now has its own chime, a lower note than the start.",
+  },
+  {
     version: "0.12.8",
     date: "2026-09-30",
     title: "One window instead of two",
