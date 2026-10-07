@@ -19,7 +19,7 @@ CLIPS = ROOT / "clips"
 RESULTS = ROOT / "results.json"
 BIN = Path.home() / "Documents/my-monkey/OpenSuperWhisper/build/Build/Products/Debug/OpenSuperWhisper.app/Contents/MacOS/OpenSuperWhisper"
 BUNDLE = "fr.my-monkey.opensuperwhisper"
-WMODELS = Path.home() / "Library/Application Support/ru.starmel.OpenSuperWhisper/whisper-models"
+WMODELS = Path.home() / "Library/Application Support/fr.my-monkey.opensuperwhisper/whisper-models"
 
 N_CLIPS = int(os.environ.get("N_CLIPS", "5"))
 # FLEURS config code per language (subset; CJK flagged for CER scoring)
@@ -46,6 +46,7 @@ MODELS = [
     # supported locales on this machine (no ru/vi/ar as of Tahoe 27).
     {"id": "apple-speech",       "label": "Apple Speech",          "engine": "apple",                                          "device": "on-device", "langs": ["en","fr","de","es","it","pt","zh","ja","ko"]},  # hi dropped: outputs romanized Hindi, not comparable to FLEURS devanagari
     {"id": "parakeet-v3",        "label": "Parakeet v3",           "engine": "fluidaudio","fa": "v3",                          "device": "on-device", "langs": ["en","fr","de","es","it","pt","ru"]},
+    {"id": "parakeet-ultra",     "label": "Parakeet Ultra",        "engine": "fluidaudio","fa": "ultra",                       "device": "on-device", "langs": ["en","fr","de","es","it","pt","ru"]},
     {"id": "sensevoice",         "label": "SenseVoice",            "engine": "sensevoice",                                     "device": "on-device", "langs": ["zh","ja","ko","en"]},
     {"id": "moonshine-base",     "label": "Moonshine base",        "engine": "moonshine",                                      "device": "on-device", "langs": ["en","es","ar","ja","vi","zh"]},
     {"id": "groq-turbo",         "label": "Groq large-v3-turbo",   "engine": "groq",      "groq": "whisper-large-v3-turbo",    "device": "cloud",     "langs": None},
@@ -135,8 +136,10 @@ def run_cell(model, ui_lang, cfg, refs):
         first = sorted((CLIPS / ui_lang).glob("*.wav"))[0]
         subprocess.run([str(BIN), "transcribe", str(first)],
                        capture_output=True, timeout=1800)
+    # A small model can hallucinate a broken byte sequence; a strict decode threw and the cell
+    # was lost.
     out = subprocess.run([str(BIN), "bench", str(CLIPS / ui_lang)],
-                         capture_output=True, text=True, timeout=900)
+                         capture_output=True, text=True, errors="replace", timeout=900)
     try:
         rows = json.loads(out.stdout.strip().splitlines()[-1])
     except Exception:

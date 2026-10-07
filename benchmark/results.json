@@ -92,6 +92,22 @@
    ]
   },
   {
+   "id": "parakeet-ultra",
+   "label": "Parakeet Ultra",
+   "engine": "fluidaudio",
+   "fa": "ultra",
+   "device": "on-device",
+   "langs": [
+    "en",
+    "fr",
+    "de",
+    "es",
+    "it",
+    "pt",
+    "ru"
+   ]
+  },
+  {
    "id": "sensevoice",
    "label": "SenseVoice",
    "engine": "sensevoice",
@@ -144,238 +160,6 @@
   "ja"
  ],
  "cells": {
-  "whisper-tiny::en": {
-   "err": 0.1575,
-   "metric": "wer",
-   "rtf": 0.0363,
-   "xrealtime": 27.5,
-   "n": 3
-  },
-  "whisper-tiny::fr": {
-   "err": 0.4856,
-   "metric": "wer",
-   "rtf": 0.0637,
-   "xrealtime": 15.7,
-   "n": 3
-  },
-  "whisper-tiny::de": {
-   "err": 0.2934,
-   "metric": "wer",
-   "rtf": 0.029,
-   "xrealtime": 34.5,
-   "n": 3
-  },
-  "whisper-tiny::es": {
-   "err": 0.1458,
-   "metric": "wer",
-   "rtf": 0.0322,
-   "xrealtime": 31.0,
-   "n": 3
-  },
-  "whisper-tiny::vi": {
-   "err": 0.5769,
-   "metric": "wer",
-   "rtf": 0.038,
-   "xrealtime": 26.3,
-   "n": 3
-  },
-  "whisper-base::en": {
-   "err": 0.1056,
-   "metric": "wer",
-   "rtf": 0.0367,
-   "xrealtime": 27.3,
-   "n": 3
-  },
-  "whisper-base::fr": {
-   "err": 0.338,
-   "metric": "wer",
-   "rtf": 0.0455,
-   "xrealtime": 22.0,
-   "n": 3
-  },
-  "whisper-base::de": {
-   "err": 0.2471,
-   "metric": "wer",
-   "rtf": 0.0345,
-   "xrealtime": 29.0,
-   "n": 3
-  },
-  "whisper-base::es": {
-   "err": 0.0622,
-   "metric": "wer",
-   "rtf": 0.0395,
-   "xrealtime": 25.3,
-   "n": 3
-  },
-  "whisper-base::vi": {
-   "err": 0.3671,
-   "metric": "wer",
-   "rtf": 0.0566,
-   "xrealtime": 17.7,
-   "n": 3
-  },
-  "whisper-small::en": {
-   "err": 0.0897,
-   "metric": "wer",
-   "rtf": 0.0698,
-   "xrealtime": 14.3,
-   "n": 3
-  },
-  "whisper-small::fr": {
-   "err": 0.1251,
-   "metric": "wer",
-   "rtf": 0.0841,
-   "xrealtime": 11.9,
-   "n": 3
-  },
-  "whisper-small::de": {
-   "err": 0.0462,
-   "metric": "wer",
-   "rtf": 0.0638,
-   "xrealtime": 15.7,
-   "n": 3
-  },
-  "whisper-small::es": {
-   "err": 0.0376,
-   "metric": "wer",
-   "rtf": 0.0723,
-   "xrealtime": 13.8,
-   "n": 3
-  },
-  "whisper-small::vi": {
-   "err": 0.2617,
-   "metric": "wer",
-   "rtf": 0.0903,
-   "xrealtime": 11.1,
-   "n": 3
-  },
-  "whisper-medium::en": {
-   "err": 0.0435,
-   "metric": "wer",
-   "rtf": 0.1899,
-   "xrealtime": 5.3,
-   "n": 3
-  },
-  "whisper-medium::fr": {
-   "err": 0.0826,
-   "metric": "wer",
-   "rtf": 0.1915,
-   "xrealtime": 5.2,
-   "n": 3
-  },
-  "whisper-medium::de": {
-   "err": 0.0462,
-   "metric": "wer",
-   "rtf": 0.1392,
-   "xrealtime": 7.2,
-   "n": 3
-  },
-  "whisper-medium::es": {
-   "err": 0.0115,
-   "metric": "wer",
-   "rtf": 0.1473,
-   "xrealtime": 6.8,
-   "n": 3
-  },
-  "whisper-medium::vi": {
-   "err": 0.0962,
-   "metric": "wer",
-   "rtf": 0.205,
-   "xrealtime": 4.9,
-   "n": 3
-  },
-  "whisper-large-v3::en": {
-   "err": 0.0594,
-   "metric": "wer",
-   "rtf": 0.306,
-   "xrealtime": 3.3,
-   "n": 3
-  },
-  "whisper-large-v3::fr": {
-   "err": 0.0592,
-   "metric": "wer",
-   "rtf": 0.3351,
-   "xrealtime": 3.0,
-   "n": 3
-  },
-  "whisper-large-v3::de": {
-   "err": 0.0462,
-   "metric": "wer",
-   "rtf": 0.2513,
-   "xrealtime": 4.0,
-   "n": 3
-  },
-  "whisper-large-v3::es": {
-   "err": 0.0115,
-   "metric": "wer",
-   "rtf": 0.2799,
-   "xrealtime": 3.6,
-   "n": 3
-  },
-  "whisper-large-v3::vi": {
-   "err": 0.0683,
-   "metric": "wer",
-   "rtf": 0.3602,
-   "xrealtime": 2.8,
-   "n": 3
-  },
-  "whisper-turbo::en": {
-   "err": 0.0594,
-   "metric": "wer",
-   "rtf": 0.1937,
-   "xrealtime": 5.2,
-   "n": 3
-  },
-  "whisper-turbo::fr": {
-   "err": 0.0533,
-   "metric": "wer",
-   "rtf": 0.1922,
-   "xrealtime": 5.2,
-   "n": 3
-  },
-  "whisper-turbo::de": {
-   "err": 0.0462,
-   "metric": "wer",
-   "rtf": 0.2095,
-   "xrealtime": 4.8,
-   "n": 3
-  },
-  "whisper-turbo::es": {
-   "err": 0.0115,
-   "metric": "wer",
-   "rtf": 0.2161,
-   "xrealtime": 4.6,
-   "n": 3
-  },
-  "whisper-turbo::vi": null,
-  "parakeet-v3::fr": {
-   "err": 0.0667,
-   "metric": "wer",
-   "rtf": 0.0107,
-   "xrealtime": 93.3,
-   "n": 3
-  },
-  "parakeet-v3::de": {
-   "err": 0.0515,
-   "metric": "wer",
-   "rtf": 0.008,
-   "xrealtime": 124.9,
-   "n": 3
-  },
-  "parakeet-v3::es": {
-   "err": 0.0361,
-   "metric": "wer",
-   "rtf": 0.0085,
-   "xrealtime": 118.0,
-   "n": 3
-  },
-  "sensevoice::en": {
-   "err": 0.0594,
-   "metric": "wer",
-   "rtf": 0.0205,
-   "xrealtime": 48.8,
-   "n": 3
-  },
   "groq-turbo::en": {
    "err": 0.1221,
    "metric": "wer",
@@ -446,13 +230,6 @@
    "xrealtime": 16.1,
    "n": 3
   },
-  "parakeet-v3::en": {
-   "err": 0.086,
-   "metric": "wer",
-   "rtf": 0.0115,
-   "xrealtime": 86.6,
-   "n": 3
-  },
   "moonshine-base::en": {
    "err": 0.3901,
    "metric": "wer",
@@ -480,384 +257,6 @@
    "rtf": 0.0199,
    "xrealtime": 50.2,
    "n": 3
-  },
-  "whisper-tiny::it": {
-   "err": 0.2684,
-   "metric": "wer",
-   "rtf": 0.0565,
-   "xrealtime": 17.7,
-   "n": 5
-  },
-  "whisper-tiny::pt": {
-   "err": 0.4163,
-   "metric": "wer",
-   "rtf": 0.0489,
-   "xrealtime": 20.4,
-   "n": 5
-  },
-  "whisper-tiny::ru": {
-   "err": 0.2102,
-   "metric": "wer",
-   "rtf": 0.0566,
-   "xrealtime": 17.7,
-   "n": 5
-  },
-  "whisper-tiny::ar": {
-   "err": 0.567,
-   "metric": "wer",
-   "rtf": 0.0762,
-   "xrealtime": 13.1,
-   "n": 5
-  },
-  "whisper-tiny::hi": {
-   "err": 1.1493,
-   "metric": "wer",
-   "rtf": 0.1277,
-   "xrealtime": 7.8,
-   "n": 5
-  },
-  "whisper-tiny::zh": {
-   "err": 0.2206,
-   "metric": "cer",
-   "rtf": 0.0505,
-   "xrealtime": 19.8,
-   "n": 3
-  },
-  "whisper-tiny::ja": {
-   "err": 0.4482,
-   "metric": "cer",
-   "rtf": 0.0593,
-   "xrealtime": 16.9,
-   "n": 3
-  },
-  "whisper-tiny::ko": {
-   "err": 0.2594,
-   "metric": "cer",
-   "rtf": 0.0523,
-   "xrealtime": 19.1,
-   "n": 5
-  },
-  "whisper-base::it": {
-   "err": 0.223,
-   "metric": "wer",
-   "rtf": 0.0706,
-   "xrealtime": 14.2,
-   "n": 5
-  },
-  "whisper-base::pt": {
-   "err": 0.2748,
-   "metric": "wer",
-   "rtf": 0.058,
-   "xrealtime": 17.2,
-   "n": 5
-  },
-  "whisper-base::ru": {
-   "err": 0.1262,
-   "metric": "wer",
-   "rtf": 0.0621,
-   "xrealtime": 16.1,
-   "n": 5
-  },
-  "whisper-base::ar": {
-   "err": 0.4215,
-   "metric": "wer",
-   "rtf": 0.0846,
-   "xrealtime": 11.8,
-   "n": 5
-  },
-  "whisper-base::hi": {
-   "err": 1.025,
-   "metric": "wer",
-   "rtf": 0.1411,
-   "xrealtime": 7.1,
-   "n": 5
-  },
-  "whisper-base::zh": {
-   "err": 0.3544,
-   "metric": "cer",
-   "rtf": 0.0606,
-   "xrealtime": 16.5,
-   "n": 3
-  },
-  "whisper-base::ja": {
-   "err": 0.3069,
-   "metric": "cer",
-   "rtf": 0.0736,
-   "xrealtime": 13.6,
-   "n": 3
-  },
-  "whisper-base::ko": {
-   "err": 0.1136,
-   "metric": "cer",
-   "rtf": 0.0653,
-   "xrealtime": 15.3,
-   "n": 5
-  },
-  "whisper-small::it": {
-   "err": 0.0537,
-   "metric": "wer",
-   "rtf": 0.1217,
-   "xrealtime": 8.2,
-   "n": 5
-  },
-  "whisper-small::pt": {
-   "err": 0.1303,
-   "metric": "wer",
-   "rtf": 0.0984,
-   "xrealtime": 10.2,
-   "n": 5
-  },
-  "whisper-small::ru": {
-   "err": 0.0449,
-   "metric": "wer",
-   "rtf": 0.1033,
-   "xrealtime": 9.7,
-   "n": 5
-  },
-  "whisper-small::ar": {
-   "err": 0.2226,
-   "metric": "wer",
-   "rtf": 0.1651,
-   "xrealtime": 6.1,
-   "n": 5
-  },
-  "whisper-small::hi": {
-   "err": 0.5856,
-   "metric": "wer",
-   "rtf": 0.2981,
-   "xrealtime": 3.4,
-   "n": 5
-  },
-  "whisper-small::zh": {
-   "err": 0.304,
-   "metric": "cer",
-   "rtf": 0.1225,
-   "xrealtime": 8.2,
-   "n": 3
-  },
-  "whisper-small::ja": {
-   "err": 0.1138,
-   "metric": "cer",
-   "rtf": 0.1412,
-   "xrealtime": 7.1,
-   "n": 3
-  },
-  "whisper-small::ko": {
-   "err": 0.0417,
-   "metric": "cer",
-   "rtf": 0.1165,
-   "xrealtime": 8.6,
-   "n": 5
-  },
-  "whisper-medium::it": {
-   "err": 0.0261,
-   "metric": "wer",
-   "rtf": 0.29,
-   "xrealtime": 3.4,
-   "n": 5
-  },
-  "whisper-medium::pt": {
-   "err": 0.1437,
-   "metric": "wer",
-   "rtf": 0.2378,
-   "xrealtime": 4.2,
-   "n": 5
-  },
-  "whisper-medium::ru": {
-   "err": 0.0154,
-   "metric": "wer",
-   "rtf": 0.2366,
-   "xrealtime": 4.2,
-   "n": 5
-  },
-  "whisper-medium::ar": {
-   "err": 0.1187,
-   "metric": "wer",
-   "rtf": 0.2997,
-   "xrealtime": 3.3,
-   "n": 5
-  },
-  "whisper-medium::hi": {
-   "err": 0.3708,
-   "metric": "wer",
-   "rtf": 0.5516,
-   "xrealtime": 1.8,
-   "n": 5
-  },
-  "whisper-medium::zh": {
-   "err": 0.1963,
-   "metric": "cer",
-   "rtf": 0.2338,
-   "xrealtime": 4.3,
-   "n": 3
-  },
-  "whisper-medium::ja": {
-   "err": 0.0469,
-   "metric": "cer",
-   "rtf": 0.2777,
-   "xrealtime": 3.6,
-   "n": 3
-  },
-  "whisper-medium::ko": {
-   "err": 0.0174,
-   "metric": "cer",
-   "rtf": 0.2578,
-   "xrealtime": 3.9,
-   "n": 5
-  },
-  "whisper-large-v3::it": {
-   "err": 0.0174,
-   "metric": "wer",
-   "rtf": 0.4992,
-   "xrealtime": 2.0,
-   "n": 5
-  },
-  "whisper-large-v3::pt": {
-   "err": 0.0516,
-   "metric": "wer",
-   "rtf": 0.4165,
-   "xrealtime": 2.4,
-   "n": 5
-  },
-  "whisper-large-v3::ru": {
-   "err": 0.0,
-   "metric": "wer",
-   "rtf": 0.3868,
-   "xrealtime": 2.6,
-   "n": 5
-  },
-  "whisper-large-v3::ar": {
-   "err": 0.1294,
-   "metric": "wer",
-   "rtf": 0.5232,
-   "xrealtime": 1.9,
-   "n": 5
-  },
-  "whisper-large-v3::hi": {
-   "err": 0.279,
-   "metric": "wer",
-   "rtf": 0.9453,
-   "xrealtime": 1.1,
-   "n": 5
-  },
-  "whisper-large-v3::zh": {
-   "err": 0.0,
-   "metric": "cer",
-   "rtf": 0.4311,
-   "xrealtime": 2.3,
-   "n": 3
-  },
-  "whisper-large-v3::ja": {
-   "err": 0.0551,
-   "metric": "cer",
-   "rtf": 0.5133,
-   "xrealtime": 1.9,
-   "n": 3
-  },
-  "whisper-large-v3::ko": {
-   "err": 0.0271,
-   "metric": "cer",
-   "rtf": 0.3948,
-   "xrealtime": 2.5,
-   "n": 5
-  },
-  "whisper-turbo::it": {
-   "err": 0.0174,
-   "metric": "wer",
-   "rtf": 0.2609,
-   "xrealtime": 3.8,
-   "n": 5
-  },
-  "whisper-turbo::pt": {
-   "err": 0.0808,
-   "metric": "wer",
-   "rtf": 0.2095,
-   "xrealtime": 4.8,
-   "n": 5
-  },
-  "whisper-turbo::ru": {
-   "err": 0.0,
-   "metric": "wer",
-   "rtf": 0.2205,
-   "xrealtime": 4.5,
-   "n": 5
-  },
-  "whisper-turbo::ar": {
-   "err": 0.1161,
-   "metric": "wer",
-   "rtf": 0.2861,
-   "xrealtime": 3.5,
-   "n": 5
-  },
-  "whisper-turbo::hi": {
-   "err": 0.3059,
-   "metric": "wer",
-   "rtf": 0.3988,
-   "xrealtime": 2.5,
-   "n": 5
-  },
-  "whisper-turbo::zh": {
-   "err": 0.0408,
-   "metric": "cer",
-   "rtf": 0.2714,
-   "xrealtime": 3.7,
-   "n": 3
-  },
-  "whisper-turbo::ja": {
-   "err": 0.0329,
-   "metric": "cer",
-   "rtf": 0.25,
-   "xrealtime": 4.0,
-   "n": 3
-  },
-  "whisper-turbo::ko": {
-   "err": 0.0351,
-   "metric": "cer",
-   "rtf": 0.2285,
-   "xrealtime": 4.4,
-   "n": 5
-  },
-  "parakeet-v3::it": {
-   "err": 0.0087,
-   "metric": "wer",
-   "rtf": 0.5257,
-   "xrealtime": 1.9,
-   "n": 5
-  },
-  "parakeet-v3::pt": {
-   "err": 0.0854,
-   "metric": "wer",
-   "rtf": 0.025,
-   "xrealtime": 39.9,
-   "n": 5
-  },
-  "parakeet-v3::ru": {
-   "err": 0.0077,
-   "metric": "wer",
-   "rtf": 0.0245,
-   "xrealtime": 40.9,
-   "n": 5
-  },
-  "sensevoice::zh": {
-   "err": 0.0,
-   "metric": "cer",
-   "rtf": 0.0843,
-   "xrealtime": 11.9,
-   "n": 3
-  },
-  "sensevoice::ja": {
-   "err": 0.061,
-   "metric": "cer",
-   "rtf": 0.0862,
-   "xrealtime": 11.6,
-   "n": 3
-  },
-  "sensevoice::ko": {
-   "err": 0.0837,
-   "metric": "cer",
-   "rtf": 0.0627,
-   "xrealtime": 15.9,
-   "n": 5
   },
   "moonshine-base::ja": {
    "err": 1.1483,
@@ -992,68 +391,740 @@
    "xrealtime": 4.5,
    "n": 3
   },
-  "apple-speech::en": {
-   "err": 0.0695,
+  "whisper-tiny::en": {
+   "err": 0.157,
    "metric": "wer",
-   "rtf": 0.0388,
-   "xrealtime": 25.8,
-   "n": 3
+   "rtf": 0.0362,
+   "xrealtime": 27.6,
+   "n": 20
+  },
+  "whisper-tiny::fr": {
+   "err": 0.3761,
+   "metric": "wer",
+   "rtf": 0.0405,
+   "xrealtime": 24.7,
+   "n": 20
+  },
+  "whisper-tiny::de": {
+   "err": 0.2893,
+   "metric": "wer",
+   "rtf": 0.0336,
+   "xrealtime": 29.8,
+   "n": 20
+  },
+  "whisper-tiny::es": {
+   "err": 0.1674,
+   "metric": "wer",
+   "rtf": 0.0329,
+   "xrealtime": 30.4,
+   "n": 20
+  },
+  "whisper-tiny::it": {
+   "err": 0.3456,
+   "metric": "wer",
+   "rtf": 0.0338,
+   "xrealtime": 29.6,
+   "n": 20
+  },
+  "whisper-tiny::pt": {
+   "err": 0.2887,
+   "metric": "wer",
+   "rtf": 0.0337,
+   "xrealtime": 29.7,
+   "n": 20
+  },
+  "whisper-tiny::ru": {
+   "err": 0.3711,
+   "metric": "wer",
+   "rtf": 0.0364,
+   "xrealtime": 27.4,
+   "n": 20
+  },
+  "whisper-tiny::vi": {
+   "err": 0.6235,
+   "metric": "wer",
+   "rtf": 0.0448,
+   "xrealtime": 22.3,
+   "n": 20
+  },
+  "whisper-tiny::ar": {
+   "err": 0.6343,
+   "metric": "wer",
+   "rtf": 0.045,
+   "xrealtime": 22.2,
+   "n": 20
+  },
+  "whisper-tiny::hi": {
+   "err": 1.0584,
+   "metric": "wer",
+   "rtf": 0.081,
+   "xrealtime": 12.3,
+   "n": 20
+  },
+  "whisper-tiny::zh": {
+   "err": 0.4182,
+   "metric": "cer",
+   "rtf": 0.0368,
+   "xrealtime": 27.2,
+   "n": 20
+  },
+  "whisper-tiny::ja": {
+   "err": 0.3503,
+   "metric": "cer",
+   "rtf": 0.039,
+   "xrealtime": 25.6,
+   "n": 20
+  },
+  "whisper-base::en": {
+   "err": 0.1316,
+   "metric": "wer",
+   "rtf": 0.0386,
+   "xrealtime": 25.9,
+   "n": 20
+  },
+  "whisper-base::fr": {
+   "err": 0.3032,
+   "metric": "wer",
+   "rtf": 0.0414,
+   "xrealtime": 24.1,
+   "n": 20
+  },
+  "whisper-base::de": {
+   "err": 0.1799,
+   "metric": "wer",
+   "rtf": 0.0374,
+   "xrealtime": 26.7,
+   "n": 20
+  },
+  "whisper-base::es": {
+   "err": 0.0947,
+   "metric": "wer",
+   "rtf": 0.0375,
+   "xrealtime": 26.7,
+   "n": 20
+  },
+  "whisper-base::it": {
+   "err": 0.2289,
+   "metric": "wer",
+   "rtf": 0.0389,
+   "xrealtime": 25.7,
+   "n": 20
+  },
+  "whisper-base::pt": {
+   "err": 0.1913,
+   "metric": "wer",
+   "rtf": 0.0362,
+   "xrealtime": 27.6,
+   "n": 20
+  },
+  "whisper-base::ru": {
+   "err": 0.2121,
+   "metric": "wer",
+   "rtf": 0.039,
+   "xrealtime": 25.7,
+   "n": 20
+  },
+  "whisper-base::vi": {
+   "err": 0.4047,
+   "metric": "wer",
+   "rtf": 0.0409,
+   "xrealtime": 24.5,
+   "n": 20
+  },
+  "whisper-base::ar": {
+   "err": 0.4878,
+   "metric": "wer",
+   "rtf": 0.0524,
+   "xrealtime": 19.1,
+   "n": 20
+  },
+  "whisper-base::hi": {
+   "err": 1.0505,
+   "metric": "wer",
+   "rtf": 0.0861,
+   "xrealtime": 11.6,
+   "n": 20
+  },
+  "whisper-base::zh": {
+   "err": 0.3394,
+   "metric": "cer",
+   "rtf": 0.0417,
+   "xrealtime": 24.0,
+   "n": 20
+  },
+  "whisper-base::ja": {
+   "err": 0.2195,
+   "metric": "cer",
+   "rtf": 0.0431,
+   "xrealtime": 23.2,
+   "n": 20
+  },
+  "whisper-base::ko": {
+   "err": 0.1283,
+   "metric": "cer",
+   "rtf": 0.0399,
+   "xrealtime": 25.0,
+   "n": 20
+  },
+  "whisper-small::en": {
+   "err": 0.0977,
+   "metric": "wer",
+   "rtf": 0.0625,
+   "xrealtime": 16.0,
+   "n": 20
+  },
+  "whisper-small::fr": {
+   "err": 0.1494,
+   "metric": "wer",
+   "rtf": 0.0623,
+   "xrealtime": 16.1,
+   "n": 20
+  },
+  "whisper-small::de": {
+   "err": 0.1061,
+   "metric": "wer",
+   "rtf": 0.0517,
+   "xrealtime": 19.3,
+   "n": 20
+  },
+  "whisper-small::es": {
+   "err": 0.0494,
+   "metric": "wer",
+   "rtf": 0.0531,
+   "xrealtime": 18.8,
+   "n": 20
+  },
+  "whisper-small::it": {
+   "err": 0.0816,
+   "metric": "wer",
+   "rtf": 0.0543,
+   "xrealtime": 18.4,
+   "n": 20
+  },
+  "whisper-small::pt": {
+   "err": 0.085,
+   "metric": "wer",
+   "rtf": 0.0497,
+   "xrealtime": 20.1,
+   "n": 20
+  },
+  "whisper-small::ru": {
+   "err": 0.1341,
+   "metric": "wer",
+   "rtf": 0.0548,
+   "xrealtime": 18.2,
+   "n": 20
+  },
+  "whisper-small::vi": {
+   "err": 0.1916,
+   "metric": "wer",
+   "rtf": 0.0595,
+   "xrealtime": 16.8,
+   "n": 20
+  },
+  "whisper-small::ar": {
+   "err": 0.291,
+   "metric": "wer",
+   "rtf": 0.0705,
+   "xrealtime": 14.2,
+   "n": 20
+  },
+  "whisper-small::zh": {
+   "err": 0.2138,
+   "metric": "cer",
+   "rtf": 0.0594,
+   "xrealtime": 16.8,
+   "n": 20
+  },
+  "whisper-small::ja": {
+   "err": 0.1202,
+   "metric": "cer",
+   "rtf": 0.0563,
+   "xrealtime": 17.8,
+   "n": 20
+  },
+  "whisper-small::ko": {
+   "err": 0.056,
+   "metric": "cer",
+   "rtf": 0.0539,
+   "xrealtime": 18.6,
+   "n": 20
+  },
+  "whisper-medium::en": {
+   "err": 0.0577,
+   "metric": "wer",
+   "rtf": 0.1025,
+   "xrealtime": 9.8,
+   "n": 20
+  },
+  "whisper-medium::fr": {
+   "err": 0.1208,
+   "metric": "wer",
+   "rtf": 0.1124,
+   "xrealtime": 8.9,
+   "n": 20
+  },
+  "whisper-medium::de": {
+   "err": 0.0648,
+   "metric": "wer",
+   "rtf": 0.0901,
+   "xrealtime": 11.1,
+   "n": 20
+  },
+  "whisper-medium::es": {
+   "err": 0.0396,
+   "metric": "wer",
+   "rtf": 0.0953,
+   "xrealtime": 10.5,
+   "n": 20
+  },
+  "whisper-medium::it": {
+   "err": 0.0448,
+   "metric": "wer",
+   "rtf": 0.0997,
+   "xrealtime": 10.0,
+   "n": 20
+  },
+  "whisper-medium::pt": {
+   "err": 0.0519,
+   "metric": "wer",
+   "rtf": 0.0861,
+   "xrealtime": 11.6,
+   "n": 20
+  },
+  "whisper-medium::ru": {
+   "err": 0.0936,
+   "metric": "wer",
+   "rtf": 0.099,
+   "xrealtime": 10.1,
+   "n": 20
+  },
+  "whisper-medium::vi": {
+   "err": 0.1244,
+   "metric": "wer",
+   "rtf": 0.1069,
+   "xrealtime": 9.4,
+   "n": 20
+  },
+  "whisper-medium::ar": {
+   "err": 0.2038,
+   "metric": "wer",
+   "rtf": 0.1326,
+   "xrealtime": 7.5,
+   "n": 20
+  },
+  "whisper-medium::hi": {
+   "err": 0.4187,
+   "metric": "wer",
+   "rtf": 0.1985,
+   "xrealtime": 5.0,
+   "n": 20
+  },
+  "whisper-medium::zh": {
+   "err": 0.1336,
+   "metric": "cer",
+   "rtf": 0.1107,
+   "xrealtime": 9.0,
+   "n": 20
+  },
+  "whisper-medium::ja": {
+   "err": 0.0743,
+   "metric": "cer",
+   "rtf": 0.1044,
+   "xrealtime": 9.6,
+   "n": 20
+  },
+  "whisper-medium::ko": {
+   "err": 0.0355,
+   "metric": "cer",
+   "rtf": 0.0979,
+   "xrealtime": 10.2,
+   "n": 20
+  },
+  "whisper-large-v3::en": {
+   "err": 0.0689,
+   "metric": "wer",
+   "rtf": 0.1562,
+   "xrealtime": 6.4,
+   "n": 20
+  },
+  "whisper-large-v3::fr": {
+   "err": 0.0727,
+   "metric": "wer",
+   "rtf": 0.1684,
+   "xrealtime": 5.9,
+   "n": 20
+  },
+  "whisper-large-v3::de": {
+   "err": 0.0342,
+   "metric": "wer",
+   "rtf": 0.1317,
+   "xrealtime": 7.6,
+   "n": 20
+  },
+  "whisper-large-v3::es": {
+   "err": 0.0189,
+   "metric": "wer",
+   "rtf": 0.1433,
+   "xrealtime": 7.0,
+   "n": 20
+  },
+  "whisper-large-v3::it": {
+   "err": 0.0356,
+   "metric": "wer",
+   "rtf": 0.1486,
+   "xrealtime": 6.7,
+   "n": 20
+  },
+  "whisper-large-v3::pt": {
+   "err": 0.0338,
+   "metric": "wer",
+   "rtf": 0.1268,
+   "xrealtime": 7.9,
+   "n": 20
+  },
+  "whisper-large-v3::ru": {
+   "err": 0.0525,
+   "metric": "wer",
+   "rtf": 0.1456,
+   "xrealtime": 6.9,
+   "n": 20
+  },
+  "whisper-large-v3::vi": {
+   "err": 0.063,
+   "metric": "wer",
+   "rtf": 0.1642,
+   "xrealtime": 6.1,
+   "n": 20
+  },
+  "whisper-large-v3::ar": {
+   "err": 0.1499,
+   "metric": "wer",
+   "rtf": 0.2052,
+   "xrealtime": 4.9,
+   "n": 20
+  },
+  "whisper-large-v3::hi": {
+   "err": 0.2681,
+   "metric": "wer",
+   "rtf": 0.3031,
+   "xrealtime": 3.3,
+   "n": 20
+  },
+  "whisper-large-v3::zh": {
+   "err": 0.0785,
+   "metric": "cer",
+   "rtf": 0.1704,
+   "xrealtime": 5.9,
+   "n": 20
+  },
+  "whisper-large-v3::ja": {
+   "err": 0.0472,
+   "metric": "cer",
+   "rtf": 0.1577,
+   "xrealtime": 6.3,
+   "n": 20
+  },
+  "whisper-large-v3::ko": {
+   "err": 0.0208,
+   "metric": "cer",
+   "rtf": 0.1481,
+   "xrealtime": 6.8,
+   "n": 20
+  },
+  "whisper-turbo::en": {
+   "err": 0.0677,
+   "metric": "wer",
+   "rtf": 0.0853,
+   "xrealtime": 11.7,
+   "n": 20
+  },
+  "whisper-turbo::fr": {
+   "err": 0.0868,
+   "metric": "wer",
+   "rtf": 0.0866,
+   "xrealtime": 11.6,
+   "n": 20
+  },
+  "whisper-turbo::de": {
+   "err": 0.043,
+   "metric": "wer",
+   "rtf": 0.0705,
+   "xrealtime": 14.2,
+   "n": 20
+  },
+  "whisper-turbo::es": {
+   "err": 0.0266,
+   "metric": "wer",
+   "rtf": 0.0774,
+   "xrealtime": 12.9,
+   "n": 20
+  },
+  "whisper-turbo::it": {
+   "err": 0.027,
+   "metric": "wer",
+   "rtf": 0.0772,
+   "xrealtime": 13.0,
+   "n": 20
+  },
+  "whisper-turbo::pt": {
+   "err": 0.0457,
+   "metric": "wer",
+   "rtf": 0.0672,
+   "xrealtime": 14.9,
+   "n": 20
+  },
+  "whisper-turbo::ru": {
+   "err": 0.0465,
+   "metric": "wer",
+   "rtf": 0.0746,
+   "xrealtime": 13.4,
+   "n": 20
+  },
+  "whisper-turbo::vi": {
+   "err": 0.0802,
+   "metric": "wer",
+   "rtf": 0.0826,
+   "xrealtime": 12.1,
+   "n": 20
+  },
+  "whisper-turbo::ar": {
+   "err": 0.1634,
+   "metric": "wer",
+   "rtf": 0.1003,
+   "xrealtime": 10.0,
+   "n": 20
+  },
+  "whisper-turbo::hi": {
+   "err": 0.3188,
+   "metric": "wer",
+   "rtf": 0.1223,
+   "xrealtime": 8.2,
+   "n": 20
+  },
+  "whisper-turbo::zh": {
+   "err": 0.0847,
+   "metric": "cer",
+   "rtf": 0.0888,
+   "xrealtime": 11.3,
+   "n": 20
+  },
+  "whisper-turbo::ja": {
+   "err": 0.0427,
+   "metric": "cer",
+   "rtf": 0.0823,
+   "xrealtime": 12.2,
+   "n": 20
+  },
+  "whisper-turbo::ko": {
+   "err": 0.0248,
+   "metric": "cer",
+   "rtf": 0.0779,
+   "xrealtime": 12.8,
+   "n": 20
+  },
+  "apple-speech::en": {
+   "err": 0.0762,
+   "metric": "wer",
+   "rtf": 0.0169,
+   "xrealtime": 59.0,
+   "n": 20
   },
   "apple-speech::fr": {
-   "err": 0.065,
+   "err": 0.0743,
    "metric": "wer",
-   "rtf": 0.0305,
-   "xrealtime": 32.8,
-   "n": 3
+   "rtf": 0.0139,
+   "xrealtime": 72.1,
+   "n": 20
   },
   "apple-speech::de": {
-   "err": 0.0793,
+   "err": 0.0556,
    "metric": "wer",
-   "rtf": 0.023,
-   "xrealtime": 43.5,
-   "n": 3
+   "rtf": 0.0136,
+   "xrealtime": 73.8,
+   "n": 20
   },
   "apple-speech::es": {
-   "err": 0.041,
+   "err": 0.0355,
    "metric": "wer",
-   "rtf": 0.0257,
-   "xrealtime": 39.0,
-   "n": 3
+   "rtf": 0.0138,
+   "xrealtime": 72.6,
+   "n": 20
   },
   "apple-speech::it": {
-   "err": 0.0312,
+   "err": 0.0483,
    "metric": "wer",
-   "rtf": 0.0241,
-   "xrealtime": 41.4,
-   "n": 5
+   "rtf": 0.0129,
+   "xrealtime": 77.7,
+   "n": 20
   },
   "apple-speech::pt": {
-   "err": 0.1742,
+   "err": 0.1035,
    "metric": "wer",
-   "rtf": 0.0212,
-   "xrealtime": 47.1,
-   "n": 5
+   "rtf": 0.0128,
+   "xrealtime": 78.3,
+   "n": 20
   },
   "apple-speech::zh": {
-   "err": 0.0249,
+   "err": 0.077,
    "metric": "cer",
-   "rtf": 0.0296,
-   "xrealtime": 33.8,
-   "n": 3
+   "rtf": 0.0201,
+   "xrealtime": 49.7,
+   "n": 20
   },
   "apple-speech::ja": {
-   "err": 0.0423,
+   "err": 0.0633,
    "metric": "cer",
-   "rtf": 0.0264,
-   "xrealtime": 37.8,
-   "n": 3
+   "rtf": 0.015,
+   "xrealtime": 66.8,
+   "n": 20
   },
   "apple-speech::ko": {
-   "err": 0.0215,
+   "err": 0.0274,
    "metric": "cer",
-   "rtf": 0.0212,
-   "xrealtime": 47.2,
-   "n": 5
+   "rtf": 0.0113,
+   "xrealtime": 88.2,
+   "n": 20
+  },
+  "parakeet-v3::en": {
+   "err": 0.0568,
+   "metric": "wer",
+   "rtf": 0.0091,
+   "xrealtime": 109.9,
+   "n": 20
+  },
+  "parakeet-v3::fr": {
+   "err": 0.08,
+   "metric": "wer",
+   "rtf": 0.0079,
+   "xrealtime": 125.8,
+   "n": 20
+  },
+  "parakeet-v3::de": {
+   "err": 0.045,
+   "metric": "wer",
+   "rtf": 0.0075,
+   "xrealtime": 133.4,
+   "n": 20
+  },
+  "parakeet-v3::es": {
+   "err": 0.0211,
+   "metric": "wer",
+   "rtf": 0.0073,
+   "xrealtime": 137.5,
+   "n": 20
+  },
+  "parakeet-v3::it": {
+   "err": 0.0319,
+   "metric": "wer",
+   "rtf": 0.0078,
+   "xrealtime": 128.4,
+   "n": 20
+  },
+  "parakeet-v3::pt": {
+   "err": 0.0466,
+   "metric": "wer",
+   "rtf": 0.0071,
+   "xrealtime": 140.5,
+   "n": 20
+  },
+  "parakeet-v3::ru": {
+   "err": 0.0933,
+   "metric": "wer",
+   "rtf": 0.0084,
+   "xrealtime": 119.2,
+   "n": 20
+  },
+  "parakeet-ultra::en": {
+   "err": 0.0574,
+   "metric": "wer",
+   "rtf": 0.0085,
+   "xrealtime": 117.2,
+   "n": 20
+  },
+  "parakeet-ultra::fr": {
+   "err": 0.0769,
+   "metric": "wer",
+   "rtf": 0.0079,
+   "xrealtime": 127.4,
+   "n": 20
+  },
+  "parakeet-ultra::de": {
+   "err": 0.0461,
+   "metric": "wer",
+   "rtf": 0.0077,
+   "xrealtime": 130.1,
+   "n": 20
+  },
+  "parakeet-ultra::es": {
+   "err": 0.0187,
+   "metric": "wer",
+   "rtf": 0.007,
+   "xrealtime": 143.9,
+   "n": 20
+  },
+  "parakeet-ultra::it": {
+   "err": 0.0264,
+   "metric": "wer",
+   "rtf": 0.0081,
+   "xrealtime": 124.2,
+   "n": 20
+  },
+  "parakeet-ultra::pt": {
+   "err": 0.0427,
+   "metric": "wer",
+   "rtf": 0.0074,
+   "xrealtime": 135.4,
+   "n": 20
+  },
+  "parakeet-ultra::ru": {
+   "err": 0.0661,
+   "metric": "wer",
+   "rtf": 0.0082,
+   "xrealtime": 121.3,
+   "n": 20
+  },
+  "sensevoice::zh": {
+   "err": 0.07,
+   "metric": "cer",
+   "rtf": 0.0168,
+   "xrealtime": 59.4,
+   "n": 20
+  },
+  "sensevoice::ja": {
+   "err": 0.0771,
+   "metric": "cer",
+   "rtf": 0.0162,
+   "xrealtime": 61.7,
+   "n": 20
+  },
+  "sensevoice::ko": {
+   "err": 0.0951,
+   "metric": "cer",
+   "rtf": 0.016,
+   "xrealtime": 62.5,
+   "n": 20
+  },
+  "sensevoice::en": {
+   "err": 0.0692,
+   "metric": "wer",
+   "rtf": 0.0164,
+   "xrealtime": 60.8,
+   "n": 20
+  },
+  "whisper-tiny::ko": {
+   "err": 0.2267,
+   "metric": "cer",
+   "rtf": 0.0338,
+   "xrealtime": 29.6,
+   "n": 20
+  },
+  "whisper-small::hi": {
+   "err": 0.6415,
+   "metric": "wer",
+   "rtf": 0.1952,
+   "xrealtime": 5.1,
+   "n": 20
   }
  }
 }
