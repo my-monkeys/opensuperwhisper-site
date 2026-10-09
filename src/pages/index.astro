@@ -115,6 +115,7 @@ const shots = [
         <a href="#compare">Compare</a>
         <a href="#engines">Engines</a>
         <a href="#screenshots">Screenshots</a>
+        <a href="/claude-code">Claude Code</a>
         <a href="/changelog">Changelog</a>
         <a href="https://github.com/my-monkeys/OpenSuperWhisper" data-umami-event="github" data-umami-event-loc="nav">GitHub</a>
         <a class="btn btn-primary nav-cta" href="#get" data-umami-event="download-cta" data-umami-event-loc="nav">Download</a>
@@ -162,6 +163,21 @@ const shots = [
             <small>{s.sub}</small>
           </div>
         ))}
+      </div>
+    </section>
+
+    <section id="claude-code" class="cc-promo">
+      <div class="wrap cc-promo-grid">
+        <div>
+          <h2 class="h2">Talk back to Claude Code.</h2>
+          <p class="lead cc-promo-lead">
+            When Claude Code finishes, needs a permission or asks a question, the answer no longer
+            means going back to the terminal. A panel shows up in the corner of your screen, you
+            answer out loud, and it carries on. New in 0.13.
+          </p>
+          <a class="btn btn-primary" href="/claude-code" data-umami-event="claude-code-page" data-umami-event-loc="home">See how it works</a>
+        </div>
+        <img class="cc-promo-shot" src="/screenshots/agents/stop.png" alt="OpenSuperWhisper's panel showing Claude Code's last message and a field to answer it" loading="lazy" width="560" />
       </div>
     </section>
 
@@ -521,6 +537,11 @@ const shots = [
     </script>
 
     <style is:global>
+      .cc-promo { padding: clamp(56px, 8vw, 104px) 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+      .cc-promo-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(28px, 5vw, 72px); align-items: center; }
+      .cc-promo-lead { margin: 18px 0 28px; max-width: 44ch; }
+      .cc-promo-shot { width: 100%; max-width: 560px; height: auto; justify-self: center; filter: drop-shadow(0 24px 44px rgba(22, 21, 26, .2)); }
+      @media (max-width: 860px) { .cc-promo-grid { grid-template-columns: 1fr; } }
       /* ── Hero (static, per Home.dc.html) ── */
       .hero { padding-top: clamp(56px, 7vw, 96px); padding-bottom: clamp(30px, 4vw, 48px); }
       .hero-alt { margin-top: 12px; font-size: .92rem; color: var(--ink-2); }
