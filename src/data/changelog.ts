@@ -9,6 +9,13 @@ export interface ChangeEntry {
 
 export const CHANGELOG: ChangeEntry[] = [
   {
+    version: "0.13.0",
+    date: "2026-10-09",
+    title: "Answer Claude Code by voice, and stop a recording by saying so",
+    summary:
+      "When Claude Code finishes a task, asks for a permission or asks a question, OpenSuperWhisper can show it in a small panel in the corner of the screen, and you answer there by voice or by typing instead of going back to the terminal. After a task the panel shows the session's name and Claude's last message, tables and code included, and your answer becomes its next instruction. A permission shows the command or file with Allow and Deny, and a spoken yes or no decides it. A question shows its options to pick from, by click or by name. A new Agents tab in Settings installs the Claude Code plugin in one click and chooses which moments bring the panel up, how long it waits and which projects use it. Nothing leaves the Mac. A stop phrase now ends a recording when it is said last, with a setting for how long to stay quiet after it, and it is left out of the text. Two modifiers pressed together, like ⌘⌥, work as a trigger. The start chime plays before the volume is lowered, so it can be heard again. Parakeet downloads show their progress, and a single line of live caption sits centred in the Liquid Glass bubble.",
+  },
+  {
     version: "0.12.9",
     date: "2026-10-07",
     title: "Parakeet Ultra, and a live caption that keeps up",
