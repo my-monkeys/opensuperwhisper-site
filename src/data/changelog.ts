@@ -9,6 +9,13 @@ export interface ChangeEntry {
 
 export const CHANGELOG: ChangeEntry[] = [
   {
+    version: "0.13.1",
+    date: "2026-10-10",
+    title: "Codex gets its own place in the Agents panel",
+    summary:
+      "Codex picks up the plugin installed for Claude Code on its own, and until now OpenSuperWhisper took its requests for Claude's: same icon, same switches. The two are now told apart. A Codex request shows the Codex icon and the thread's name from Codex, and the Agents tab has a separate Codex section with its own switch, off by default, so installing the plugin for Claude Code no longer means answering Codex too. Codex asks once to trust the plugin's hooks, through /hooks; its multiple-choice questions stay in its terminal for now. The wait picker in the Agents tab no longer runs past the pane's edge at larger text sizes.",
+  },
+  {
     version: "0.13.0",
     date: "2026-10-09",
     title: "Answer Claude Code by voice, and stop a recording by saying so",
