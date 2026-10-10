@@ -1,0 +1,48 @@
+---
+interface Props {
+  name: string;
+  title: string;
+  description: string;
+  poster: string;
+  width: number;
+  height: number;
+  eager?: boolean;
+}
+const { name, title, description, poster, width, height, eager = false } = Astro.props;
+---
+
+<figure class="product-video" data-product-video>
+  <div class="product-video-frame" style={`aspect-ratio:${width}/${height}`}>
+    <img class="product-video-poster" src={poster} alt={description} width={width} height={height} loading={eager ? "eager" : "lazy"} />
+    <video muted loop playsinline preload="none" poster={poster} width={width} height={height} aria-hidden="true" tabindex="-1">
+      <source data-src={`/videos/${name}.webm`} type="video/webm" />
+      <source data-src={`/videos/${name}.mp4`} type="video/mp4" />
+    </video>
+  </div>
+  <figcaption>
+    <span><strong>{title}</strong><small>Illustrative demo</small></span>
+    <button type="button" data-video-toggle aria-label={`Pause video: ${title}`} hidden>Pause video</button>
+    <noscript><a href={`/videos/${name}.mp4`}>Watch video</a></noscript>
+  </figcaption>
+</figure>
+
+<script>
+  import "../scripts/product-videos";
+</script>
+
+<style>
+  .product-video { margin: 0; min-width: 0; background: #fff9f5; border: 1px solid #e9cfc1; border-radius: 22px; overflow: hidden; }
+  .product-video-frame { position: relative; }
+  .product-video-frame > img, .product-video-frame > video { display: block; width: 100%; height: 100%; object-fit: contain; }
+  .product-video-frame > video { position: absolute; inset: 0; opacity: 0; }
+  [data-frame="video"] .product-video-frame > video { opacity: 1; }
+  .product-video figcaption { padding: 12px 17px; display: flex; align-items: center; justify-content: space-between; gap: 12px; border-top: 1px solid #e9cfc1; color: #75584d; font-size: .72rem; }
+  .product-video strong { display: block; font-weight: 550; color: #38251f; }
+  .product-video small { display: block; margin-top: 3px; font-size: .64rem; }
+  .product-video button, .product-video a { flex-shrink: 0; font: inherit; padding: 7px 10px; color: #38251f; background: #fae9e0; border: 1px solid #d7b39f; border-radius: 8px; cursor: pointer; }
+  .product-video button:hover { background: #f7c8af; }
+  .product-video button:disabled { opacity: .65; cursor: default; }
+  .product-video button[hidden] { display: none; }
+  .product-video button:focus-visible { outline: 3px solid #e8734a; outline-offset: 3px; }
+  @media (max-width: 400px) { .product-video figcaption { padding: 10px; font-size: .65rem; gap: 6px; } }
+</style>

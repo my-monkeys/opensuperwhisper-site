@@ -1,11 +1,13 @@
 ---
 import "../styles/global.css";
 import "../styles/next.css";
+import "../styles/redesign.css";
+import "../styles/claude-code.css";
 import MoreProjects from "../components/MoreProjects.astro";
 import Support from "../components/Support.astro";
+import ProductVideo from "../components/ProductVideo.astro";
 
-// /claude-code: answering Claude Code from OpenSuperWhisper's panel (app 0.13.0). The screenshots
-// are the real app, captured on macOS 26; keep them in public/screenshots/agents/.
+// Media provenance and production details: capture-delivery/media-manifest.md.
 const GH = "https://github.com/my-monkeys/OpenSuperWhisper";
 const BREW = "brew install --cask my-monkeys/tap/opensuperwhisper";
 
@@ -13,21 +15,24 @@ const moments = [
   {
     id: "done",
     img: "/screenshots/agents/stop.png",
-    alt: "The panel showing Claude Code's last message, with a table, and a field to answer",
+    alt: "Illustration of the panel with completed project search and a field to answer",
+    width: 1280, height: 1000, illustrated: true,
     title: "When it finishes",
-    body: "The panel shows which session it is and what Claude said last, with its tables and code laid out as they should be. Say what to do next and Claude carries on with it.",
+    body: "The panel shows which session it is and what Claude said last, with its formatting kept intact. Say what to do next and Claude carries on with it.",
   },
   {
     id: "permission",
     img: "/screenshots/agents/permission.png",
-    alt: "The panel asking to allow a git push command, with Allow and Deny",
+    alt: "The panel asking to allow pnpm build, with Allow and Deny",
+    width: 1280, height: 880, illustrated: false,
     title: "When it needs your permission",
     body: "You see the command, the file or the address before anything runs. Allow it, deny it, or say what to do instead. A spoken yes or no is enough.",
   },
   {
     id: "question",
     img: "/screenshots/agents/question.png",
-    alt: "The panel showing a multiple-choice question from Claude with three options",
+    alt: "The panel asking which project fields to search, with three options",
+    width: 1280, height: 1200, illustrated: false,
     title: "When it asks you something",
     body: "Its options are listed to click. Saying the name of one picks it, and anything else you say goes back as your own answer.",
   },
@@ -67,7 +72,7 @@ const faq = [
   },
   {
     q: "Which agents does it work with?",
-    a: "Claude Code today. The plugin uses Claude Code's own hooks, and the same approach fits other agents that have them.",
+    a: "Claude Code, and Codex since 0.13.1. Codex picks up the same plugin on its own; it gets its own switch in Settings › Agents, off until you turn it on, and asks once to trust the hooks. Codex's multiple-choice questions stay in its terminal for now.",
   },
   {
     q: "Can I keep it off for some projects?",
@@ -104,65 +109,81 @@ const jsonLd = {
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;680&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;450;500;550;600;650;700&family=Lilita+One&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
     <script defer src="https://uuu.my-monkey.fr/u.js" data-website-id="6734df40-5bb0-485e-a311-6ee24b1c7dc7"></script>
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
-  <body>
-    <nav class="nav">
-      <a class="brand" href="/"><img src="/icon.png" alt="" class="brand-icon" />OpenSuperWhisper</a>
-      <div class="nav-links">
-        <a href="/#features">Features</a>
-        <a href="/#compare">Compare</a>
-        <a href="/changelog">Changelog</a>
-        <a href={GH} data-umami-event="github" data-umami-event-loc="cc-nav">GitHub</a>
-        <a class="btn btn-primary nav-cta" href="#setup" data-umami-event="download-cta" data-umami-event-loc="cc-nav">Download</a>
+  <body class="redesign claude-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="announcement"><a href="/">Big ideas. Out loud. <strong>Meet OpenSuperWhisper ↗</strong></a><button class="motion-toggle" type="button" aria-pressed="false">Pause animations</button></div>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="brand" href="/" aria-label="OpenSuperWhisper home"><img src="/icon.png" alt="" class="brand-icon" /><span>OpenSuperWhisper<span class="brand-caption">Big ideas. Out loud.</span></span></a>
+      <div class="nav-links" id="navigation-links">
+        <a href="#moments">How it works</a>
+        <a href="#setup">Installation</a>
+        <a href={GH} data-umami-event="github" data-umami-event-loc="cc-nav">GitHub ↗</a>
+        <a class="btn btn-primary nav-cta" href={`${GH}/releases/latest`} data-umami-event="download-cta" data-umami-event-loc="cc-nav">Get it for free ↗</a>
       </div>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="navigation-links">Menu <span aria-hidden="true">+</span></button>
     </nav>
 
-    <main>
+    <main id="main">
       <section class="cc-hero">
         <div class="wrap cc-hero-grid">
           <div class="cc-intro">
-            <h1 class="display">Talk back to Claude Code.</h1>
+            <p class="eyebrow cc-eyebrow">OpenSuperWhisper × Claude Code</p>
+            <h1 class="display" aria-label="You talk. Claude codes."><span class="headline-line">You talk.</span><span class="headline-line coral-type">Claude</span><span class="headline-line">codes.</span></h1>
             <p class="lead">
               When Claude Code finishes, needs a permission or asks a question, OpenSuperWhisper
               shows it in a panel in the corner of your screen. Answer out loud and it carries on.
               The terminal can stay behind your other windows.
             </p>
             <div class="cc-actions">
-              <a class="btn btn-primary" href="#setup" data-umami-event="download-cta" data-umami-event-loc="cc-hero">Set it up</a>
-              <a class="btn btn-ghost" href="#moments">See the three moments</a>
+              <a class="btn hero-download" href="#setup" data-umami-event="download-cta" data-umami-event-loc="cc-hero">Let’s team up <span aria-hidden="true">↗</span></a>
+              <a class="cc-text-link" href="#moments">See it in action ↓</a>
             </div>
+            <p class="cc-hero-note">Free &amp; open source · macOS 14+ · App v0.13+</p>
           </div>
 
           <!-- One orchestrated moment: the agent stops, the panel arrives, the answer lands. -->
           <div class="cc-stage" aria-hidden="true">
+            <div class="mascot-sticker"><img src="/icon.png" alt="" width="100" height="100" /><span>Your turn, human.</span></div>
+            <span class="playground-spark cc-spark">✳</span>
             <div class="cc-term">
               <div class="cc-term-bar"><i></i><i></i><i></i><span>claude</span></div>
-              <pre class="cc-term-body"><span class="l1"><b>›</b> Re-run the benchmark and update the table on the site</span>
-<span class="l2"><em>⏺</em> Ran 20 clips per language on every model.</span>
-<span class="l3"><em>⏺</em> Table updated. Shall I push it?</span>
+              <pre class="cc-term-body"><span class="l1"><b>›</b> Add a search field to the project list</span>
+<span class="l2"><em>⏺</em> Added search by project name.</span>
+<span class="l3"><em>⏺</em> Empty state: “No projects found”.</span>
 <span class="l4 dim">  Waiting for OpenSuperWhisper…</span>
-<span class="l5"><em>⏺</em> The user answered by voice: yes, push it.</span>
-<span class="l6"><em>⏺</em> Pushed to master.</span></pre>
+<span class="l5"><em>⏺</em> Voice reply: add a clear button.</span>
+<span class="l6"><em>⏺</em> Working on the next change…</span></pre>
             </div>
-            <img class="cc-panel" src="/screenshots/agents/stop.png" alt="" width="560" />
+            <span class="cc-stage-label">Your reply, one shortcut away. · Illustrative demo</span>
+            <img class="cc-panel" src="/screenshots/agents/stop.png" alt="" width="1280" height="1000" />
           </div>
         </div>
       </section>
 
+      <div class="cc-moment-band" aria-label="Three ways to answer Claude Code">
+        <a href="#done"><span>01</span> Next idea. <i aria-hidden="true">↗</i></a>
+        <a href="#permission"><span>02</span> Your call. <i aria-hidden="true">↗</i></a>
+        <a href="#question"><span>03</span> Just ask. <i aria-hidden="true">↗</i></a>
+      </div>
+
       <section id="moments" class="cc-moments">
         <div class="wrap">
-          <h2 class="h2 cc-section-title">It asks for you at three moments.</h2>
+          <p class="eyebrow">A conversation, not a context switch</p>
+          <h2 class="h2 cc-section-title">Three little interruptions.<br /><em>One easy answer.</em></h2>
           {moments.map((m, i) => (
             <article class:list={["cc-moment", { flip: i % 2 === 1 }]} id={m.id}>
               <div class="cc-moment-copy">
+                <span class="cc-moment-number">0{i + 1}</span>
                 <h3>{m.title}</h3>
                 <p>{m.body}</p>
               </div>
               <figure class="cc-shot">
-                <img src={m.img} alt={m.alt} loading="lazy" width="560" />
+                <a href={m.img} target="_blank" rel="noopener" aria-label={`View full-size image: ${m.title}`}><img src={m.img} alt={m.alt} loading="lazy" width={m.width} height={m.height} /></a>
+                {m.illustrated && <figcaption>Illustrative demo</figcaption>}
               </figure>
             </article>
           ))}
@@ -171,11 +192,10 @@ const jsonLd = {
 
       <section class="cc-dictate">
         <div class="wrap cc-dictate-grid">
-          <figure class="cc-shot">
-            <img src="/screenshots/agents/recording.png" alt="The panel while dictating: delete, a live waveform and stop, next to the reply field" loading="lazy" width="560" />
-          </figure>
+          <ProductVideo name="claude-reply" title="A reply, out loud" description="Illustration of the Claude Code panel: the microphone expands into a waveform, a reply is dictated, then sent and the panel closes." poster="/screenshots/agents/recording.png" width={1280} height={800} />
           <div class="cc-dictate-copy">
-            <h2 class="h2">Dictate right in the panel.</h2>
+            <p class="eyebrow">Same shortcut. New conversation.</p>
+            <h2 class="h2">A reply is just<br /><em>a breath away.</em></h2>
             <p>
               Click the microphone and it stretches into a live meter, with delete and stop on
               either side. Once the panel has focus, the trigger you already use for dictation
@@ -192,12 +212,15 @@ const jsonLd = {
 
       <section class="cc-cases">
         <div class="wrap">
-          <h2 class="h2 cc-section-title">Where it earns its place.</h2>
+          <p class="eyebrow">Room for the way you work</p>
+          <h2 class="h2 cc-section-title">Less back and forth.<br /><em>More getting somewhere.</em></h2>
           <div class="cc-case-list">
-            {cases.map((c) => (
-              <div class="cc-case">
+            {cases.map((c, i) => (
+              <div class:list={["cc-case", { "cc-case-with-video": i === 1 }]}>
+                <span class="cc-case-number" aria-hidden="true">0{i + 1} /</span>
                 <h3>{c.title}</h3>
                 <p>{c.body}</p>
+                {i === 1 && <ProductVideo name="agent-sessions" title="One panel. Three conversations." description="Illustration of navigating three waiting Claude Code sessions: demo-site, notes-app and scratchpad." poster="/screenshots/agents/multiple-sessions.png" width={1280} height={1000} />}
               </div>
             ))}
           </div>
@@ -207,26 +230,28 @@ const jsonLd = {
       <section id="setup" class="cc-setup">
         <div class="wrap cc-setup-grid">
           <div>
-            <h2 class="h2">Set it up in a minute.</h2>
+            <p class="eyebrow">Make the introduction</p>
+            <h2 class="h2">Hello, new<br /><em>coding buddy.</em></h2>
             <ol class="cc-steps">
               <li>
                 <h3>Install OpenSuperWhisper</h3>
                 <p>Version 0.13 or later, from <a href={`${GH}/releases/latest`} data-umami-event="download-dmg" data-umami-event-loc="cc-setup">the latest release</a> or with Homebrew:</p>
-                <code class="cc-cmd">{BREW}</code>
+                <div class="cc-command"><code class="cc-cmd">{BREW}</code><button class="cc-copy" type="button" aria-label="Copy Homebrew command">Copy</button></div>
               </li>
               <li>
                 <h3>Add the plugin</h3>
                 <p>In Settings › Agents, click Install the plugin. It goes through Claude Code's own plugin command. From a terminal, the same thing is:</p>
-                <code class="cc-cmd">claude plugin marketplace add my-monkeys/OpenSuperWhisper<br />claude plugin install opensuperwhisper@opensuperwhisper</code>
+                <div class="cc-command"><code class="cc-cmd">claude plugin marketplace add my-monkeys/OpenSuperWhisper<br />claude plugin install opensuperwhisper@opensuperwhisper</code><button class="cc-copy" type="button" aria-label="Copy Claude Code plugin commands">Copy</button></div>
               </li>
               <li>
                 <h3>Restart your Claude Code sessions</h3>
                 <p>New sessions pick the plugin up on their own. The next time one stops, the panel shows up.</p>
               </li>
             </ol>
+            <p class="cc-copy-status" role="status" aria-live="polite"></p>
           </div>
           <figure class="cc-shot cc-settings">
-            <img src="/screenshots/agents/settings.png" alt="Settings, Agents tab: the plugin, the moments, the wait and the projects" loading="lazy" width="908" />
+            <a href="/screenshots/agents/settings.png" target="_blank" rel="noopener" aria-label="View Agents settings full size"><img src="/screenshots/agents/settings.png" alt="Agents settings in OpenSuperWhisper 0.13.1: Answer Claude Code, three enabled events, a five-minute wait and per-project controls" loading="lazy" width="1800" height="1440" /></a>
             <figcaption>Choose which moments bring the panel up, how long it waits, and which projects use it.</figcaption>
           </figure>
         </div>
@@ -234,13 +259,22 @@ const jsonLd = {
 
       <section class="cc-faq">
         <div class="wrap">
-          <h2 class="h2 cc-section-title">Questions</h2>
+          <p class="eyebrow">A few things worth asking</p>
+          <h2 class="h2 cc-section-title">Good question.</h2>
           {faq.map((item) => (
             <details>
               <summary>{item.q}</summary>
               <p>{item.a}</p>
             </details>
           ))}
+        </div>
+      </section>
+      <section class="cc-outro">
+        <div class="wrap">
+          <p class="eyebrow">Your next instruction is ready when you are</p>
+          <h2 class="h2">Go on.<br /><em>Talk to your agent.</em></h2>
+          <a class="btn hero-download" href={`${GH}/releases/latest`} data-umami-event="download" data-umami-event-loc="cc-bottom">Download for Mac ↗</a>
+          <a class="cc-text-link" href="/">Explore all of OpenSuperWhisper →</a>
         </div>
       </section>
     </main>
@@ -255,112 +289,40 @@ const jsonLd = {
         <Support />
         <div class="fe-foot">
           <span>OpenSuperWhisper · MIT licensed</span>
+          <a href="/">Home</a>
+          <a href="/claude-code" aria-current="page">Claude Code</a>
+          <a href="/changelog">Changelog</a>
           <a href={GH} data-umami-event="github" data-umami-event-loc="cc-footer">github.com/my-monkeys/OpenSuperWhisper</a>
         </div>
       </div>
     </footer>
 
-    <style>
-      main { --gap: clamp(72px, 10vw, 128px); }
-      .cc-section-title { max-width: 18ch; margin-bottom: clamp(36px, 5vw, 56px); }
-
-      /* Hero: copy on the left, the stage on the right. */
-      .cc-hero { padding: clamp(48px, 8vw, 96px) 0 var(--gap); }
-      .cc-hero-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(32px, 5vw, 64px); align-items: center; }
-      .cc-intro .display { max-width: 11ch; margin-bottom: 22px; }
-      .cc-intro .lead { max-width: 46ch; }
-      .cc-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 30px; }
-
-      .cc-stage { position: relative; display: flex; flex-direction: column; }
-      .cc-term {
-        background: var(--ink); color: #e9e6df; border-radius: 12px; overflow: hidden;
-        box-shadow: 0 30px 70px -36px rgba(22, 21, 26, .55);
-      }
-      .cc-term-bar { display: flex; align-items: center; gap: 7px; padding: 11px 14px; border-bottom: 1px solid rgba(255,255,255,.08); }
-      .cc-term-bar i { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,.16); }
-      .cc-term-bar span { margin-left: 8px; font-family: var(--mono); font-size: .78rem; color: rgba(255,255,255,.45); }
-      /* Each line is its own block; the newlines between them in the markup are not lines too. */
-      .cc-term-body { font-family: var(--mono); font-size: .86rem; line-height: 1.75; padding: 18px 20px 26px; white-space: normal; }
-      .cc-term-body > span { white-space: pre-wrap; }
-      .cc-term-body b { color: var(--accent); font-weight: 500; }
-      .cc-term-body em { font-style: normal; color: #9fd0a8; }
-      .cc-term-body .dim { color: rgba(255,255,255,.4); }
-      .cc-term-body > span { display: block; }
-      /* In the flow, overlapping only the terminal's bottom edge: the lines it answers stay readable. */
-      .cc-panel {
-        align-self: flex-end; margin: -18px -18px 0 0; width: min(80%, 440px); height: auto;
-        filter: drop-shadow(0 28px 50px rgba(22, 21, 26, .32));
-      }
-
-      /* The sequence plays once: the agent stops, waits, the panel arrives, the answer lands. */
-      @media (prefers-reduced-motion: no-preference) {
-        .cc-term-body > span { opacity: 0; animation: cc-line .35s ease forwards; }
-        .l1 { animation-delay: .2s !important; }
-        .l2 { animation-delay: .7s !important; }
-        .l3 { animation-delay: 1.1s !important; }
-        .l4 { animation-delay: 1.6s !important; }
-        .l5 { animation-delay: 3.4s !important; }
-        .l6 { animation-delay: 3.9s !important; }
-        .cc-panel { opacity: 0; transform: translateY(14px) scale(.97); animation: cc-panel .55s cubic-bezier(.2,.8,.2,1) 2s forwards; }
-      }
-      @keyframes cc-line { to { opacity: 1; } }
-      @keyframes cc-panel { to { opacity: 1; transform: none; } }
-
-      /* The three moments: alternating copy and screenshot, no cards. */
-      .cc-moments { padding-bottom: var(--gap); }
-      .cc-moment { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: clamp(28px, 5vw, 72px); align-items: center; padding: clamp(28px, 4vw, 48px) 0; border-top: 1px solid var(--line); }
-      .cc-moment.flip { grid-template-columns: 1.2fr 0.8fr; }
-      .cc-moment.flip .cc-moment-copy { order: 2; }
-      .cc-moment h3, .cc-case h3, .cc-steps h3 { font-size: 1.28rem; letter-spacing: -0.02em; font-weight: 640; margin-bottom: 10px; }
-      .cc-moment p { color: var(--ink-2); max-width: 40ch; }
-      .cc-shot { margin: 0; }
-      .cc-shot img { display: block; width: 100%; max-width: 560px; height: auto; margin-inline: auto; filter: drop-shadow(0 22px 40px rgba(22, 21, 26, .18)); }
-
-      .cc-dictate { background: var(--paper-2); padding: var(--gap) 0; }
-      .cc-dictate-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(28px, 5vw, 72px); align-items: center; }
-      .cc-dictate-copy p { color: var(--ink-2); margin: 18px 0 26px; max-width: 44ch; }
-      .cc-keys { display: grid; gap: 10px; }
-      .cc-keys > div { display: grid; grid-template-columns: 84px 1fr; align-items: center; }
-      .cc-keys dd { color: var(--ink-2); font-size: .95rem; }
-      kbd { font-family: var(--font); font-size: .8rem; font-weight: 600; padding: 3px 7px; margin-right: 4px; border-radius: 6px; background: #fff; border: 1px solid var(--line); box-shadow: 0 1px 0 var(--line); }
-
-      .cc-cases { padding: var(--gap) 0; }
-      .cc-case-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px clamp(32px, 6vw, 88px); }
-      .cc-case p { color: var(--ink-2); max-width: 46ch; }
-
-      .cc-setup { padding: var(--gap) 0; border-top: 1px solid var(--line); }
-      .cc-setup-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 5vw, 72px); align-items: start; }
-      .cc-steps { list-style: none; counter-reset: step; margin-top: 34px; display: grid; gap: 30px; }
-      .cc-steps li { counter-increment: step; position: relative; padding-left: 44px; }
-      .cc-steps li::before {
-        content: counter(step); position: absolute; left: 0; top: 0; width: 28px; height: 28px; border-radius: 50%;
-        display: grid; place-items: center; font-size: .85rem; font-weight: 640; background: var(--ink); color: var(--paper);
-      }
-      .cc-steps p { color: var(--ink-2); }
-      .cc-steps a { color: var(--accent-ink); text-decoration: underline; text-underline-offset: 3px; }
-      .cc-cmd { display: block; margin-top: 10px; padding: 12px 14px; border-radius: 10px; background: #fff; border: 1px solid var(--line); font-family: var(--mono); font-size: .82rem; line-height: 1.7; overflow-x: auto; white-space: nowrap; }
-      .cc-settings figcaption { margin-top: 16px; color: var(--ink-3); font-size: .92rem; text-align: center; }
-
-      .cc-faq { padding: 0 0 var(--gap); }
-      .cc-faq details { border-top: 1px solid var(--line); padding: 18px 0; max-width: 760px; }
-      .cc-faq details:last-of-type { border-bottom: 1px solid var(--line); }
-      .cc-faq summary { cursor: pointer; font-weight: 600; font-size: 1.08rem; list-style: none; }
-      .cc-faq summary::-webkit-details-marker { display: none; }
-      .cc-faq summary::after { content: "+"; float: right; color: var(--ink-3); }
-      .cc-faq details[open] summary::after { content: "–"; }
-      .cc-faq details p { color: var(--ink-2); margin-top: 10px; max-width: 64ch; }
-
-      /* Grid items default to their content's width, and the unwrapped command lines would
-         otherwise push the page wider than a phone. */
-      .cc-hero-grid > *, .cc-moment > *, .cc-dictate-grid > *, .cc-setup-grid > *, .cc-case-list > * { min-width: 0; }
-
-      a:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
-
-      @media (max-width: 860px) {
-        .cc-hero-grid, .cc-moment, .cc-moment.flip, .cc-dictate-grid, .cc-setup-grid, .cc-case-list { grid-template-columns: 1fr; }
-        .cc-moment.flip .cc-moment-copy { order: 0; }
-        .cc-panel { margin-right: 0; width: 88%; }
-      }
-    </style>
+    <script>
+      import "../scripts/home-motion";
+      const toggle = document.querySelector<HTMLButtonElement>(".menu-toggle");
+      const nav = document.querySelector(".nav");
+      const closeMenu = () => { toggle?.setAttribute("aria-expanded", "false"); nav?.classList.remove("menu-open"); };
+      toggle?.addEventListener("click", () => {
+        const open = toggle.getAttribute("aria-expanded") !== "true";
+        toggle.setAttribute("aria-expanded", String(open));
+        nav?.classList.toggle("menu-open", open);
+      });
+      document.querySelectorAll(".nav-links a").forEach(link => link.addEventListener("click", closeMenu));
+      document.addEventListener("keydown", event => { if (event.key === "Escape") closeMenu(); });
+      document.querySelectorAll<HTMLButtonElement>(".cc-copy").forEach(button => {
+        button.addEventListener("click", async () => {
+          const command = button.parentElement!.querySelector("code")!.innerText;
+          const status = document.querySelector<HTMLElement>(".cc-copy-status")!;
+          try {
+            await navigator.clipboard.writeText(command);
+            status.textContent = "Copied. Paste the command into your terminal when you're ready.";
+            button.textContent = "Copied!";
+            setTimeout(() => { button.textContent = "Copy"; }, 2500);
+          } catch {
+            status.textContent = "Select the command and copy it manually.";
+          }
+        });
+      });
+    </script>
   </body>
 </html>
