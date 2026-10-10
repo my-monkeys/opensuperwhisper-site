@@ -9,6 +9,13 @@ export interface ChangeEntry {
 
 export const CHANGELOG: ChangeEntry[] = [
   {
+    version: "0.13.3",
+    date: "2026-10-10",
+    title: "Your previous clipboard comes back sooner, and you choose how soon",
+    summary:
+      "With Copy to clipboard off, OpenSuperWhisper borrows the clipboard for the paste and then puts back what you had copied before. That used to take a full second, long enough to notice when you copied or pasted right after a dictation. It now takes half a second by default, and Settings › Output has a slider for it under Copy to clipboard, from 150 ms to 2 s: lower gives your previous item back sooner, higher is safer if an app ever pastes the previous item instead of the dictation.",
+  },
+  {
     version: "0.13.2",
     date: "2026-10-10",
     title: "No more false \"Nothing was recorded\", and dictations stay out of your clipboard history",
