@@ -9,6 +9,13 @@ export interface ChangeEntry {
 
 export const CHANGELOG: ChangeEntry[] = [
   {
+    version: "0.13.2",
+    date: "2026-10-10",
+    title: "No more false \"Nothing was recorded\", and dictations stay out of your clipboard history",
+    summary:
+      "In toggle mode, pressing the shortcut to stop a recording and holding it a little too long made the release count as a second stop: the text was pasted as usual, then the bubble said the dictation was lost. The release now only stops a recording that is still running. And with Copy to clipboard off, the dictated text is marked as temporary while it is borrowed for the paste, so clipboard managers such as Raycast, Paste or Maccy no longer keep a copy of every dictation, and what you had copied before comes back on top.",
+  },
+  {
     version: "0.13.1",
     date: "2026-10-10",
     title: "Codex gets its own place in the Agents panel",
