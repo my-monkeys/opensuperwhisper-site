@@ -15,24 +15,24 @@ const moments = [
   {
     id: "done",
     img: "/screenshots/agents/stop.png",
-    alt: "Illustration of the panel with completed project search and a field to answer",
-    width: 1280, height: 1000, illustrated: true,
+    alt: "The panel after Claude Code finished: a short summary with a list and code, and a field to answer",
+    width: 1144, height: 786, illustrated: false,
     title: "When it finishes",
     body: "The panel shows which session it is and what Claude said last, with its formatting kept intact. Say what to do next and Claude carries on with it.",
   },
   {
     id: "permission",
     img: "/screenshots/agents/permission.png",
-    alt: "The panel asking to allow pnpm build, with Allow and Deny",
-    width: 1280, height: 880, illustrated: false,
+    alt: "The panel asking to allow a git push, with the command, Allow and Deny",
+    width: 1144, height: 742, illustrated: false,
     title: "When it needs your permission",
     body: "You see the command, the file or the address before anything runs. Allow it, deny it, or say what to do instead. A spoken yes or no is enough.",
   },
   {
     id: "question",
     img: "/screenshots/agents/question.png",
-    alt: "The panel asking which project fields to search, with three options",
-    width: 1280, height: 1200, illustrated: false,
+    alt: "The panel asking a question with two options and a field to answer in your own words",
+    width: 1144, height: 832, illustrated: false,
     title: "When it asks you something",
     body: "Its options are listed to click. Saying the name of one picks it, and anything else you say goes back as your own answer.",
   },
@@ -72,11 +72,11 @@ const faq = [
   },
   {
     q: "Which agents does it work with?",
-    a: "Claude Code, and Codex since 0.13.1. Codex picks up the same plugin on its own; it gets its own switch in Settings › Agents, off until you turn it on, and asks once to trust the hooks. Codex's multiple-choice questions stay in its terminal for now.",
+    a: "Claude Code, and Codex since 0.13.1. Codex picks up the same plugin on its own; it gets its own switch in Settings › Assistants, off until you turn it on, and asks once to trust the hooks. Codex's multiple-choice questions stay in its terminal for now.",
   },
   {
     q: "Can I keep it off for some projects?",
-    a: "Yes. Settings › Agents lists every project an agent has asked from, each with its own switch, and you can turn each moment on or off.",
+    a: "Yes. Settings › Assistants lists every project an agent has asked from, each with its own switch, and you can turn each moment on or off.",
   },
 ];
 
@@ -159,7 +159,7 @@ const jsonLd = {
 <span class="l6"><em>⏺</em> Working on the next change…</span></pre>
             </div>
             <span class="cc-stage-label">Your reply, one shortcut away. · Illustrative demo</span>
-            <img class="cc-panel" src="/screenshots/agents/stop.png" alt="" width="1280" height="1000" />
+            <img class="cc-panel" src="/screenshots/agents/stop.png" alt="" width="1144" height="786" />
           </div>
         </div>
       </section>
@@ -240,7 +240,7 @@ const jsonLd = {
               </li>
               <li>
                 <h3>Add the plugin</h3>
-                <p>In Settings › Agents, click Install the plugin. It goes through Claude Code's own plugin command. From a terminal, the same thing is:</p>
+                <p>In Settings › Assistants, click Install the plugin. It goes through Claude Code's own plugin command. From a terminal, the same thing is:</p>
                 <div class="cc-command"><code class="cc-cmd">claude plugin marketplace add my-monkeys/OpenSuperWhisper<br />claude plugin install opensuperwhisper@opensuperwhisper</code><button class="cc-copy" type="button" aria-label="Copy Claude Code plugin commands">Copy</button></div>
               </li>
               <li>
@@ -251,7 +251,7 @@ const jsonLd = {
             <p class="cc-copy-status" role="status" aria-live="polite"></p>
           </div>
           <figure class="cc-shot cc-settings">
-            <a href="/screenshots/agents/settings.png" target="_blank" rel="noopener" aria-label="View Agents settings full size"><img src="/screenshots/agents/settings.png" alt="Agents settings in OpenSuperWhisper 0.13.1: Answer Claude Code, three enabled events, a five-minute wait and per-project controls" loading="lazy" width="1800" height="1440" /></a>
+            <a href="/screenshots/agents/settings.png" target="_blank" rel="noopener" aria-label="View Assistants settings full size"><img src="/screenshots/agents/settings.png" alt="Assistants settings in OpenSuperWhisper 0.14: Claude Code connected and answered, Codex found, and the three events that show the panel" loading="lazy" width="2280" height="1640" /></a>
             <figcaption>Choose which moments bring the panel up, how long it waits, and which projects use it.</figcaption>
           </figure>
         </div>

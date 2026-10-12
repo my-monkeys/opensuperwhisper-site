@@ -9,6 +9,13 @@ export interface ChangeEntry {
 
 export const CHANGELOG: ChangeEntry[] = [
   {
+    version: "0.14.0",
+    date: "2026-10-12",
+    title: "A new look, and Apple Intelligence for AI cleanup",
+    summary:
+      "The whole app is redesigned, and nothing you rely on went away. Home replaces the history list and shows your dictations by day, with filters for files and errors. The dictionary is a page of its own, with corrections that gather every way a word gets misheard and a live test. Style › Per app sets the model, paste or type, and formatting rules for each app on one line. Settings open over the window in eight sections, with an Advanced switch in each and a search that finds any setting. On macOS 26, Format with AI can use Apple Intelligence, on-device with nothing to download. Also fixed: filler-word removal keeping dictionary line breaks, paste on Dvorak and Colemak, a cleanup reply that repeated its own instructions, and selecting a whole reply in the Claude Code panel.",
+  },
+  {
     version: "0.13.3",
     date: "2026-10-10",
     title: "Your previous clipboard comes back sooner, and you choose how soon",

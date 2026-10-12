@@ -13,7 +13,7 @@ const fmtDate = (d: string) =>
   new Date(d).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
 
 const stats = [
-  { n: "3", plus: "+1", l: "engines", sub: "on-device, plus your own server" },
+  { n: "4", plus: "+1", l: "engines", sub: "on-device, plus your own server" },
   { n: "99", l: "languages", sub: "auto-detected as you speak" },
   { n: "0", l: "accounts", sub: "no sign-up, no telemetry" },
   { n: "$0", l: "forever", sub: "free & MIT-licensed" },
@@ -34,24 +34,24 @@ const features = [
     body: "Dictate in any of ~99 languages and get clean English out in a single shortcut — Whisper handles the recognition and the translation in one pass.",
     cap: "",
     viz: `<div class="vz vz-tr"><span class="vz-from">« Envoyez le rapport avant ce soir »</span><span class="vz-arrow">→</span><span class="vz-to">“Send the report by tonight.”</span></div>` },
-  { num: "04", name: "Dictionary", title: "Custom dictionary",
-    body: "Teach it your proper nouns and jargon — names, acronyms, product names — and they come out verbatim every time instead of being mangled into something close.",
-    cap: "boosts recognition + applies replacements",
+  { num: "04", name: "Dictionary", title: "A dictionary of your words",
+    body: "Teach it your proper nouns and jargon: names, acronyms, product names. New words are recognised better, corrections rewrite what it misheard, and a live test shows the result before you save.",
+    cap: "new words · corrections with variants · live test",
     viz: `<div class="vz vz-chips"><span>Kubernetes</span><span>OAuth2</span><span>Saanvi</span><span>GraphQL</span><span>My-Monkey</span></div>` },
   { num: "05", name: "Drop the filler", title: "Drop the filler",
-    body: "Strips “um”, “uh” and the other verbal tics automatically, fixes sentence spacing, and never pastes “No speech detected” into your document when you pause.",
+    body: "Strips “um”, “uh” and the other verbal tics automatically and keeps the spacing between dictations right. Line breaks your dictionary inserts stay where they are.",
     cap: "",
     viz: `<div class="vz vz-filler"><span class="vz-strike">um,</span> <span class="vz-strike">so like,</span> just send it <span class="vz-strike">you know</span> <span class="vz-arrow">→</span> <b>Just send it.</b></div>` },
-  { num: "06", name: "AI cleanup", title: "AI cleanup via Ollama",
-    body: "Punctuation, casing and rambling, tidied by a local Ollama model running on your own machine. Your words never leave your Mac.",
-    cap: "opt-in · fully on-device",
-    viz: `<div class="vz vz-clean"><span class="cd-before">um so like send the the report to alex ok</span><span class="vz-arrow">↓ Ollama</span><span class="cd-after">Send the report to Alex.</span></div>` },
+  { num: "06", name: "AI cleanup", title: "AI cleanup, on your Mac",
+    body: "Punctuation, casing and rambling, tidied by Apple Intelligence on macOS 26 with nothing to download, or by the built-in Qwen model, a local Ollama server, or your own endpoint. If the model misbehaves, your words are pasted as you said them.",
+    cap: "opt-in · on-device by default",
+    viz: `<div class="vz vz-clean"><span class="cd-before">um so like send the the report to alex ok</span><span class="vz-arrow">↓ Apple Intelligence</span><span class="cd-after">Send the report to Alex.</span></div>` },
   { num: "07", name: "Model per app", title: "Model per app",
     body: "Bind a model to an app — or a website in supported browsers — and it switches automatically when you dictate there. A fast model for chat, an accurate one for email, a specialized one for your editor.",
-    cap: "Rules · switches at record-start, from the menu bar",
+    cap: "Style › Per app · switches at record-start, or from the menu bar",
     viz: `<div class="vz vz-chips"><span>Mail → Whisper large</span><span>Slack → Parakeet</span><span>docs.google.com → Remote</span></div>` },
-  { num: "08", name: "History", title: "History that remembers",
-    body: "Every dictation records where it happened — app, window, site — and which model transcribed it. Failed dictations keep their audio with a retry button instead of vanishing.",
+  { num: "08", name: "Home", title: "Every dictation, at hand",
+    body: "Home lists your dictations by day, with the app they went to and the model that wrote them. Filter files and errors, search with ⌘K, play one back. Failed dictations keep their audio with a retry button instead of vanishing.",
     cap: "rerun ↻ with any model · or turn history off entirely",
     viz: `<div class="vz vz-chips"><span>Mail · 12s · Parakeet v3</span><span>github.com · 31s · Whisper</span></div>` },
   { num: "09", name: "Your server", title: "Bring your own server",
@@ -68,22 +68,26 @@ const engines = [
   { name: "Whisper", desc: "The reference. ~99 languages, six sizes, can translate to English.", cloud: false },
   { name: "Parakeet", desc: "Fast, with a live preview as you speak. 25 European languages.", cloud: false },
   { name: "SenseVoice", desc: "Non-autoregressive and quick — Chinese, Cantonese, English, Japanese, Korean.", cloud: false },
+  { name: "Apple Speech", desc: "Built into macOS 26. Nothing to download: macOS manages the models.", cloud: false },
   { name: "Remote", desc: "Any OpenAI-compatible server — Groq preset, LiteLLM, or your own box. With a local fallback if it's unreachable.", cloud: true },
 ];
 
 const shots = [
-  { img: "/screenshots/history.png", alt: "Transcription history", cap: "History", g: "", width: 1120, height: 1360,
-    title: "A history that remembers",
-    body: "Every dictation with its source app, site, duration and the model that transcribed it. Rerun any entry with a different model — or turn history off entirely." },
-  { img: "/screenshots/remote-engine.png", alt: "Remote engine settings", cap: "Remote engine", g: "g2", width: 1800, height: 1440,
-    title: "Any server, your rules",
-    body: "Point it at any OpenAI-compatible endpoint, test the connection, pick from the server's speech-to-text models. Save your own presets; fall back to a local model if the server is down." },
-  { img: "/screenshots/app-context.png", alt: "Rules — per-app and per-site model rules", cap: "Rules", g: "g3", width: 1800, height: 1440,
+  { img: "/screenshots/home.png", alt: "The home screen: a greeting with the shortcut and the active model, then today's dictations with their app and model", cap: "Home", g: "", width: 2280, height: 1640,
+    title: "Your dictations, at hand",
+    body: "Every dictation with the app it went to and the model that wrote it, grouped by day. Filter files and errors, copy, play back, or rerun one with another model. Or turn history off entirely." },
+  { img: "/screenshots/dictionary.png", alt: "The dictionary entry editor: a correction that always writes OpenSuperWhisper, with its misheard variants and a live test", cap: "Dictionary", g: "g2", width: 2280, height: 1640,
+    title: "Spelled your way",
+    body: "New words are recognised better. Corrections gather every way the model mishears a word on one line, and a live test shows the result before you save." },
+  { img: "/screenshots/style.png", alt: "The Style page: writing styles coming soon, the per-app rules and an app with its insertion mode and model", cap: "Per app", g: "g3", width: 2280, height: 1640,
     title: "The right model, per app",
-    body: "Bind a model to an app or a website and it switches automatically when you dictate there — managed here or from the menu-bar picker." },
-  { img: "/screenshots/recording-settings.png", alt: "Dictation settings", cap: "Dictation", g: "g4", width: 1800, height: 1440,
+    body: "Bind a model to an app or a website and it switches automatically when you dictate there. The same line sets whether to paste or type, and the formatting rules for AI cleanup." },
+  { img: "/screenshots/remote-engine.png", alt: "Settings, Models: the five engines with the server selected, a Groq preset and the connection check", cap: "Remote engine", g: "g2", width: 2280, height: 1640,
+    title: "Any server, your rules",
+    body: "Point it at any OpenAI-compatible endpoint, test the connection, pick from the server's speech-to-text models. Save your own presets, and fall back to a local model if the server is down." },
+  { img: "/screenshots/dictation-settings.png", alt: "Settings, Dictation: the shortcut, the cancel key, the microphone and the spoken language", cap: "Dictation", g: "g4", width: 2280, height: 1640,
     title: "Tune how you record",
-    body: "Combo or single-modifier shortcut, hold-to-record, indicator position — cursor, screen edge or notch — and optional Stop / Cancel buttons on the bubble." },
+    body: "A key combination, a modifier on its own, two modifiers or a mouse button. Hold to talk or tap to toggle, end with a spoken stop phrase, and place the bubble near the cursor, at an edge or in the notch." },
 ];
 ---
 
@@ -93,7 +97,7 @@ const shots = [
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>OpenSuperWhisper — Free Voice Dictation for Mac · SuperWhisper Alternative</title>
-    <meta name="description" content="OpenSuperWhisper is the free, open-source alternative to SuperWhisper — voice dictation in any app on your Mac, with three on-device engines and an optional remote engine. No subscription, no account. Compare the models head-to-head." />
+    <meta name="description" content="OpenSuperWhisper is the free, open-source alternative to SuperWhisper — voice dictation in any app on your Mac, with four on-device engines and an optional remote engine. No subscription, no account. Compare the models head-to-head." />
     <link rel="icon" href="/icon.png" type="image/png" />
     <link rel="apple-touch-icon" href="/icon.png" />
     <link rel="canonical" href="https://opensuperwhisper.com/" />
@@ -235,7 +239,7 @@ const shots = [
 
     <section id="engines" class="engines">
       <div class="wrap">
-        <p class="eyebrow">Four engines, one app</p>
+        <p class="eyebrow">Five engines, one app</p>
         <h2 class="h2">Choose the trade-off that fits.</h2>
         <div class="engine-grid">
           {engines.map((e) => (
@@ -258,17 +262,17 @@ const shots = [
         {shots.map((s, i) => (
           <div class={`shot-row ${i % 2 ? "rev" : ""}`}>
             <div class={`shot-fig ${s.g}`}>
-              {s.cap === "Rules" && <ProductVideo name="app-switch" title="Your apps. Their own models." description="Illustration of Messages using Parakeet Ultra and Mail using Whisper large-v3, with a separate model rule for each app." poster="/screenshots/app-switch-poster.png" width={1600} height={1200} />}
-              <button class:list={["shot-zoom", { "shot-detail": s.cap === "Rules" }]} type="button" aria-label={`View ${s.cap} full size`}>
+              {s.cap === "Per app" && <ProductVideo name="app-switch" title="Your apps. Their own models." description="Illustration of Messages using Parakeet Ultra and Mail using Whisper large-v3, with a separate model rule for each app." poster="/screenshots/app-switch-poster.png" width={1600} height={1200} />}
+              <button class:list={["shot-zoom", { "shot-detail": s.cap === "Per app" }]} type="button" aria-label={`View ${s.cap} full size`}>
                 <img src={s.img} alt={s.alt} loading="lazy" width={s.width} height={s.height} />
-                {s.cap === "Rules" && <span>See the app and website rules ↗</span>}
+                {s.cap === "Per app" && <span>See the per-app rules ↗</span>}
               </button>
             </div>
             <div class="shot-txt">
               <span class="shot-cap">{s.cap}</span>
               <h3>{s.title}</h3>
               <p>{s.body}</p>
-              {s.cap === "Dictation" && <button class="shot-zoom shot-detail appearance-detail" type="button" aria-label="View Appearance full size"><img src="/screenshots/appearance-settings.png" alt="Appearance settings with the indicator near the cursor and Stop and Cancel enabled" width="1800" height="1440" loading="lazy" /><span>See indicator appearance settings ↗</span></button>}
+              {s.cap === "Dictation" && <button class="shot-zoom shot-detail appearance-detail" type="button" aria-label="View Appearance full size"><img src="/screenshots/appearance-settings.png" alt="Appearance settings: the bubble elements in order, with the waveform and label on" width="2280" height="1640" loading="lazy" /><span>See indicator appearance settings ↗</span></button>}
             </div>
           </div>
         ))}
@@ -287,7 +291,7 @@ const shots = [
         <p class="eyebrow">Private by default</p>
         <h2 class="h2">Your words.<br /><em>No eavesdroppers.</em></h2>
         <div class="pv-grid">
-          <div class="pv"><span class="pv-k">01 — ON-DEVICE</span><h3>Nothing leaves by default</h3><p>Three of the four engines run entirely on your machine. No account, no telemetry, no analytics in the app.</p></div>
+          <div class="pv"><span class="pv-k">01 — ON-DEVICE</span><h3>Nothing leaves by default</h3><p>Four of the five engines run entirely on your machine. No account, no telemetry, no analytics in the app.</p></div>
           <div class="pv"><span class="pv-k">02 — EXPLICIT</span><h3>The cloud is opt-in, and labeled</h3><p>The only network path is the Remote engine — which you configure yourself, and which says plainly where your audio goes.</p></div>
           <div class="pv"><span class="pv-k">03 — YOURS</span><h3>History you control</h3><p>Keep everything, cap it by count or age, or turn it off entirely — nothing is persisted.</p></div>
         </div>
