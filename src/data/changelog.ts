@@ -9,6 +9,13 @@ export interface ChangeEntry {
 
 export const CHANGELOG: ChangeEntry[] = [
   {
+    version: "0.14.1",
+    date: "2026-10-13",
+    title: "See and fix your microphone level",
+    summary:
+      "The microphone menus on Home and in Settings › Dictation now show a live input level: red when the app barely hears you, orange when it is usable, green when it hears you well, and a note if nothing reaches a speaking level within a few seconds. An Input volume slider sits right under it, the same setting as System Settings › Sound, with Set to maximum one click away when the mic is too quiet. Dictations recorded far too quiet are lifted before transcription, so a weak microphone gives you words instead of nonsense. Feedback, above Settings in the sidebar, opens a short form to report a bug or share an idea, with the app details it adds shown in full and easy to switch off. With live text on, the Claude Code and Codex panel shows what you are saying while you dictate a reply, two lines that scroll as you speak. Also fixed: the bubble's waveform following the microphone you dictate with after a switch, an agent's question showing up as a block of JSON, and a reply that ended too early sending your next dictation to the agent.",
+  },
+  {
     version: "0.14.0",
     date: "2026-10-12",
     title: "A new look, and Apple Intelligence for AI cleanup",
