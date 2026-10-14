@@ -9,6 +9,13 @@ export interface ChangeEntry {
 
 export const CHANGELOG: ChangeEntry[] = [
   {
+    version: "0.14.2",
+    date: "2026-10-14",
+    title: "Back to the agent's terminal in one click",
+    summary:
+      "The Claude Code and Codex panel has a terminal button next to the close button, and ⌘O does the same while the panel has focus. It takes you to where the session runs. In Warp that is the exact window, tab and pane, through the link every Warp pane carries, with no permission to grant. Any other terminal or editor is brought to the front, and so is Warp when the agent runs inside tmux, zellij or screen, where the link would point at the wrong pane. The panel stays on screen and the request keeps waiting, so you can read the whole session and still answer by voice.",
+  },
+  {
     version: "0.14.1",
     date: "2026-10-13",
     title: "See and fix your microphone level",

@@ -55,6 +55,10 @@ const cases = [
     title: "Approvals that don't break your focus",
     body: "The panel opens without taking the keyboard, so whatever you are typing elsewhere keeps its keystrokes. Click into it when you are ready.",
   },
+  {
+    title: "The terminal is one click away",
+    body: "When a request needs a closer look, the terminal button in the panel, or ⌘O, brings the agent's terminal or editor to the front. In Warp it lands on the exact tab and pane. The request keeps waiting, so you can answer from either side.",
+  },
 ];
 
 const faq = [
@@ -73,6 +77,10 @@ const faq = [
   {
     q: "Which agents does it work with?",
     a: "Claude Code, and Codex since 0.13.1. Codex picks up the same plugin on its own; it gets its own switch in Settings › Assistants, off until you turn it on, and asks once to trust the hooks. Codex's multiple-choice questions stay in its terminal for now.",
+  },
+  {
+    q: "Can I get back to the agent's terminal from the panel?",
+    a: "Yes. The terminal button next to the close button, or ⌘O while the panel has focus, brings back where the session runs. In Warp that is the exact window, tab and pane, with no permission to grant. Any other terminal or editor comes to the front, and so does Warp when the agent runs inside tmux, zellij or screen. The panel stays on screen and the request keeps waiting.",
   },
   {
     q: "Can I keep it off for some projects?",
@@ -136,7 +144,7 @@ const jsonLd = {
             <p class="lead">
               When Claude Code finishes, needs a permission or asks a question, OpenSuperWhisper
               shows it in a panel in the corner of your screen. Answer out loud and it carries on.
-              The terminal can stay behind your other windows.
+              The terminal can stay behind your other windows, and one click brings it back.
             </p>
             <div class="cc-actions">
               <a class="btn hero-download" href="#setup" data-umami-event="download-cta" data-umami-event-loc="cc-hero">Let’s team up <span aria-hidden="true">↗</span></a>
@@ -206,6 +214,7 @@ const jsonLd = {
               <div><dt><kbd>⏎</kbd></dt><dd>Send, or stop and send while you speak</dd></div>
               <div><dt><kbd>⇧</kbd><kbd>⏎</kbd></dt><dd>New line</dd></div>
               <div><dt><kbd>esc</kbd></dt><dd>Throw the recording away</dd></div>
+              <div><dt><kbd>⌘</kbd><kbd>O</kbd></dt><dd>Go to the agent's terminal</dd></div>
             </dl>
           </div>
         </div>
