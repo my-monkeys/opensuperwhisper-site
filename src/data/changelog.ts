@@ -10,10 +10,10 @@ export interface ChangeEntry {
 export const CHANGELOG: ChangeEntry[] = [
   {
     version: "0.14.2",
-    date: "2026-10-14",
-    title: "Back to the agent's terminal in one click",
+    date: "2026-10-18",
+    title: "Writing styles, seven full languages, and your settings on every Mac",
     summary:
-      "The Claude Code and Codex panel has a terminal button next to the close button, and ⌘O does the same while the panel has focus. It takes you to where the session runs. In Warp that is the exact window, tab and pane, through the link every Warp pane carries, with no permission to grant. Any other terminal or editor is brought to the front, and so is Warp when the agent runs inside tmux, zellij or screen, where the link would point at the wrong pane. The panel stays on screen and the request keeps waiting, so you can read the whole session and still answer by voice.",
+      "AI cleanup can now write in a style: Raw keeps your words and only corrects them, Pro writes full careful sentences, Personal stays relaxed, and you can write your own with a few words on tone, spelling and the terms to use. Any app can get its own style from the Style page, and the menu bar switches the default. Snippets turn a short spoken phrase into your email or a signature. Your history keeps what the engine heard next to the cleaned text, and the dictionary offers to learn a name you fix by hand right after a dictation. Pasting is sturdier: your clipboard comes back once the app has really read the paste, a paste that misses says so, and the text returns to the field you started in. Backup and sync exports everything to one file, or to a secret GitHub gist, with API keys left in your Keychain. The interface is now complete in English, French, German, Spanish, Italian, Portuguese, Vietnamese and Simplified Chinese. The Claude Code and Codex panel opens the agent's terminal with ⌘O, down to the exact Warp tab. Also fixed: a tap held a little long losing the dictation, Settings closing when you change the text size, and separate switches for the start and end sounds.",
   },
   {
     version: "0.14.1",
