@@ -9,6 +9,13 @@ export interface ChangeEntry {
 
 export const CHANGELOG: ChangeEntry[] = [
   {
+    version: "0.14.3",
+    date: "2026-10-20",
+    title: "Failed dictations try again, and Parakeet boosts your words faster",
+    summary:
+      "A transcription that fails now tries once more on its own, and the bubble says so. If the second try fails too, the engine's own error shows on the bubble and on the dictation's row in Home, and clicking ↻ reruns it with the model you use, no menu in the way. With dictionary words or snippet triggers boosted, Parakeet no longer reloads its models on every dictation: it transcribes as usual and corrects the result toward your words, about 45% faster and slightly more accurate. Writing styles gain a shortcut that steps to the next style, and each dictation in Home shows the style it was written in, with a Rewrite in a style option that redoes the cleanup without transcribing again. Also fixed: Qwen 7B showing as downloading at 100% after Qwen 1.5B.",
+  },
+  {
     version: "0.14.2",
     date: "2026-10-18",
     title: "Writing styles, seven full languages, and your settings on every Mac",
