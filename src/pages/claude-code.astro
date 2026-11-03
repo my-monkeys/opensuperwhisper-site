@@ -3,6 +3,7 @@ import "../styles/global.css";
 import "../styles/next.css";
 import "../styles/redesign.css";
 import "../styles/claude-code.css";
+import { DMG_APPLE_SILICON, DMG_INTEL } from "../data/download";
 import MoreProjects from "../components/MoreProjects.astro";
 import Support from "../components/Support.astro";
 import ProductVideo from "../components/ProductVideo.astro";
@@ -283,7 +284,8 @@ const jsonLd = {
         <div class="wrap">
           <p class="eyebrow">Your next instruction is ready when you are</p>
           <h2 class="h2">Go on.<br /><em>Talk to your agent.</em></h2>
-          <a class="btn hero-download" href={`${GH}/releases/latest`} data-umami-event="download" data-umami-event-loc="cc-bottom">Download for Mac ↗</a>
+          <a class="btn hero-download" href={DMG_APPLE_SILICON} data-umami-event="download" data-umami-event-loc="cc-bottom">Download for Mac ↗</a>
+          <p class="dl-intel cc-intel">For Apple Silicon Macs. <a href={DMG_INTEL} data-umami-event="download" data-umami-event-loc="cc-bottom-intel">Intel Mac version</a></p>
           <a class="cc-text-link" href="/">Explore all of OpenSuperWhisper →</a>
         </div>
       </section>

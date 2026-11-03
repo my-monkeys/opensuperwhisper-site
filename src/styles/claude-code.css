@@ -91,6 +91,7 @@
 .claude-page .cc-outro { background: #f5bca0; padding: 80px 0; text-align: center; }
 .claude-page .cc-outro .h2 { margin-top: 20px; }
 .claude-page .cc-outro .cc-text-link { display: block; margin-top: 25px; }
+.claude-page .cc-outro .cc-intel { margin-top: 14px; }
 .claude-page .cc-hero-grid > *, .claude-page .cc-moment > *, .claude-page .cc-dictate-grid > *, .claude-page .cc-setup-grid > *, .claude-page .cc-case-list > * { min-width: 0; }
 @media (max-width: 960px) {
   .claude-page .cc-hero-grid { gap: 32px; }

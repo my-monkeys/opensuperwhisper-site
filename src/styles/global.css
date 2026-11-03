@@ -290,3 +290,8 @@ section { padding: clamp(72px, 11vw, 130px) 0; }
 @media (prefers-reduced-motion: reduce) {
   .section-glow, .hero-glow, .dc-wave span, .float-chip, .dc-dot { animation: none !important; }
 }
+
+/* Under a button that downloads the Apple Silicon build: the way to the Intel one. */
+.dl-intel { font-size: .8rem; color: var(--ink-2); }
+.dl-intel a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+.dl-intel a:hover { color: var(--ink); }

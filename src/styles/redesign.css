@@ -169,6 +169,8 @@ body.redesign {
 .redesign .get .lead { color: var(--ink-2); margin: 25px auto; max-width: 49ch; }
 .redesign .get .hero-actions { justify-content: center; flex-direction: column; align-items: center; gap: 15px; }
 .redesign .get .btn-primary { background: var(--ink); color: var(--paper); order: -1; }
+/* Stays under the button, which is moved above the Homebrew command. */
+.redesign .get .get-intel { order: -1; margin: -5px 0 8px; }
 .redesign .get .cmd { background: transparent; border: 1px solid #c58a71; color: var(--ink); padding: 12px 16px; border-radius: 6px; cursor: pointer; gap: 10px; max-width: 100%; font-size: .76rem; }
 .redesign .cmd code { font: inherit; overflow-wrap: anywhere; min-width: 0; text-align: left; }
 .redesign .get .cmd .prompt { color: var(--ink-3); }

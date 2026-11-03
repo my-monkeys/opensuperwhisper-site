@@ -7,6 +7,7 @@ import Support from "../components/Support.astro";
 import MoreProjects from "../components/MoreProjects.astro";
 import ProductVideo from "../components/ProductVideo.astro";
 import { CHANGELOG } from "../data/changelog";
+import { DMG_APPLE_SILICON, DMG_INTEL } from "../data/download";
 
 const latestChange = CHANGELOG[0];
 const fmtDate = (d: string) =>
@@ -133,11 +134,11 @@ const shots = [
         <p class="eyebrow hero-kicker"><span aria-hidden="true"></span> A little app. A lot to say.</p>
         <h1 id="hero-heading" aria-label="Big thoughts. Little shortcut."><span class="headline-line">Big thoughts.</span><span class="headline-line coral-type">Little</span><span class="headline-line">shortcut<span class="headline-dot">.</span></span></h1>
         <p class="voice-hero-lead">Your brain has places to be. Let your voice do the typing.<br />Free, private dictation for every app on your Mac.</p>
-        <a class="btn hero-download" href="https://github.com/my-monkeys/OpenSuperWhisper/releases" data-umami-event="download" data-umami-event-loc="hero">
+        <a class="btn hero-download" href={DMG_APPLE_SILICON} data-umami-event="download" data-umami-event-loc="hero">
           <svg viewBox="0 0 24 24" width="19" height="19" fill="currentColor" aria-hidden="true"><path d="M16.8 12.8c0-2 1.6-3 1.7-3.1-1-1.4-2.5-1.6-3-1.6-1.3-.1-2.5.8-3.2.8-.6 0-1.6-.8-2.7-.8-1.4 0-2.8.8-3.5 2-1.5 2.5-.4 6.3 1 8.3.7 1 1.5 2 2.5 1.9 1-.1 1.4-.6 2.7-.6 1.2 0 1.6.6 2.7.6s1.8-1 2.5-1.9c.8-1.1 1.1-2.2 1.1-2.3-.1 0-1.8-.7-1.8-3.3ZM14.7 6.8c.6-.8 1.1-1.8 1-2.8-1 .1-2.1.7-2.8 1.4-.6.7-1.2 1.8-1 2.8 1 .1 2.1-.5 2.8-1.4Z"/></svg>
           Download for Mac <span aria-hidden="true">↗</span>
         </a>
-        <p class="hero-requirements">macOS 14+ · Apple Silicon &amp; Intel · Free forever</p>
+        <p class="hero-requirements dl-intel">macOS 14+ · Free forever · Intel Mac? <a href={DMG_INTEL} data-umami-event="download" data-umami-event-loc="hero-intel">Get this one</a></p>
         <a class="hero-source" href="/superwhisper-alternative">An open-source alternative to SuperWhisper <span aria-hidden="true">→</span></a>
 
         <div class="hero-mini-note"><span class="shortcut-key">⌥</span><span>Hold. Talk. Let go.<br /><strong>Yep, that's the whole thing.</strong></span></div>
@@ -342,7 +343,8 @@ const shots = [
         <p class="lead">Big ideas, quick replies, that thing you almost forgot. Get it out of your head and onto your Mac. Free, forever.</p>
         <div class="hero-actions">
           <button class="cmd copy-install" type="button" aria-label="Copy Homebrew install command"><span class="prompt">$</span><code>brew install --cask my-monkeys/tap/opensuperwhisper</code><span class="copy-label">Copy</span></button><span class="copy-status" role="status" aria-live="polite"></span>
-          <a class="btn btn-primary" href="https://github.com/my-monkeys/OpenSuperWhisper/releases" data-umami-event="download" data-umami-event-loc="get">Download for macOS</a>
+          <a class="btn btn-primary" href={DMG_APPLE_SILICON} data-umami-event="download" data-umami-event-loc="get">Download for macOS</a>
+          <p class="dl-intel get-intel">For Apple Silicon Macs. <a href={DMG_INTEL} data-umami-event="download" data-umami-event-loc="get-intel">Intel Mac version</a></p>
         </div>
       </div>
     </section>
