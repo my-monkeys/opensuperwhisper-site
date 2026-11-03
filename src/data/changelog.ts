@@ -9,6 +9,13 @@ export interface ChangeEntry {
 
 export const CHANGELOG: ChangeEntry[] = [
   {
+    version: "0.15.0",
+    date: "2026-11-03",
+    title: "AI cleanup per app and per site, and dictations you can't lose",
+    summary:
+      "A new Per app page lists the apps you dictate into, with badges for each one's style, paste or type, model and formatting, and a switch that turns an app's settings off without losing them. AI cleanup can now run in a few apps only, and a site in your browser can have its own choice and style: Gmail cleaned up in Pro while the rest of the browser keeps your words as said. Spoken punctuation turns \"comma\" or \"new line\" into punctuation in any language, each dictation says which model cleaned it up or why it failed, and every dictionary word reaches the cleanup. Remote desktops get your text typed key by key, in the other computer's keyboard layout. Unfinished and failed dictations are kept and offered back after a crash, the bubble warns when the microphone hears nothing, and settings can back up to iCloud Drive. Settings open in their own window and ⌘Q keeps the app in the menu bar. Video files can be transcribed, the regenerate panel reruns a dictation with another model or style, and installing is easier: the disk image shows where to drag the app, which offers to move itself to Applications if you open it from the wrong place. Also fixed: a Bluetooth headset stuck in call mode while idle, a late live preview, and scrambled text in terminal apps on a fresh install.",
+  },
+  {
     version: "0.14.3",
     date: "2026-10-20",
     title: "Failed dictations try again, and Parakeet boosts your words faster",
