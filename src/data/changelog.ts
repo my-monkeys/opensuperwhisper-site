@@ -9,6 +9,13 @@ export interface ChangeEntry {
 
 export const CHANGELOG: ChangeEntry[] = [
   {
+    version: "0.15.1",
+    date: "2026-11-08",
+    title: "A bubble that stays visible, and bug reports with audio",
+    summary:
+      "A stability release. The bubble no longer disappears after a few hours over full-screen apps, and in Chrome, Dia and other apps that give no text cursor it now follows the mouse instead of landing in the top-left corner of the screen. A dictation started in Dia and finished while you were in another app goes back to Dia. With the language set to follow the keyboard layout and AI cleanup on, 0.15.0 could crash as a dictation was cleaned up; that is fixed. After the update the app asks once for bug reports, with an email field for a reply, and reports can now carry the audio: Report this transcription saves and sends in one step, with the recording included unless you switch it off, and the Feedback card can attach the audio of a recent dictation. Also: the active Remote model stays in view above the list, and pi and oh-my-pi are answered as agents of their own.",
+  },
+  {
     version: "0.15.0",
     date: "2026-11-03",
     title: "AI cleanup per app and per site, and dictations you can't lose",
