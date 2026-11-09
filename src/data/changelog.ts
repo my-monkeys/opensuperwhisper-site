@@ -9,6 +9,13 @@ export interface ChangeEntry {
 
 export const CHANGELOG: ChangeEntry[] = [
   {
+    version: "0.15.2",
+    date: "2026-11-09",
+    title: "Your microphone survives sleep, and stop and cancel behave",
+    summary:
+      "A reliability release, with most of its fixes taken from the original OpenSuperWhisper project. The app now reads its list of microphones from CoreAudio, so listing them can no longer hang the launch, and the microphone you picked comes back after sleep instead of being forgotten until the next launch. AirPods count as an external microphone, and the menu bar's Microphone submenu can go back to System Default. After you stop with the bubble's button, the next press of your shortcut starts a new recording, Esc cancels a dictation that is still transcribing, and a cancelled dictation is no longer saved or inserted. Granting Accessibility or Input Monitoring turns your shortcuts on without a relaunch, and the Recent submenu can copy your latest dictation. Crash reporting is now translated, in Settings and in the alert after a crash. Parakeet moves to FluidAudio 0.18.3, which fixes blank output from the dictionary boost on M1 and M4 Macs under macOS 27 and resumes interrupted model downloads.",
+  },
+  {
     version: "0.15.1",
     date: "2026-11-08",
     title: "A bubble that stays visible, and bug reports with audio",
