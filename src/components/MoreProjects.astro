@@ -1,26 +1,39 @@
 ---
-// Cross-links to the collective's other open-source apps, in the footer.
-// Same list lives in the READMEs and on desktop-monkey.my-monkey.fr.
+// Cross-links to the collective's other apps, in the footer.
 const projects = [
   {
-    name: "Desktop Monkey",
-    href: "https://desktop-monkey.my-monkey.fr",
-    slug: "desktop-monkey",
-    desc: "A pixel-art monkey that lives on your desktop — he follows your cursor, hunts it, and throws bananas at it.",
-    meta: "Windows & macOS · 6 MB · MIT",
+    name: "Monkey Claude Usage",
+    href: "https://github.com/my-monkeys/monkey-claude-usage",
+    slug: "monkey-claude-usage",
+    desc: "Every Claude account you own, metered in the menu bar: session, weekly and per-model limits, with a countdown once one is spent.",
+    meta: "macOS · menu bar · BSD-2",
   },
   {
-    name: "Claude Monitor",
-    href: "https://github.com/my-monkeys/claude-monitor",
-    slug: "claude-monitor",
-    desc: "A menu-bar app that counts your Claude Code instances and MCP servers, and kills a runaway swarm before it takes the Mac down.",
-    meta: "macOS · menu bar · MIT",
+    name: "Monkey Battery",
+    href: "https://github.com/my-monkeys/monkey-battery",
+    slug: "monkey-battery",
+    desc: "Below 10\u00A0%, the time your Mac really has left shows up next to the battery icon. Two minutes out, a red panel and an alarm you can't miss.",
+    meta: "macOS · menu bar · BSD-2",
+  },
+  {
+    name: "GeoDaily",
+    href: "https://geodaily.eu",
+    slug: "geodaily",
+    desc: "A daily geography quiz, practice modes for every continent, and leaderboards to compare scores with your friends.",
+    meta: "Web · daily quiz · free",
+  },
+  {
+    name: "Glance",
+    href: "https://glance-analytics.com",
+    slug: "glance",
+    desc: "Your Umami and Plausible analytics in one app: every site on one screen, live visitors, and charts that read at a glance.",
+    meta: "iOS, Android, macOS & Windows · MIT",
   },
 ];
 ---
 
 <div class="more">
-  <p class="more-k">More free software from the monkeys</p>
+  <p class="more-k">More from the monkeys</p>
   <div class="more-grid">
     {projects.map((p) => (
       <a
